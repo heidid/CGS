@@ -1,22 +1,10 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.ScreenAdapter;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
-public class OverworldScreen extends ScreenAdapter {
-	private SpriteBatch batch;
+public class OverworldScreen extends StageScreen {
 
-	public OverworldScreen(SpriteBatch batch) {
-		this.batch = batch;
-	}
-
-	@Override
-	public void show() {
-
-	}
-
-	@Override
-	public void render(float delta) {
-
+	public OverworldScreen(Stage stage) {
+		super(stage);
 	}
 }

@@ -2,13 +2,14 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class Main extends Game {
-	private SpriteBatch batch;
+	private Stage stage;
 
 	@Override
 	public void create() {
-		batch = new SpriteBatch();
-		setScreen(new LevelScreen(batch));
+		stage = new Stage();
+		setScreen(new LevelScreen(stage));
 	}
 }
