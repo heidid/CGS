@@ -42,8 +42,9 @@ public class AnimatedActor extends Actor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		if (sprite != null) {
-			batch.draw(getCurrentSprite(), getX(), getY(), getOriginX(), getOriginY(),
-					getWidth(), getHeight(), getScaleX(), getScaleY(), getRotation());
+			final TextureRegion image = getCurrentSprite();
+			batch.draw(image, getX(), getY(), getOriginX(), getOriginY(),
+					image.getRegionWidth(), image.getRegionHeight(), getScaleX(), getScaleY(), getRotation());
 			animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}
