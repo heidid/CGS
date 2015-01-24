@@ -12,6 +12,9 @@ public class Main extends Game {
 	@Override
 	public void create() {
 		stage = new Stage(new ScalingViewport(Scaling.fit, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()));
-		setScreen(new LevelScreen(stage));
+		Level level = new Level();
+		level.setPlayerPosition(0, 100);
+		level.addEnemy(new Enemy(), 100, 0);
+		setScreen(new LevelScreen(stage, level));
 	}
 }

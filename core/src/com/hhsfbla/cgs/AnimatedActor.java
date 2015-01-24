@@ -27,7 +27,7 @@ public class AnimatedActor extends Actor {
 	}
 
 	public TextureRegion getCurrentSprite() {
-		return sprite.getKeyFrame(animationStateTime);
+		return sprite != null ? sprite.getKeyFrame(animationStateTime) : null;
 	}
 
 	public final void setSprite(Animation sprite) {
@@ -48,5 +48,4 @@ public class AnimatedActor extends Actor {
 			animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}
-
 }
