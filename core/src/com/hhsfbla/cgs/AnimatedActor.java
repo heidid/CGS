@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class AnimatedActor extends Actor {
 	private Animation sprite;
@@ -42,9 +43,13 @@ public class AnimatedActor extends Actor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		if (sprite != null) {
+			final Stage stage = getStage();
 			final TextureRegion image = getCurrentSprite();
-			batch.draw(image, getX(), getY(), getOriginX(), getOriginY(),
-					image.getRegionWidth(), image.getRegionHeight(), getScaleX(), getScaleY(), getRotation());
+			final float gridWidth = stage.getWidth() / Level.GRID_ROWS;
+			final float gridHeight = stage.getHeight() / Level.GRID_COLS;
+			final float height = image.getRegionHeight() * gridWidth / image.getRegionWidth();
+			batch.draw(image, getX() * gridWidth, getY() * gridHeight, getOriginX(), getOriginY(),
+					gridWidth, height, getScaleX(), getScaleY(), getRotation());
 			animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}

@@ -10,9 +10,4 @@ public class Player extends AnimatedActor {
 		super(new TextureRegion(new Texture(Gdx.files.internal("router.png"))));
 	}
 
-	public Player(float x, float y) {
-		this();
-		setOrigin(x, y);
-	}
-
 }

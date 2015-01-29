@@ -4,7 +4,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 public class Level {
-	// TODO add grid stuff
+	public static final int GRID_ROWS = 15;
+	public static final int GRID_COLS = 15;
 
 	private Array<Actor> actors;
 	private Player player;
