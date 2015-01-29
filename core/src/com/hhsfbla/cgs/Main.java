@@ -12,10 +12,10 @@ public class Main extends Game {
 	public void create() {
 		stage = new Stage(new FitViewport(1280, 720));
 		Level level = new Level();
-		level.setPlayerPosition(1, 1);
+		level.setPlayerPosition(7, 7);
 		Enemy enemy = new Enemy();
-		enemy.addAction(Actions.moveTo(1, 1, 10));
-		level.addEnemy(enemy, 11, 1);
+		enemy.addAction(Actions.moveTo(7, 14, 10));
+		level.addEnemy(enemy, 7, 0);
 		setScreen(new LevelScreen(stage, level));
 	}
 }
