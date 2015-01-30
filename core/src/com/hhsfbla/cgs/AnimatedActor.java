@@ -4,22 +4,28 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 public class AnimatedActor extends Actor {
 	private Animation sprite;
 	private float animationStateTime;
+	private Rectangle bounds;
 
 	public AnimatedActor() {
 		super();
+		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
+		setSize(1, 1);
 	}
 
 	public AnimatedActor(Animation sprite) {
+		this();
 		setSprite(sprite);
 	}
 
 	public AnimatedActor(TextureRegion sprite) {
+		this();
 		setSprite(sprite);
 	}
 
@@ -38,6 +44,22 @@ public class AnimatedActor extends Actor {
 
 	public final void setSprite(TextureRegion sprite) {
 		setSprite(new Animation(0, sprite));
+	}
+
+	public Rectangle getBounds() {
+		return bounds;
+	}
+
+	@Override
+	protected void positionChanged() {
+		super.positionChanged();
+		bounds.setPosition(getX(), getY());
+	}
+
+	@Override
+	protected void sizeChanged() {
+		super.sizeChanged();
+		bounds.setSize(getWidth(), getHeight());
 	}
 
 	@Override
