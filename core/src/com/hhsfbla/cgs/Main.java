@@ -16,6 +16,7 @@ public class Main extends Game {
 		Enemy enemy = new Enemy();
 		enemy.addAction(Actions.moveTo(7, 14, 10));
 		level.addEnemy(enemy, 7, 0);
+		level.addObstacle(new Wall(), 6, 7);
 		setScreen(new LevelScreen(stage, level));
 	}
 }
