@@ -40,12 +40,13 @@ public class AnimatedActor extends Actor {
 		this(orientedSprite, DIR_DOWN);
 	}
 
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite, int direction) {
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction) {
 		this(orientedSprite, direction, 1, 1);
 	}
 
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite, int direction,
-			int width, int height) {
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction, int width, int height) {
 		this.orientedSprite = orientedSprite;
 		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
 		setDirection(direction);
@@ -61,7 +62,8 @@ public class AnimatedActor extends Actor {
 	}
 
 	public final Animation getSprite(int direction) {
-		return !orientedSprite.isEmpty() ? orientedSprite.floorEntry(direction).getValue() : null;
+		return !orientedSprite.isEmpty()
+				? orientedSprite.floorEntry(direction).getValue() : null;
 	}
 
 	public TreeMap<Integer, Animation> getOrientedSprite() {
@@ -91,8 +93,9 @@ public class AnimatedActor extends Actor {
 	}
 
 	public final void setDirection(int direction) {
+		final int oldDirection = this.direction;
 		this.direction = direction;
-		directionChanged();
+		if (direction != oldDirection) directionChanged();
 	}
 
 	@Override
@@ -121,10 +124,13 @@ public class AnimatedActor extends Actor {
 
 			final float gridWidth = stage.getWidth() / Level.GRID_ROWS;
 			final float gridHeight = stage.getHeight() / Level.GRID_COLS;
-			final float height = image.getRegionHeight() * gridWidth / image.getRegionWidth();
+			final float height = image.getRegionHeight() * gridWidth
+					/ image.getRegionWidth();
 
-			batch.draw(image, getX() * gridWidth, getY() * gridHeight, getOriginX(), getOriginY(),
-					gridWidth, height, getScaleX(), getScaleY(), getRotation());
+			batch.draw(image, getX() * gridWidth, getY() * gridHeight,
+					getOriginX(), getOriginY(), gridWidth, height,
+					getScaleX(), getScaleY(), getRotation());
+
 			animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}
