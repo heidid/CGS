@@ -46,7 +46,7 @@ public class AnimatedActor extends Actor {
 	}
 
 	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, int width, int height) {
+			int direction, float width, float height) {
 		this.orientedSprite = orientedSprite;
 		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
 		setDirection(direction);
@@ -85,7 +85,9 @@ public class AnimatedActor extends Actor {
 	}
 
 	protected void updateSprite() {
+		final Animation oldSprite = this.sprite;
 		this.sprite = getSprite(direction);
+		if (sprite != oldSprite) animationStateTime = 0;
 	}
 
 	public int getDirection() {
