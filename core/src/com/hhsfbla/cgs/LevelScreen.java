@@ -34,6 +34,8 @@ public class LevelScreen extends StageScreen {
 		stage.addActor(background);
 		stage.addActor(foreground);
 		stage.addActor(ui);
+
+		stage.setKeyboardFocus(level.getPlayer());
 	}
 
 	@Override
