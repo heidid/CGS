@@ -126,8 +126,8 @@ public class AnimatedActor extends Actor {
 			final Stage stage = getStage();
 			final TextureRegion image = getCurrentSpriteFrame();
 
-			final float gridWidth = stage.getWidth() / Level.GRID_ROWS;
-			final float gridHeight = stage.getHeight() / Level.GRID_COLS;
+			final float gridWidth = stage.getWidth() / Level.GRID_COLS;
+			final float gridHeight = stage.getHeight() / Level.GRID_ROWS;
 			final float height = image.getRegionHeight() * gridWidth
 					/ image.getRegionWidth();
 
