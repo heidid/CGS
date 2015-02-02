@@ -28,7 +28,7 @@ public class Level {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public Array<Obstacle> getObstacles(){
 		return obstacles;
 	}
@@ -46,10 +46,6 @@ public class Level {
 		enemy.setLevel(this);
 		enemies.add(enemy);
 		actors.add(enemy);
-	}
-
-	public Array<Obstacle> getObstacles() {
-		return obstacles;
 	}
 
 	public void addObstacle(Obstacle obstacle, float x, float y) {
