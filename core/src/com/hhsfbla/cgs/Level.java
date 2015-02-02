@@ -18,6 +18,7 @@ public class Level {
 		obstacles = new Array<>();
 		actors = new Array<>();
 		actors.add(player);
+		player.setLevel(this);
 	}
 
 	public Array<Actor> getActors() {
@@ -36,14 +37,24 @@ public class Level {
 		player.setPosition(x, y);
 	}
 
+	public Array<Enemy> getEnemies() {
+		return enemies;
+	}
+
 	public void addEnemy(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
+		enemy.setLevel(this);
 		enemies.add(enemy);
 		actors.add(enemy);
 	}
 
+	public Array<Obstacle> getObstacles() {
+		return obstacles;
+	}
+
 	public void addObstacle(Obstacle obstacle, float x, float y) {
 		obstacle.setPosition(x, y);
+		obstacle.setLevel(this);
 		obstacles.add(obstacle);
 		actors.add(obstacle);
 	}

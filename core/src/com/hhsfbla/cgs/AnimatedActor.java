@@ -16,6 +16,7 @@ public class AnimatedActor extends Actor {
 	public static int DIR_LEFT = 180;
 	public static int DIR_DOWN = 270;
 
+	private Level level;
 	private TreeMap<Integer, Animation> orientedSprite;
 	private Animation sprite;
 	private float animationStateTime;
@@ -52,6 +53,14 @@ public class AnimatedActor extends Actor {
 		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
 		setSize(width, height);
 		updateSprite();
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
 	public TextureRegion getCurrentSpriteFrame() {
