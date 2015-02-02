@@ -6,6 +6,12 @@ public class Node implements IndexedNode<Node> {
 	int index;
 	Array<Connection<Node>> connections;
 	
+	public Node(int index, Array<Connection<Node>> connections) {
+		super();
+		this.index = index;
+		this.connections = connections;
+	}
+
 	@Override
 	public int getIndex() {
 		return index;
