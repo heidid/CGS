@@ -27,6 +27,10 @@ public class Level {
 	public Player getPlayer() {
 		return player;
 	}
+	
+	public Array<Obstacle> getObstacles(){
+		return obstacles;
+	}
 
 	public void setPlayerPosition(float x, float y) {
 		player.setPosition(x, y);

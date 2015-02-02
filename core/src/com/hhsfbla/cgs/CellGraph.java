@@ -4,16 +4,16 @@ import com.badlogic.gdx.ai.pfa.Connection;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedGraph;
 import com.badlogic.gdx.utils.Array;
 
-public class NodeGraph implements IndexedGraph<Node> {
-	Array<Node> nodes;
+public class CellGraph implements IndexedGraph<Cell> {
+	Array<Cell> nodes;
 	
-	public NodeGraph(Array<Node> nodes) {
+	public CellGraph(Array<Cell> nodes) {
 		super();
 		this.nodes = nodes;
 	}
 
 	@Override
-	public Array<Connection<Node>> getConnections(Node fromNode) {
+	public Array<Connection<Cell>> getConnections(Cell fromNode) {
 		return fromNode.getConnections();
 	}
 
