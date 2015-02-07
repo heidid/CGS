@@ -5,7 +5,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class Level {
 	public static final int GRID_COLS = 16;
-	public static final int GRID_ROWS = 15;
+	public static final int GRID_ROWS = 9;
 
 	private Array<AnimatedActor> actors;
 	private Player player;
