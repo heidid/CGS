@@ -6,7 +6,7 @@ import com.badlogic.gdx.utils.Array;
 
 public class CellGraph implements IndexedGraph<Cell> {
 	Array<Cell> nodes;
-	
+
 	public CellGraph(Array<Cell> nodes) {
 		super();
 		this.nodes = nodes;

@@ -6,7 +6,7 @@ public class CellConnection implements Connection<Cell> {
 	Cell fromCell;
 	Cell toCell;
 	float cost;
-	
+
 	public CellConnection(Cell fromCell, Cell toCell, float cost) {
 		super();
 		this.fromCell = fromCell;
@@ -28,5 +28,5 @@ public class CellConnection implements Connection<Cell> {
 	public Cell getToNode() {
 		return toCell;
 	}
-	
+
 }
