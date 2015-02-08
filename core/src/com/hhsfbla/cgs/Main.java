@@ -26,7 +26,6 @@ public class Main extends Game {
 			level.addObstacle(new Wall(Wall.DIR_LEFT), 12, 2 + i);
 		}
 		setScreen(new LevelScreen(stage, new TextureAtlas(), level));
-		// TODO: Fix pathfinding
-//		enemy.addAction(new PathFindingAction(level, enemy, 7, 7, 1));
+		enemy.addAction(new PathFindingAction(level, enemy, 7, 7, 1));
 	}
 }

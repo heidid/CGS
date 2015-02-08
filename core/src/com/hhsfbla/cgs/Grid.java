@@ -49,7 +49,7 @@ public class Grid {
 
 	public void generate() {
 		cells = new Array<Cell>();
-		for (int i = 0; i < Level.GRID_ROWS; i++) {
+		for (int i = 0; i <= Level.GRID_ROWS; i++) {
 			for (int j = 0; j < Level.GRID_COLS; j++) {
 				cells.add(new Cell(i * Level.GRID_COLS + j, false, j,i));
 			}
