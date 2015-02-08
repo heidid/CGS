@@ -20,6 +20,6 @@ public class Main extends Game {
 			level.addObstacle(new Wall(), 6 + i, 8);
 		}
 		setScreen(new LevelScreen(stage, level));
-		enemy.addAction(new PathFindingAction(level, enemy, new Vector2(7, 10), 1));
+		enemy.addAction(new PathFindingAction(level, enemy, 7, 10, 1));
 	}
 }
