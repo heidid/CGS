@@ -30,4 +30,5 @@ public class Obstacle extends AnimatedActor {
 			float width, float height) {
 		super(orientedSprite, direction, width, height);
 	}
+	
 }

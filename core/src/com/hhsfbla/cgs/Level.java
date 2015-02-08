@@ -11,12 +11,15 @@ public class Level {
 	private Player player;
 	private Array<Enemy> enemies;
 	private Array<Obstacle> obstacles;
+	Grid grid;
 
 	public Level() {
 		player = new Player();
 		enemies = new Array<>();
 		obstacles = new Array<>();
 		actors = new Array<>();
+		grid = new Grid(this);
+		grid.generate();
 		actors.add(player);
 		player.setLevel(this);
 	}
