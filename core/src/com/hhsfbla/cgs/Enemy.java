@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Enemy extends MovableActor {
 
 	public Enemy() {
+		
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("minion-up.png")))));

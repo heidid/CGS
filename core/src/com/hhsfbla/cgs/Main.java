@@ -1,7 +1,7 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
@@ -19,7 +19,7 @@ public class Main extends Game {
 			level.addObstacle(new Wall(), 6 + i, 6);
 			level.addObstacle(new Wall(), 6 + i, 8);
 		}
-		setScreen(new LevelScreen(stage, level));
+		setScreen(new LevelScreen(stage, new TextureAtlas(), level));
 		enemy.addAction(new PathFindingAction(level, enemy, 7, 10, 1));
 	}
 }

@@ -3,6 +3,8 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -16,7 +18,7 @@ public class AnimatedActor extends Actor {
 	public static int DIR_LEFT = 180;
 	public static int DIR_DOWN = 270;
 
-	private Level level;
+	private StageScreen screen;
 	private TreeMap<Integer, Animation> orientedSprite;
 	private Animation sprite;
 	private float animationStateTime;
@@ -55,14 +57,6 @@ public class AnimatedActor extends Actor {
 		updateSprite();
 	}
 
-	public Level getLevel() {
-		return level;
-	}
-
-	public void setLevel(Level level) {
-		this.level = level;
-	}
-
 	public TextureRegion getCurrentSpriteFrame() {
 		return sprite != null ? sprite.getKeyFrame(animationStateTime) : null;
 	}
@@ -93,6 +87,14 @@ public class AnimatedActor extends Actor {
 
 	public final void setSprite(TextureRegion sprite) {
 		setSprite(new Animation(0, sprite));
+	}
+	
+	public StageScreen getScreen(){
+		return screen;
+	}
+	
+	public void setScreen(Screen screen){
+		this.screen = screen;
 	}
 
 	protected void updateSprite() {
@@ -127,6 +129,10 @@ public class AnimatedActor extends Actor {
 
 	protected void directionChanged() {
 		updateSprite();
+	}
+	
+	public Texture setTextureFromAtlas(String name){
+		return getScreen().atlas.findRegion(name).getTexture();
 	}
 
 	@Override

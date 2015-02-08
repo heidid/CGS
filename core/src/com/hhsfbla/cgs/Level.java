@@ -1,16 +1,17 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Array;
 
 public class Level {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 15;
 
-	private Array<Actor> actors;
+	private Array<AnimatedActor> actors;
 	private Player player;
 	private Array<Enemy> enemies;
 	private Array<Obstacle> obstacles;
+	private Screen screen;
 	Grid grid;
 
 	public Level() {
@@ -21,10 +22,9 @@ public class Level {
 		grid = new Grid(this);
 		grid.generate();
 		actors.add(player);
-		player.setLevel(this);
 	}
 
-	public Array<Actor> getActors() {
+	public Array<AnimatedActor> getActors() {
 		return actors;
 	}
 
@@ -44,18 +44,29 @@ public class Level {
 		return enemies;
 	}
 
+	public void addAnimatedActor(AnimatedActor aa) {
+		actors.add(aa);
+		aa.setScreen(screen);
+	}
+	
 	public void addEnemy(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
-		enemy.setLevel(this);
+		enemy.setScreen(screen);
 		enemies.add(enemy);
-		actors.add(enemy);
+		addAnimatedActor(enemy);
 	}
 
 	public void addObstacle(Obstacle obstacle, float x, float y) {
 		obstacle.setPosition(x, y);
-		obstacle.setLevel(this);
+		obstacle.setScreen(screen);
 		obstacles.add(obstacle);
-		actors.add(obstacle);
+		addAnimatedActor(obstacle);
+	}
+	
+	public void setScreen(Screen screen) {
+		this.screen = screen;
+		for(AnimatedActor a : actors)
+			a.setScreen(screen);
 	}
 
 }

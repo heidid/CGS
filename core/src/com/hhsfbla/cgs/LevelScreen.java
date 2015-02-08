@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,9 +16,10 @@ public class LevelScreen extends StageScreen {
 	private Group foreground;
 	private Group ui;
 
-	public LevelScreen(Stage stage, Level level) {
-		super(stage);
+	public LevelScreen(Stage stage, TextureAtlas atlas, Level level) {
+		super(stage, atlas);
 		this.level = level;
+		level.setScreen(this);
 		background = new Group();
 		foreground = new Group();
 		ui = new Group();
