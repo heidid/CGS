@@ -1,11 +1,8 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class Main extends Game {
@@ -23,12 +20,6 @@ public class Main extends Game {
 			level.addObstacle(new Wall(), 6 + i, 8);
 		}
 		setScreen(new LevelScreen(stage, level));
-		CellPath cp = level.grid.getPath(7,0,7,10);
-		SequenceAction sa = new SequenceAction();
-		for(Cell c : cp.array){
-			System.out.println(c.x+","+c.y);
-			sa.addAction(Actions.moveTo(c.x, c.y, 1));
-		}
-		enemy.addAction(sa);
+		enemy.addAction(new PathFindingAction(level, enemy, new Vector2(7, 10), 1));
 	}
 }
