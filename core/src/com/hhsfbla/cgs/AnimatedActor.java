@@ -88,12 +88,12 @@ public class AnimatedActor extends Actor {
 	public final void setSprite(TextureRegion sprite) {
 		setSprite(new Animation(0, sprite));
 	}
-	
-	public StageScreen getScreen(){
+
+	public StageScreen getScreen() {
 		return screen;
 	}
-	
-	public void setScreen(Screen screen){
+
+	public void setScreen(StageScreen screen) {
 		this.screen = screen;
 	}
 
@@ -130,7 +130,7 @@ public class AnimatedActor extends Actor {
 	protected void directionChanged() {
 		updateSprite();
 	}
-	
+
 	public Texture setTextureFromAtlas(String name){
 		return getScreen().atlas.findRegion(name).getTexture();
 	}

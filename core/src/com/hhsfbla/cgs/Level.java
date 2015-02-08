@@ -11,7 +11,7 @@ public class Level {
 	private Player player;
 	private Array<Enemy> enemies;
 	private Array<Obstacle> obstacles;
-	private Screen screen;
+	private StageScreen screen;
 	Grid grid;
 
 	public Level() {
@@ -62,8 +62,8 @@ public class Level {
 		obstacles.add(obstacle);
 		addAnimatedActor(obstacle);
 	}
-	
-	public void setScreen(Screen screen) {
+
+	public void setScreen(StageScreen screen) {
 		this.screen = screen;
 		for(AnimatedActor a : actors)
 			a.setScreen(screen);
