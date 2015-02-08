@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Player extends MovableActor {
 	public Player() {
@@ -19,7 +20,8 @@ public class Player extends MovableActor {
 					new Texture(Gdx.files.internal("tracker-right.png")))));
 		}});
 		setMoveSprite(getIdleSprite());
-		setSpeed(1.5f);
+		setOrigin(Align.center);
+		setSpeed(2);
 		addListener(new PlayerInputListener());
 	}
 
@@ -31,15 +33,15 @@ public class Player extends MovableActor {
 
 		private void handleInput() {
 			if (up) {
-				move(DIR_UP);
+				setMoving(DIR_UP);
 			} else if (down) {
-				move(DIR_DOWN);
+				setMoving(DIR_DOWN);
 			} else if (left) {
-				move(DIR_LEFT);
+				setMoving(DIR_LEFT);
 			} else if (right) {
-				move(DIR_RIGHT);
+				setMoving(DIR_RIGHT);
 			} else {
-				idle();
+				setIdle();
 			}
 		}
 

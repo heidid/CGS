@@ -2,6 +2,7 @@ package com.hhsfbla.cgs;
 
 import java.util.TreeMap;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -9,6 +10,7 @@ public class MovableActor extends AnimatedActor {
 	private float speed;
 	private TreeMap<Integer, Animation> idleSprite;
 	private TreeMap<Integer, Animation> moveSprite;
+	private boolean moving;
 
 	public MovableActor() {
 		this(new TreeMap<Integer, Animation>());
@@ -103,18 +105,48 @@ public class MovableActor extends AnimatedActor {
 		moveSprite.put(0, sprite);
 	}
 
+	public boolean isMoving() {
+		return moving;
+	}
+
 	public void setMoveSprite(TextureRegion sprite) {
 		setMoveSprite(new Animation(0, sprite));
 	}
 
-	public void move(int direction) {
+	public void setMoving(int direction) {
+		moving = true;
 		setDirection(direction);
 		setSprite(getMoveSprite());
 		updateSprite();
 	}
 
-	public void idle() {
+	public void setIdle() {
+		moving = false;
 		setSprite(getIdleSprite());
 	}
 
+	private boolean checkCollisions(float dx, float dy) {
+		final float x = getX() + getOriginX() + dx;
+		final float y = getY() + getOriginY() + dy;
+
+		for (Obstacle o : getLevel().getObstacles()) {
+			if (o.getBounds().contains(x, y)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Override
+	public void act(float delta) {
+		if (moving) {
+			final double r = Math.toRadians(getDirection());
+			final float d = speed * Gdx.graphics.getDeltaTime();
+			final float dx = d * (float) Math.cos(r);
+			final float dy = d * (float) Math.sin(r);
+			if (!checkCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
+		}
+		super.act(delta);
+	}
 }
