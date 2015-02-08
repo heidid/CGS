@@ -20,11 +20,23 @@ public class Wall extends Obstacle {
 					new Texture(Gdx.files.internal("wall-h.png"))));
 			final Animation vertical = new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("wall-v.png"))));
+			final Animation topRight = new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("wall-corner-bl.png"))));
+			final Animation topLeft = new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("wall-corner-br.png"))));
+			final Animation bottomRight = new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("wall-corner-tl.png"))));
+			final Animation bottomLeft = new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("wall-corner-tr.png"))));
 
 			put(DIR_UP, horizontal);
 			put(DIR_DOWN, horizontal);
 			put(DIR_LEFT, vertical);
 			put(DIR_RIGHT, vertical);
+			put(DIR_UP_RIGHT, topRight);
+			put(DIR_UP_LEFT, topLeft);
+			put(DIR_DOWN_RIGHT, bottomRight);
+			put(DIR_DOWN_LEFT, bottomLeft);
 		}}, direction);
 	}
 }

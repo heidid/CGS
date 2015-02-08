@@ -16,6 +16,10 @@ public class AnimatedActor extends Actor {
 	public static int DIR_UP = 90;
 	public static int DIR_LEFT = 180;
 	public static int DIR_DOWN = 270;
+	public static int DIR_UP_RIGHT = 45;
+	public static int DIR_UP_LEFT = 135;
+	public static int DIR_DOWN_RIGHT = 315;
+	public static int DIR_DOWN_LEFT = 225;
 
 	private Level level;
 	private StageScreen screen;
