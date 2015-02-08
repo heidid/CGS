@@ -18,8 +18,11 @@ public class Grid {
 	public void updateBlocked(){
 		for (Cell c : cells)
 			c.blocked = false;
-		for (Obstacle o : l.getObstacles())
+		for (Obstacle o : l.getObstacles()){
+			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS)
+				continue;
 			cells.get((int) (o.getX()) + (int) (o.getY() * Level.GRID_COLS)).blocked = true;
+		}
 	}
 	
 	public void updateConnections(){
@@ -28,11 +31,9 @@ public class Grid {
 			Array<CellConnection> possibles = new Array<CellConnection>();
 			for (int x = -1; x <= 1; x++) {
 				for (int y = -1; y <= 1; y++) {
-					if(cell.x + x < 0 || cell.x + x >= Level.GRID_COLS)
-						continue;
-					if(cell.y + y < 0 || cell.y + y >= Level.GRID_ROWS)
-						continue;
-					if (x == 0 && y == 0)
+					if((cell.x + x < 0 || cell.x + x >= Level.GRID_COLS) ||
+							(cell.y + y < 0 || cell.y + y >= Level.GRID_ROWS) ||
+							(x == 0 && y == 0))
 						continue;
 					float dist = 1.0f;
 					if ((Math.abs(x) + Math.abs(y)) == 2)
@@ -49,7 +50,7 @@ public class Grid {
 
 	public void generate() {
 		cells = new Array<Cell>();
-		for (int i = 0; i <= Level.GRID_ROWS; i++) {
+		for (int i = 0; i < Level.GRID_ROWS; i++) {
 			for (int j = 0; j < Level.GRID_COLS; j++) {
 				cells.add(new Cell(i * Level.GRID_COLS + j, false, j,i));
 			}
