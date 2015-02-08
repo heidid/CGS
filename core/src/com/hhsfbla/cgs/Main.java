@@ -22,7 +22,7 @@ public class Main extends Game {
 			level.addObstacle(new Wall(), 6 + i, 2);
 		}
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 6; i++) {
 			level.addObstacle(new Wall(Wall.DIR_LEFT), 12, 2 + i);
 		}
 		setScreen(new LevelScreen(stage, new TextureAtlas(), level));
