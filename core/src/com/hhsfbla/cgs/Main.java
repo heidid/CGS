@@ -18,8 +18,15 @@ public class Main extends Game {
 		for (int i = 0; i < 5; i++) {
 			level.addObstacle(new Wall(), 6 + i, 6);
 			level.addObstacle(new Wall(), 6 + i, 8);
+			level.addObstacle(new Wall(), 6 + i, 4);
+			level.addObstacle(new Wall(), 6 + i, 2);
+		}
+
+		for (int i = 0; i < 8; i++) {
+			level.addObstacle(new Wall(Wall.DIR_LEFT), 12, 2 + i);
 		}
 		setScreen(new LevelScreen(stage, new TextureAtlas(), level));
-		enemy.addAction(new PathFindingAction(level, enemy, 7, 10, 1));
+		// TODO: Fix pathfinding
+//		enemy.addAction(new PathFindingAction(level, enemy, 7, 7, 1));
 	}
 }
