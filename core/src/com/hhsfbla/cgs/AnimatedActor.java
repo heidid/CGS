@@ -3,7 +3,6 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -18,6 +17,7 @@ public class AnimatedActor extends Actor {
 	public static int DIR_LEFT = 180;
 	public static int DIR_DOWN = 270;
 
+	private Level level;
 	private StageScreen screen;
 	private TreeMap<Integer, Animation> orientedSprite;
 	private Animation sprite;
@@ -55,6 +55,14 @@ public class AnimatedActor extends Actor {
 		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
 		setSize(width, height);
 		updateSprite();
+	}
+
+	public Level getLevel() {
+		return level;
+	}
+
+	public void setLevel(Level level) {
+		this.level = level;
 	}
 
 	public TextureRegion getCurrentSpriteFrame() {

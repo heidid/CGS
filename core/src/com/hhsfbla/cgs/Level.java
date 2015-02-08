@@ -1,6 +1,5 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.utils.Array;
 
 public class Level {
@@ -22,6 +21,7 @@ public class Level {
 		grid = new Grid(this);
 		grid.generate();
 		actors.add(player);
+		player.setLevel(this);
 	}
 
 	public Array<AnimatedActor> getActors() {
@@ -48,9 +48,10 @@ public class Level {
 		actors.add(aa);
 		aa.setScreen(screen);
 	}
-	
+
 	public void addEnemy(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
+		enemy.setLevel(this);
 		enemy.setScreen(screen);
 		enemies.add(enemy);
 		addAnimatedActor(enemy);
