@@ -11,7 +11,7 @@ public class PathFindingAction extends SequenceAction {
 		CellPath cp = level.grid.getPath((int)a.getX(), (int)a.getY(), x, y);
 		for(Cell c : cp.array){
 			this.addAction(Actions.moveTo(c.x, c.y, durationEach));
-			System.out.println(c.x+","+c.y);
+			//System.out.println(c.x+","+c.y);
 		}
 	}
 	
