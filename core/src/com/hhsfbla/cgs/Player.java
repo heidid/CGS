@@ -32,7 +32,15 @@ public class Player extends MovableActor {
 		private boolean right;
 
 		private void handleInput() {
-			if (up) {
+			if (up && left) {
+				setMoving(DIR_UP_LEFT);
+			} else if (up && right) {
+				setMoving(DIR_UP_RIGHT);
+			} else if (down && left) {
+				setMoving(DIR_DOWN_LEFT);
+			} else if (down && right) {
+				setMoving(DIR_DOWN_RIGHT);
+			} else if (up) {
 				setMoving(DIR_UP);
 			} else if (down) {
 				setMoving(DIR_DOWN);
