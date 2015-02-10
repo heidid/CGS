@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class AnimatedActor extends Actor {
 	public static int DIR_RIGHT = 0;
@@ -58,6 +59,7 @@ public class AnimatedActor extends Actor {
 		this.direction = direction;
 		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
 		setSize(width, height);
+		setOrigin(Align.center);
 		updateSprite();
 	}
 
@@ -155,11 +157,13 @@ public class AnimatedActor extends Actor {
 
 			final float gridWidth = stage.getWidth() / Level.GRID_COLS;
 			final float gridHeight = stage.getHeight() / Level.GRID_ROWS;
-			final float height = image.getRegionHeight() * gridWidth
+			final float x = (getX() - getOriginX() + 0.5f) * gridWidth;
+			final float y = (getY() - getOriginY() + 0.5f) * gridHeight;
+			final float width = getWidth() * gridWidth;
+			final float height = image.getRegionHeight() * width
 					/ image.getRegionWidth();
 
-			batch.draw(image, getX() * gridWidth, getY() * gridHeight,
-					getOriginX(), getOriginY(), gridWidth, height,
+			batch.draw(image, x, y, getOriginX(), getOriginY(), width, height,
 					getScaleX(), getScaleY(), getRotation());
 
 			animationStateTime += Gdx.graphics.getDeltaTime();
