@@ -16,7 +16,7 @@ public class PathFindingAction extends SequenceAction {
 			Cell c = cp.array.get(i);
 			if (i == cp.array.size - 1) {
 				addAction(new AnimatedMoveToAction(c.x, c.y));
-				break;
+				return;
 			}
 			Cell n = cp.array.get(i + 1);
 			if (c.x - oldX == n.x - c.x && c.y - oldY == n.y - c.y)

@@ -15,13 +15,17 @@ public class Grid {
 		this.l = l;
 	}
 	
+	public Cell getCell(int x, int y) {
+		return cells.get(y * Level.GRID_COLS + x);
+	}
+	
 	public void updateBlocked(){
 		for (Cell c : cells)
 			c.blocked = false;
 		for (Obstacle o : l.getObstacles()){
 			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS)
 				continue;
-			cells.get((int) (o.getX()) + (int) (o.getY() * Level.GRID_COLS)).blocked = true;
+			getCell((int) (o.getX()), (int) (o.getY())).blocked = true;
 		}
 	}
 	
@@ -39,8 +43,7 @@ public class Grid {
 					if ((Math.abs(x) + Math.abs(y)) == 2)
 						dist = (float) (Math.sqrt(2));
 					CellConnection c = new CellConnection(cell,
-							cells.get((cell.y + y) * Level.GRID_COLS
-									+ (cell.x + x)), dist);
+							getCell((cell.x + x), (cell.y + y)), dist);
 					possibles.add(c);
 				}
 			}
@@ -52,7 +55,7 @@ public class Grid {
 		cells = new Array<Cell>();
 		for (int i = 0; i < Level.GRID_ROWS; i++) {
 			for (int j = 0; j < Level.GRID_COLS; j++) {
-				cells.add(new Cell(i * Level.GRID_COLS + j, false, j,i));
+				cells.add(new Cell(i * Level.GRID_COLS + j, false, j, i, this));
 			}
 		}
 		updateBlocked();
@@ -65,7 +68,7 @@ public class Grid {
 	public CellPath getPath(int x1, int y1, int x2, int y2){
 		updateBlocked();
 		CellPath ret = new CellPath();
-		finder.searchNodePath(cells.get(x1 + y1 * Level.GRID_COLS), cells.get(x2 + y2 * Level.GRID_COLS), h, ret);
+		finder.searchNodePath(getCell(x1, y1), getCell(x2, y2), h, ret);
 		return ret;
 	}
 
