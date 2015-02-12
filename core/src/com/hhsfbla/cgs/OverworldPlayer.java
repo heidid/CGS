@@ -1,6 +1,7 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 
@@ -21,11 +22,12 @@ public class OverworldPlayer extends Player {
 	}
 
 	public class OverworldLevelInputListener extends InputListener {
-		private boolean up;
-		private boolean down;
-		private boolean left;
-		private boolean right;
 		
+		OverworldScreen os;
+		
+		public OverworldLevelInputListener(OverworldScreen os) {
+			this.os = os;
+		}
 		public void tryConnection(OverworldConnection con) {
 			if(con != null) {
 				next = con.oa;
@@ -33,67 +35,28 @@ public class OverworldPlayer extends Player {
 				addAction(con.sa);
 			}
 		}
-		
-		private void handleInput() {
-			if (getActions().size != 0)
-				return;
-			current = next;
-			if (up) {
-				tryConnection(current.u);
-				return;
-			} else if (down) {
-				tryConnection(current.d);
-				return;
-			} else if (left) {
-				tryConnection(current.l);
-				return;
-			} else if (right) {
-				tryConnection(current.r);
-				return;
-			} else {
-				setIdle();
-			}
-		}
-
 		@Override
 		public boolean keyDown(InputEvent event, int keycode) {
-			System.out.println("DOWN");
-			switch (keycode) {
-			case Input.Keys.UP:
-				up = true;
-				break;
-			case Input.Keys.DOWN:
-				down = true;
-				break;
-			case Input.Keys.LEFT:
-				left = true;
-				break;
-			case Input.Keys.RIGHT:
-				right = true;
-				break;
-			}
-			handleInput();
-			return true;
-		}
-
-		@Override
-		public boolean keyUp(InputEvent event, int keycode) {
-			System.out.println("UP");
-			switch (keycode) {
-			case Input.Keys.UP:
-				up = false;
-				break;
-			case Input.Keys.DOWN:
-				down = false;
-				break;
-			case Input.Keys.LEFT:
-				left = false;
-				break;
-			case Input.Keys.RIGHT:
-				right = false;
-				break;
-			}
-			handleInput();
+			if (getActions().size != 0)
+				return true;
+			current = next;
+			if (keycode == Input.Keys.UP) {
+				tryConnection(current.u);
+				return true;
+			} else if (keycode == Input.Keys.DOWN) {
+				tryConnection(current.d);
+				return true;
+			} else if (keycode == Input.Keys.LEFT) {
+				tryConnection(current.l);
+				return true;
+			} else if (keycode == Input.Keys.RIGHT) {
+				tryConnection(current.r);
+				return true;
+			} else if (keycode == Input.Keys.ENTER) {
+				System.out.println(current.getLevel());
+				os.g.setScreen(new LevelScreen(os.getStage(), new TextureAtlas(), current.getLevel()));
+			} else
+				setIdle();
 			return true;
 		}
 	}

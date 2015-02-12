@@ -7,7 +7,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class OverworldActor extends AnimatedActor {
-	Level level;
 	OverworldConnection l, r, u, d;
 	boolean unloked = false;
 
@@ -24,10 +23,6 @@ public class OverworldActor extends AnimatedActor {
 		this.l = l;
 		this.d = d;
 		this.u = u;
-	}
-
-	public Level getLevel() {
-		return level;
 	}
 
 	public OverworldConnection conTo(OverworldActor other) {
