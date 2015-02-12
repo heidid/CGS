@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 
 public class Main extends Game {
-	public Stage stage;
+	private Stage stage;
 
 	@Override
 	public void create() {

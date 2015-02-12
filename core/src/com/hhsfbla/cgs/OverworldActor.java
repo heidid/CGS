@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class OverworldActor extends AnimatedActor {
 	OverworldConnection l, r, u, d;
-	boolean unloked = false;
+	boolean unlocked = true;
 
 	public OverworldActor(float x, float y) {
 		setX(x);
