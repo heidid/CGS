@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Player extends MovableActor {
+	@SuppressWarnings("serial")
 	public Player() {
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_LEFT, new Animation(0, new TextureRegion(
@@ -22,10 +23,9 @@ public class Player extends MovableActor {
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.center);
 		setSpeed(2);
-		addListener(new PlayerInputListener());
 	}
-
-	private class PlayerInputListener extends InputListener {
+	
+	public class LevelInputListener extends InputListener {
 		private boolean up;
 		private boolean down;
 		private boolean left;

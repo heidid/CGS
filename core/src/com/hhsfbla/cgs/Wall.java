@@ -14,6 +14,7 @@ public class Wall extends Obstacle {
 		this(DIR_DOWN);
 	}
 
+	@SuppressWarnings("serial")
 	public Wall(int direction) {
 		super(new TreeMap<Integer, Animation>() {{
 			final Animation horizontal = new Animation(0, new TextureRegion(

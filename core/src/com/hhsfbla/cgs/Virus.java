@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Virus extends Enemy {
 
+	@SuppressWarnings("serial")
 	public Virus() {
 
 		setIdleSprite(new TreeMap<Integer, Animation>() {{

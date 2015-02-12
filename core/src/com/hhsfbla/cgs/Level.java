@@ -15,6 +15,7 @@ public class Level {
 
 	public Level() {
 		player = new Player();
+		player.addListener(player.new LevelInputListener());
 		enemies = new Array<>();
 		obstacles = new Array<>();
 		actors = new Array<>();
