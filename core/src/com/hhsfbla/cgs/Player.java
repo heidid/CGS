@@ -21,7 +21,7 @@ public class Player extends MovableActor {
 					new Texture(Gdx.files.internal("tracker-right.png")))));
 		}});
 		setMoveSprite(getIdleSprite());
-		setOrigin(Align.center);
+		setOrigin(Align.bottom);
 		setSpeed(2);
 	}
 	

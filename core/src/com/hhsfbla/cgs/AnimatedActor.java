@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -24,23 +24,26 @@ public class AnimatedActor extends Actor {
 
 	private Level level;
 	private StageScreen screen;
-	private TreeMap<Integer, Animation> orientedSprite;
-	private Animation sprite;
-	private float animationStateTime;
 	private int direction;
-	private Rectangle bounds;
+	private TreeMap<Integer, Vector2> orientedSize;
+	private TreeMap<Integer, Animation> orientedSprite;
+	private TreeMap<Integer, Hitbox> orientedHitbox;
+	private Vector2 size;
+	private Animation sprite;
+	private Hitbox hitbox;
+	private float animationStateTime;
 
 	public AnimatedActor() {
 		this(new TreeMap<Integer, Animation>());
 	}
 
 	public AnimatedActor(TextureRegion sprite) {
-		this(new TreeMap<Integer, Animation>());
+		this();
 		setSprite(sprite);
 	}
 
 	public AnimatedActor(Animation sprite) {
-		this(new TreeMap<Integer, Animation>());
+		this();
 		setSprite(sprite);
 	}
 
@@ -55,12 +58,40 @@ public class AnimatedActor extends Actor {
 
 	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
 			int direction, float width, float height) {
+		this(orientedSprite, direction, width, height, new Hitbox());
+	}
+
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction, float width, float height, final Hitbox hitbox) {
+		this(orientedSprite, direction, width, height,
+				new TreeMap<Integer, Hitbox>() {{ put(0, hitbox); }});
+	}
+
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction, TreeMap<Integer, Vector2> orientedSize) {
+		this(orientedSprite, direction, orientedSize,
+				new TreeMap<Integer, Hitbox>() {{ put(0, new Hitbox()); }});
+	}
+
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction, final float width, final float height,
+			TreeMap<Integer, Hitbox> orientedHitbox) {
+		this(orientedSprite, direction, new TreeMap<Integer, Vector2>() {{
+			put(0, new Vector2(width, height));
+		}}, orientedHitbox);
+	}
+
+	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
+			int direction, TreeMap<Integer, Vector2> orientedSize,
+			TreeMap<Integer, Hitbox> orientedHitbox) {
+		this.orientedSize = orientedSize;
 		this.orientedSprite = orientedSprite;
+		this.orientedHitbox = orientedHitbox;
 		this.direction = direction;
-		bounds = new Rectangle(getX(), getY(), getWidth(), getHeight());
-		setSize(width, height);
-		setOrigin(Align.center);
+		updateSize();
 		updateSprite();
+		updateHitbox();
+		setOrigin(Align.center);
 	}
 
 	public Level getLevel() {
@@ -71,38 +102,6 @@ public class AnimatedActor extends Actor {
 		this.level = level;
 	}
 
-	public TextureRegion getCurrentSpriteFrame() {
-		return sprite != null ? sprite.getKeyFrame(animationStateTime) : null;
-	}
-
-	public final Animation getSprite() {
-		return sprite;
-	}
-
-	public final Animation getSprite(int direction) {
-		return !orientedSprite.isEmpty()
-				? orientedSprite.floorEntry(direction).getValue() : null;
-	}
-
-	public TreeMap<Integer, Animation> getOrientedSprite() {
-		return orientedSprite;
-	}
-
-	public final void setSprite(TreeMap<Integer, Animation> orientedSprite) {
-		this.orientedSprite = orientedSprite;
-		updateSprite();
-	}
-
-	public final void setSprite(Animation sprite) {
-		orientedSprite.clear();
-		orientedSprite.put(0, sprite);
-		updateSprite();
-	}
-
-	public final void setSprite(TextureRegion sprite) {
-		setSprite(new Animation(0, sprite));
-	}
-
 	public StageScreen getScreen() {
 		return screen;
 	}
@@ -111,10 +110,75 @@ public class AnimatedActor extends Actor {
 		this.screen = screen;
 	}
 
-	protected void updateSprite() {
-		final Animation oldSprite = this.sprite;
-		this.sprite = getSprite(direction);
-		if (sprite != oldSprite) animationStateTime = 0;
+	@Override
+	public void setSize(float width, float height) {
+		size.set(width, height);
+		super.setSize(width, height);
+	}
+
+	@Override
+	public void setWidth(float width) {
+		setSize(width, getHeight());
+	}
+
+	@Override
+	public void setHeight(float height) {
+		setSize(getWidth(), height);
+	}
+
+	public TextureRegion getCurrentSpriteFrame() {
+		return sprite != null ? sprite.getKeyFrame(animationStateTime) : null;
+	}
+
+	public Animation getSprite() {
+		return sprite;
+	}
+
+	public Animation getSprite(int direction) {
+		return !orientedSprite.isEmpty()
+				? orientedSprite.floorEntry(direction).getValue() : null;
+	}
+
+	public TreeMap<Integer, Animation> getOrientedSprite() {
+		return orientedSprite;
+	}
+
+	public void setSprite(TreeMap<Integer, Animation> orientedSprite) {
+		this.orientedSprite = orientedSprite;
+		updateSprite();
+	}
+
+	public void setSprite(Animation sprite) {
+		orientedSprite.clear();
+		orientedSprite.put(0, sprite);
+		updateSprite();
+	}
+
+	public void setSprite(TextureRegion sprite) {
+		setSprite(new Animation(0, sprite));
+	}
+
+	public Hitbox getHitbox() {
+		return hitbox;
+	}
+
+	public Hitbox getHitbox(int direction) {
+		return !orientedHitbox.isEmpty()
+				? orientedHitbox.floorEntry(direction).getValue() : null;
+	}
+
+	public TreeMap<Integer, Hitbox> getOrientedHitbox() {
+		return orientedHitbox;
+	}
+
+	public void setHitbox(TreeMap<Integer, Hitbox> orientedHitbox) {
+		this.orientedHitbox = orientedHitbox;
+	}
+
+	public void setHitbox(Hitbox hitbox) {
+		orientedHitbox.clear();
+		orientedHitbox.put(0, hitbox);
+		updateHitbox();
 	}
 
 	public int getDirection() {
@@ -127,22 +191,40 @@ public class AnimatedActor extends Actor {
 		if (direction != oldDirection) directionChanged();
 	}
 
+	protected void updateSize() {
+		size = !orientedSize.isEmpty()
+				? orientedSize.floorEntry(direction).getValue() : null;
+		setSize(size.x, size.y);
+	}
+
+	protected void updateSprite() {
+		final Animation oldSprite = this.sprite;
+		this.sprite = getSprite(direction);
+		if (sprite != oldSprite) animationStateTime = 0;
+	}
+
+	protected void updateHitbox() {
+		hitbox = getHitbox(direction);
+		if (hitbox != null) {
+			hitbox.setSize(getWidth(), getHeight());
+			hitbox.setCenter(getX(), getY());
+		}
+	}
+
 	@Override
 	protected void positionChanged() {
-		bounds.setPosition(getX(), getY());
+		updateHitbox();
 	}
 
 	@Override
 	protected void sizeChanged() {
-		bounds.setSize(getWidth(), getHeight());
-	}
-
-	public Rectangle getBounds() {
-		return bounds;
+		updateHitbox();
 	}
 
 	protected void directionChanged() {
+		updateSize();
 		updateSprite();
+		updateHitbox();
 	}
 
 	public void setTextureFromAtlas(String name){

@@ -126,11 +126,10 @@ public class MovableActor extends AnimatedActor {
 	}
 
 	private boolean checkCollisions(float dx, float dy) {
-		final float x = getX() + getOriginX() + dx;
-		final float y = getY() + getOriginY() + dy;
+		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
 
 		for (Obstacle o : getLevel().getObstacles()) {
-			if (o.getBounds().contains(x, y)) {
+			if (o.getHitbox().overlaps(newBounds)) {
 				return true;
 			}
 		}
