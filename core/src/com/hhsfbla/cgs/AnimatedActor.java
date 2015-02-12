@@ -145,8 +145,8 @@ public class AnimatedActor extends Actor {
 		updateSprite();
 	}
 
-	public Texture setTextureFromAtlas(String name){
-		return getScreen().atlas.findRegion(name).getTexture();
+	public void setTextureFromAtlas(String name){
+		setSprite(getScreen().atlas.findRegion(name));
 	}
 
 	@Override
