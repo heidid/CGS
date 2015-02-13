@@ -81,7 +81,7 @@ public class MovableActor extends AnimatedActor {
 		setSprite(getIdleSprite());
 	}
 
-	private boolean detectCollisions(float dx, float dy) {
+	protected boolean detectCollisions(float dx, float dy) {
 		if (getHitbox() == null) return false;
 		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
 		collisions.clear();
