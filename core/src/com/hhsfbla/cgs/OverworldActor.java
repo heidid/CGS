@@ -10,11 +10,10 @@ public class OverworldActor extends AnimatedActor {
 	OverworldConnection l, r, u, d;
 	boolean unlocked = true;
 
-	public OverworldActor(float x, float y) {
+	public OverworldActor(float x, float y, String img) {
 		setX(x);
 		setY(y);
-		setSprite(new TextureRegion(new Texture(
-				Gdx.files.internal("router.png"))));
+		setSprite(new TextureRegion(new Texture(Gdx.files.internal(img))));
 	}
 
 	public void setConnections(OverworldConnection l, OverworldConnection r,
