@@ -3,7 +3,7 @@ package com.hhsfbla.cgs;
 public class Levels {
 	public static Level Level1() {
 		Level level = new Level();
-		level.setPlayerPosition(7, 7);
+		level.setPlayerPosition(1,1);
 		Enemy enemy = new Enemy();
 		level.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {
@@ -19,7 +19,7 @@ public class Levels {
 	}
 	public static Level Level2() {
 		Level level = new Level();
-		level.setPlayerPosition(7, 7);
+		level.setPlayerPosition(2,2);
 		Enemy enemy = new Enemy();
 		level.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {
@@ -35,7 +35,7 @@ public class Levels {
 	}
 	public static Level Level3() {
 		Level level = new Level();
-		level.setPlayerPosition(7, 7);
+		level.setPlayerPosition(3,3);
 		Enemy enemy = new Enemy();
 		level.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {
@@ -51,7 +51,7 @@ public class Levels {
 	}
 	public static Level Level4() {
 		Level level = new Level();
-		level.setPlayerPosition(7, 7);
+		level.setPlayerPosition(4,4);
 		Enemy enemy = new Enemy();
 		level.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {

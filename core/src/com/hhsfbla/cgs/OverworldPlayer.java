@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class OverworldPlayer extends Player {
 
 	OverworldActor current;
-	OverworldActor next;
 	
 	public OverworldPlayer() {
 		super();
@@ -16,7 +15,6 @@ public class OverworldPlayer extends Player {
 
 	public void setOverworldActor(OverworldActor current) {
 		this.current = current;
-		this.next = current;
 		setX(current.getX());
 		setY(current.getY());
 	}
@@ -30,16 +28,15 @@ public class OverworldPlayer extends Player {
 		}
 		public void tryConnection(OverworldConnection con) {
 			if(con != null) {
-				next = con.oa;
 				con.sa.restart();
 				addAction(con.sa);
+				current = con.oa;
 			}
 		}
 		@Override
 		public boolean keyDown(InputEvent event, int keycode) {
 			if (getActions().size != 0)
 				return true;
-			current = next;
 			if (keycode == Input.Keys.UP) {
 				tryConnection(current.u);
 				return true;
