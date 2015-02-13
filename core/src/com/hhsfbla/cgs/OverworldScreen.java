@@ -32,7 +32,7 @@ public class OverworldScreen extends StageScreen {
 	public void show() {
 		super.show();
 		background.addActor(new Image(new Texture(Gdx.files
-				.internal("background.png"))));
+				.internal("background-overworld.png"))));
 
 		for (Actor actor : level.getActors()) {
 			foreground.addActor(actor);
