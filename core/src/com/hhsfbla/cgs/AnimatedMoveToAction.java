@@ -25,7 +25,6 @@ public class AnimatedMoveToAction extends Action {
 		if (done) return true;
 
 		if (!started) {
-			System.out.println("go to " + x + ", " + y + " at " + direction);
 			started = true;
 		}
 
