@@ -14,7 +14,7 @@ public class Level3 extends Level {
 		this.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {
 			final int dir = i == 0 ? Wall.DIR_LEFT : Wall.DIR_RIGHT;
-			final boolean end = i % 5 == 0;
+			final boolean end = i % 4 == 0;
 			this.addObstacle(new Wall(dir, end), 6 + i, 6);
 			this.addObstacle(new Wall(dir, end), 6 + i, 8);
 			this.addObstacle(new Wall(dir, end), 6 + i, 4);
