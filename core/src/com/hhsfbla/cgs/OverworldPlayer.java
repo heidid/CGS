@@ -39,16 +39,16 @@ public class OverworldPlayer extends Player {
 		public boolean keyDown(InputEvent event, int keycode) {
 			if (getActions().size != 0)
 				return true;
-			if (keycode == Input.Keys.UP) {
+			if (keycode == Input.Keys.W) {
 				tryConnection(current.u);
 				return true;
-			} else if (keycode == Input.Keys.DOWN) {
+			} else if (keycode == Input.Keys.S) {
 				tryConnection(current.d);
 				return true;
-			} else if (keycode == Input.Keys.LEFT) {
+			} else if (keycode == Input.Keys.A) {
 				tryConnection(current.l);
 				return true;
-			} else if (keycode == Input.Keys.RIGHT) {
+			} else if (keycode == Input.Keys.D) {
 				tryConnection(current.r);
 				return true;
 			} else if (keycode == Input.Keys.ENTER) {

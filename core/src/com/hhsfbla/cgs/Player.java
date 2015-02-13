@@ -110,19 +110,19 @@ public class Player extends MovableActor {
 		@Override
 		public boolean keyUp(InputEvent event, int keycode) {
 			switch (keycode) {
-			case Input.Keys.UP:
+			case Input.Keys.W:
 				up = false;
 				break;
-			case Input.Keys.DOWN:
+			case Input.Keys.S:
 				down = false;
 				break;
-			case Input.Keys.LEFT:
+			case Input.Keys.A:
 				left = false;
 				break;
-			case Input.Keys.RIGHT:
+			case Input.Keys.D:
 				right = false;
 				break;
-			case Input.Keys.A:
+			case Input.Keys.ENTER:
 				space = 0;
 				break;
 			}
