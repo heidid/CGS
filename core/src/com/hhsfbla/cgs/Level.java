@@ -51,6 +51,7 @@ public abstract class Level extends Group {
 	}
 
 	public void addAnimatedActor(AnimatedActor aa) {
+		aa.setLevel(this);
 		actors.add(aa);
 		addActor(aa);
 	}
