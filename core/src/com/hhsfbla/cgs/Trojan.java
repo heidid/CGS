@@ -21,14 +21,14 @@ public class Trojan extends Enemy {
 					new Texture(Gdx.files.internal("trojan-left.png")))));
 			put(DIR_RIGHT, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("trojan-right.png")))));
-			/*put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-up-left.png")))));
+			put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("trojan-up-left.png")))));
 			put(DIR_UP_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-up-right.png")))));
+					new Texture(Gdx.files.internal("trojan-up-right.png")))));
 			put(DIR_DOWN_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-down-left.png")))));
+					new Texture(Gdx.files.internal("trojan-down-left.png")))));
 			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-down-right.png")))));*/
+					new Texture(Gdx.files.internal("trojan-down-right.png")))));
 		}});
 		setMoveSprite(getIdleSprite());
 	}
