@@ -1,8 +1,9 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 
-public abstract class Level {
+public abstract class Level extends Group {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
@@ -10,13 +11,12 @@ public abstract class Level {
 	protected Player player;
 	protected Array<Enemy> enemies;
 	protected Array<Obstacle> obstacles;
+	protected Array<Projectile> projectiles;
 	protected StageScreen screen;
 	Grid grid;
 
-	public void init() {
-		
-	}
-	
+	public void init() {}
+
 	public Level() {
 		player = new Player();
 		player.addListener(player.new LevelInputListener());
@@ -26,7 +26,7 @@ public abstract class Level {
 		grid = new Grid(this);
 		grid.generate();
 
-		actors.add(player);
+		addAnimatedActor(player);
 		player.setLevel(this);
 	}
 
@@ -52,6 +52,7 @@ public abstract class Level {
 
 	public void addAnimatedActor(AnimatedActor aa) {
 		actors.add(aa);
+		addActor(aa);
 	}
 
 	public void addEnemy(Enemy enemy, float x, float y) {
@@ -67,9 +68,16 @@ public abstract class Level {
 		addAnimatedActor(obstacle);
 	}
 
+	public void addProjectile(Obstacle obstacle, float x, float y) {
+		obstacle.setPosition(x, y);
+		obstacles.add(obstacle);
+		addAnimatedActor(obstacle);
+	}
+
 	public void remove(AnimatedActor actor) {
 		actors.removeValue(actor, true);
 		actor.setLevel(null);
+		removeActor(actor);
 	}
 
 	public void remove(Enemy enemy) {
@@ -80,6 +88,11 @@ public abstract class Level {
 	public void remove(Obstacle obstacle) {
 		obstacles.removeValue(obstacle, true);
 		remove((AnimatedActor) obstacle);
+	}
+
+	public void remove(Projectile projectile) {
+		projectiles.removeValue(projectile, true);
+		remove((AnimatedActor) projectile);
 	}
 
 	public void setScreen(StageScreen screen) {
