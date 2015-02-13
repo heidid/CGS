@@ -26,6 +26,7 @@ public class OverworldLevel {
 		actors.add(new OverworldActor(5, 3, "switch.png"));
 		for(AnimatedActor a : actors) 
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
+		actors.get(0).setLevel(new Level1());
 		actors.get(1).setLevel(new Level1());
 		actors.get(2).setLevel(new Level2());
 		actors.get(3).setLevel(new Level3());

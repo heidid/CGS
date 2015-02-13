@@ -17,8 +17,8 @@ public class AnimatedMoveToAction extends Action {
 	@Override
 	public boolean act(float delta) {
 		if (!started) {
-			direction = (int) (Math.round(Math.toDegrees(Math.atan2(
-					y - actor.getY(), x - actor.getX())) / 45)) * 45;
+			direction = (int) (Math.round(Math.toDegrees((Math.atan2(
+					y - actor.getY(), x - actor.getX()) + 360) % 360) / 45)) * 45;
 			started = true;
 		}
 

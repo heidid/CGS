@@ -18,6 +18,7 @@ public class MovableActor extends AnimatedActor {
 		idleSprite = new TreeMap<>();
 		moveSprite = new TreeMap<>();
 		collisions = new Array<>();
+		setSpeed(1.0f);
 	}
 
 	public float getSpeed() {
@@ -89,7 +90,6 @@ public class MovableActor extends AnimatedActor {
 			if (actor != this && actor.getHitbox() != null
 					&& actor.getHitbox().overlaps(newBounds)) {
 				if (actor instanceof Obstacle && ((Obstacle) actor).isBlocked()) {
-					System.out.println("TROLL");
 					return true;
 				}
 
@@ -110,7 +110,8 @@ public class MovableActor extends AnimatedActor {
 			final float d = speed * Gdx.graphics.getDeltaTime();
 			final float dx = d * (float) Math.cos(r);
 			final float dy = d * (float) Math.sin(r);
-			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
+			if (!detectCollisions(dx, dy)){ setPosition(getX() + dx, getY() + dy); }
+			
 		}
 		super.act(delta);
 	}

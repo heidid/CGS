@@ -154,6 +154,8 @@ public class AnimatedActor extends Actor {
 		if (orientedSize.isEmpty()) {
 			orientedSize.put(0, new Vector2(getWidth(), getHeight()));
 		}
+		System.out.println(orientedSize);
+		System.out.println(direction);
 		size = orientedSize.floorEntry(direction).getValue();
 		setSize(size.x, size.y);
 	}

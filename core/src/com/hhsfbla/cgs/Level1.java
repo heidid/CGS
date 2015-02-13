@@ -5,12 +5,7 @@ public class Level1 extends Level {
 
 	@Override
 	public void init() {
-		System.out.println("HI");
-		/*MoveToAction ma = new MoveToAction();
-		ma.setPosition(0, 0);
-		enemy.addAction(ma);*/
-		enemy.addAction(new AnimatedMoveToAction(2,0));
-		//enemy.addAction(new PathFindingAction(this, enemy, 5, 0, 1));
+		enemy.addAction(new MoveToAttack(this, enemy, player.getX(), player.getY()));
 	}
 
 	public Level1() {

@@ -5,10 +5,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class PathFindingAction extends SequenceAction {
 	
-	public PathFindingAction(Level level, Actor a, int x, int y,
-			float durationEach, int endOffset) {
+	public PathFindingAction(Level level, Actor a, int x, int y, int endOffset) {
 		CellPath cp = level.grid.getPath((int) a.getX(), (int) a.getY(), x, y);
-		System.out.println(cp.array.size);
 		float oldX = a.getX();
 		float oldY = a.getY();
 		int i = -1;
@@ -28,9 +26,12 @@ public class PathFindingAction extends SequenceAction {
 		}
 	}
 	
-	public PathFindingAction(Level level, Actor a, int x, int y,
-			float durationEach) {
-		this(level, a, x, y, durationEach, 0);
+	public PathFindingAction(Level level, Actor a, float x, float y) {
+		this(level, a, x, y, 0);
+	}
+	
+	public PathFindingAction(Level level, Actor a, float x, float y, int endOffset) {
+		this(level, a, (int) x, (int) y, endOffset);
 	}
 	
 }

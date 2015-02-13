@@ -6,11 +6,11 @@ public abstract class Level {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
-	private Array<AnimatedActor> actors;
-	private Player player;
-	private Array<Enemy> enemies;
-	private Array<Obstacle> obstacles;
-	private StageScreen screen;
+	protected Array<AnimatedActor> actors;
+	protected Player player;
+	protected Array<Enemy> enemies;
+	protected Array<Obstacle> obstacles;
+	protected StageScreen screen;
 	Grid grid;
 
 	public void init() {
