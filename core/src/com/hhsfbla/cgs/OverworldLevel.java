@@ -26,10 +26,10 @@ public class OverworldLevel {
 		actors.add(new OverworldActor(5, 3, "switch.png"));
 		for(AnimatedActor a : actors) 
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
-		actors.get(1).setLevel(Levels.Level1());
-		actors.get(2).setLevel(Levels.Level2());
-		actors.get(3).setLevel(Levels.Level3());
-		actors.get(4).setLevel(Levels.Level4());
+		actors.get(1).setLevel(new Level1());
+		actors.get(2).setLevel(new Level2());
+		actors.get(3).setLevel(new Level3());
+		actors.get(4).setLevel(new Level4());
 		OverworldActor.Connector.connectH(actors.get(0), actors.get(5));
 		OverworldActor.Connector.connectV(actors.get(1), actors.get(2));
 		OverworldActor.Connector.connectV(actors.get(4), actors.get(1));

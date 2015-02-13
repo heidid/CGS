@@ -89,6 +89,7 @@ public class MovableActor extends AnimatedActor {
 			if (actor != this && actor.getHitbox() != null
 					&& actor.getHitbox().overlaps(newBounds)) {
 				if (actor instanceof Obstacle && ((Obstacle) actor).isBlocked()) {
+					System.out.println("TROLL");
 					return true;
 				}
 

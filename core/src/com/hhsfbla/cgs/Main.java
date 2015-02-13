@@ -15,7 +15,6 @@ public class Main extends Game {
 		if (overworld)
 			setScreen(new OverworldScreen(stage, new TextureAtlas(), this));
 		else {
-			//enemy.addAction(new PathFindingAction(level, enemy, 7, 7, 1));
 		}
 	}
 	

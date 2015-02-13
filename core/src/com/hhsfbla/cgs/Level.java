@@ -2,7 +2,7 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.utils.Array;
 
-public class Level {
+public abstract class Level {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
@@ -13,6 +13,10 @@ public class Level {
 	private StageScreen screen;
 	Grid grid;
 
+	public void init() {
+		
+	}
+	
 	public Level() {
 		player = new Player();
 		player.addListener(player.new LevelInputListener());

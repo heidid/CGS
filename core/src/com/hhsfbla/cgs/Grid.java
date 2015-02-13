@@ -23,7 +23,7 @@ public class Grid {
 		for (Cell c : cells)
 			c.blocked = false;
 		for (Obstacle o : l.getObstacles()){
-			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS)
+			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS || !o.isBlocked())
 				continue;
 			getCell((int) (o.getX()), (int) (o.getY())).blocked = true;
 		}
