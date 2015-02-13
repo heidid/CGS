@@ -72,13 +72,12 @@ public class Player extends MovableActor {
 				setMoving(DIR_LEFT);
 			} else if (right) {
 				setMoving(DIR_RIGHT);
-			}
-			if (space) {
-				if (canShoot)
-					addAction(new ShootAction());
 			} else {
 				setIdle();
 			}
+			
+			if (space && canShoot)
+				addAction(new ShootAction());
 		}
 
 		@Override
