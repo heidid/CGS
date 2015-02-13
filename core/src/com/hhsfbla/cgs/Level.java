@@ -22,6 +22,7 @@ public abstract class Level extends Group {
 		player.addListener(player.new LevelInputListener());
 		enemies = new Array<>();
 		obstacles = new Array<>();
+		projectiles = new Array<>();
 		actors = new Array<>();
 		grid = new Grid(this);
 		grid.generate();
