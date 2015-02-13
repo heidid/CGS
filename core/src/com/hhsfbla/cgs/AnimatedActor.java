@@ -33,63 +33,13 @@ public class AnimatedActor extends Actor {
 	private float animationStateTime;
 
 	public AnimatedActor() {
-		this(new TreeMap<Integer, Animation>());
-	}
-
-	public AnimatedActor(TextureRegion sprite) {
-		this();
-		setSprite(sprite);
-	}
-
-	public AnimatedActor(Animation sprite) {
-		this();
-		setSprite(sprite);
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite) {
-		this(orientedSprite, DIR_DOWN);
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction) {
-		this(orientedSprite, direction, 1, 1);
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, float width, float height) {
-		this(orientedSprite, direction, width, height, new Hitbox());
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, float width, float height, final Hitbox hitbox) {
-		this(orientedSprite, direction, width, height,
-				new TreeMap<Integer, Hitbox>() {{ put(0, hitbox); }});
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, TreeMap<Integer, Vector2> orientedSize) {
-		this(orientedSprite, direction, orientedSize,
-				new TreeMap<Integer, Hitbox>() {{ put(0, new Hitbox()); }});
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, final float width, final float height,
-			TreeMap<Integer, Hitbox> orientedHitbox) {
-		this(orientedSprite, direction, new TreeMap<Integer, Vector2>() {{
-			put(0, new Vector2(width, height));
-		}}, orientedHitbox);
-	}
-
-	public AnimatedActor(TreeMap<Integer, Animation> orientedSprite,
-			int direction, TreeMap<Integer, Vector2> orientedSize,
-			TreeMap<Integer, Hitbox> orientedHitbox) {
-		this.orientedSize = orientedSize;
-		this.orientedSprite = orientedSprite;
-		this.orientedHitbox = orientedHitbox;
-		this.direction = direction;
-		updateSize();
-		updateSprite();
-		updateHitbox();
+		direction = DIR_DOWN;
+		orientedSize = new TreeMap<>();
+		orientedSprite = new TreeMap<>();
+		orientedHitbox = new TreeMap<>();
+		orientedSize.put(0, size = new Vector2());
+		orientedHitbox.put(0, hitbox = new Hitbox());
+		setSize(1, 1);
 		setOrigin(Align.center);
 	}
 
@@ -109,10 +59,19 @@ public class AnimatedActor extends Actor {
 		this.screen = screen;
 	}
 
+	public TreeMap<Integer, Vector2> getOrientedSize() {
+		return orientedSize;
+	}
+
 	@Override
 	public void setSize(float width, float height) {
 		size.set(width, height);
 		super.setSize(width, height);
+	}
+
+	public void setSize(TreeMap<Integer, Vector2> orientedSize) {
+		this.orientedSize = orientedSize;
+		updateSize();
 	}
 
 	@Override
@@ -185,15 +144,17 @@ public class AnimatedActor extends Actor {
 		return direction;
 	}
 
-	public final void setDirection(int direction) {
+	public void setDirection(int direction) {
 		final int oldDirection = this.direction;
 		this.direction = direction;
 		if (direction != oldDirection) directionChanged();
 	}
 
 	protected void updateSize() {
-		size = !orientedSize.isEmpty()
-				? orientedSize.floorEntry(direction).getValue() : null;
+		if (orientedSize.isEmpty()) {
+			orientedSize.put(0, new Vector2(getWidth(), getHeight()));
+		}
+		size = orientedSize.floorEntry(direction).getValue();
 		setSize(size.x, size.y);
 	}
 

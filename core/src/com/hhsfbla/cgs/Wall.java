@@ -22,7 +22,7 @@ public class Wall extends Obstacle {
 
 	@SuppressWarnings("serial")
 	public Wall(int direction, final boolean edge) {
-		super(new TreeMap<Integer, Animation>() {{
+		setSprite(new TreeMap<Integer, Animation>() {{
 			final Animation horizontal = new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("wall-h.png"))));
 			final Animation vertical = new Animation(0, new TextureRegion(
@@ -48,8 +48,9 @@ public class Wall extends Obstacle {
 					new Texture(Gdx.files.internal("wall-corner-bl.png")))));
 			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("wall-corner-br.png")))));
+		}});
 
-		}}, direction, new TreeMap<Integer, Vector2>() {{
+		setSize(new TreeMap<Integer, Vector2>() {{
 			final Vector2 horizontal = new Vector2(1, 0.25f);
 			final Vector2 vertical = new Vector2(0.25f, 1);
 			final Vector2 diagonal = new Vector2(1, 1);
@@ -63,7 +64,9 @@ public class Wall extends Obstacle {
 			put(DIR_DOWN_LEFT, diagonal);
 			put(DIR_DOWN_RIGHT, diagonal);
 
-		}}, new TreeMap<Integer, Hitbox>() {{
+		}});
+
+		setHitbox(new TreeMap<Integer, Hitbox>() {{
 			final Hitbox dfault = new Hitbox();
 
 			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 0.5f, 1)) : dfault);
@@ -72,8 +75,9 @@ public class Wall extends Obstacle {
 			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0.5f, 1, 0.5f)) : dfault);
 			// TODO: Add diagonal wall hitboxes
 		}});
+
 		this.edge = edge;
-		directionChanged();
+		setDirection(direction);
 	}
 
 	@Override
