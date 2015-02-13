@@ -52,7 +52,6 @@ public abstract class Level {
 
 	public void addAnimatedActor(AnimatedActor aa) {
 		actors.add(aa);
-		aa.setScreen(screen);
 	}
 
 	public void addEnemy(Enemy enemy, float x, float y) {
@@ -85,8 +84,6 @@ public abstract class Level {
 
 	public void setScreen(StageScreen screen) {
 		this.screen = screen;
-		for(AnimatedActor a : actors)
-			a.setScreen(screen);
 	}
 
 }

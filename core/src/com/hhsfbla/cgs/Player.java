@@ -9,9 +9,12 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
+import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Player extends MovableActor {
+	final static float SHOOT_DELAY = 1;
+	boolean canShoot = true;
 	@SuppressWarnings("serial")
 	public Player() {
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
@@ -25,11 +28,32 @@ public class Player extends MovableActor {
 		setSpeed(2);
 	}
 	
+	public class ShootAction extends TemporalAction {
+		public ShootAction() {
+			this.setDuration(SHOOT_DELAY);
+		}
+		@Override
+		protected void begin() {
+			canShoot = false;
+			getLevel().addAnimatedActor(new Disc(getDirection()));
+			
+		}
+		@Override
+		protected void update(float percent) {
+			
+		}
+		@Override
+		public void end() {
+			canShoot = true;
+		}
+	}
+	
 	public class LevelInputListener extends InputListener {
 		private boolean up;
 		private boolean down;
 		private boolean left;
 		private boolean right;
+		private boolean space;
 
 		private void handleInput() {
 			if (up && left) {
@@ -48,6 +72,9 @@ public class Player extends MovableActor {
 				setMoving(DIR_LEFT);
 			} else if (right) {
 				setMoving(DIR_RIGHT);
+			} else if (space) {
+				if (canShoot)
+					addAction(new ShootAction());
 			} else {
 				setIdle();
 			}
@@ -68,6 +95,9 @@ public class Player extends MovableActor {
 			case Input.Keys.RIGHT:
 				right = true;
 				break;
+			case Input.Keys.SPACE:
+				space = true;
+				break;
 			}
 			handleInput();
 			return true;
@@ -87,6 +117,9 @@ public class Player extends MovableActor {
 				break;
 			case Input.Keys.RIGHT:
 				right = false;
+				break;
+			case Input.Keys.SPACE:
+				space = false;
 				break;
 			}
 			handleInput();

@@ -22,7 +22,6 @@ public class AnimatedActor extends Actor {
 	public static int DIR_DOWN_LEFT = 225;
 
 	private Level level;
-	private StageScreen screen;
 	private int direction;
 	private TreeMap<Integer, Vector2> orientedSize;
 	private TreeMap<Integer, Animation> orientedSprite;
@@ -50,15 +49,7 @@ public class AnimatedActor extends Actor {
 	public void setLevel(Level level) {
 		this.level = level;
 	}
-
-	public StageScreen getScreen() {
-		return screen;
-	}
-
-	public void setScreen(StageScreen screen) {
-		this.screen = screen;
-	}
-
+	
 	public TreeMap<Integer, Vector2> getOrientedSize() {
 		return orientedSize;
 	}
@@ -186,10 +177,6 @@ public class AnimatedActor extends Actor {
 		updateSize();
 		updateSprite();
 		updateHitbox();
-	}
-
-	public void setTextureFromAtlas(String name){
-		setSprite(getScreen().atlas.findRegion(name));
 	}
 
 	@Override

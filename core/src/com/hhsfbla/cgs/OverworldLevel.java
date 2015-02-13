@@ -38,9 +38,8 @@ public class OverworldLevel {
 		OverworldActor.Connector.connectH(actors.get(5), actors.get(1));
 		player.setOverworldActor(actors.get(0));
 		player.addListener(player.new OverworldLevelInputListener(screen));
-		for(AnimatedActor a : actors)
-			a.setScreen(this.screen);
 	}
+	
 	public Player getPlayer() {
 		return player;
 	}
