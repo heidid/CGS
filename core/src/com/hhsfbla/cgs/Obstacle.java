@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Obstacle extends AnimatedActor {
+	private boolean blocked = true;
+
 	public Obstacle() {
 		super();
 	}
@@ -53,4 +55,11 @@ public class Obstacle extends AnimatedActor {
 		super(orientedSprite, direction, orientedSize, orientedHitbox);
 	}
 
+	public boolean isBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(boolean blocked) {
+		this.blocked = blocked;
+	}
 }

@@ -158,7 +158,7 @@ public class MovableActor extends AnimatedActor {
 		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
 
 		for (Obstacle o : getLevel().getObstacles()) {
-			if (o.getHitbox().overlaps(newBounds)) {
+			if (o.isBlocked() && o.getHitbox().overlaps(newBounds)) {
 				return true;
 			}
 		}
