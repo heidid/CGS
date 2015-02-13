@@ -3,12 +3,13 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
-public class Hitbox extends Array<Rectangle> {
+public class Hitbox {
 
 	private float x;
 	private float y;
 	private float width;
 	private float height;
+	private Array<Rectangle> regions;
 
 	public Hitbox() {
 		this(new Rectangle[] {new Rectangle(-1, -1, 2, 2)});
@@ -19,18 +20,19 @@ public class Hitbox extends Array<Rectangle> {
 		y = hitbox.y;
 		width = hitbox.width;
 		height = hitbox.height;
-		for (Rectangle r : hitbox) super.add(new Rectangle(r));
+		regions = new Array<Rectangle>();
+		for (Rectangle r : hitbox.regions) regions.add(new Rectangle(r));
 	}
 
-	public Hitbox(Array<? extends Rectangle> hitboxes) {
-		this(hitboxes.items);
+	public Hitbox(Array<? extends Rectangle> regions) {
+		this(regions.items);
 	}
 
-	public Hitbox(Rectangle[] hitboxes) {
-		super(false, hitboxes.length);
+	public Hitbox(Rectangle[] regions) {
 		this.width = 1;
 		this.height = 1;
-		addAll(hitboxes);
+		this.regions = new Array<Rectangle>();
+		for (Rectangle r : regions) this.regions.add(scale(r, 0.5f, 0.5f));
 	}
 
 	public void setCenter(float x, float y) {
@@ -46,51 +48,32 @@ public class Hitbox extends Array<Rectangle> {
 	}
 
 	public boolean overlaps(Hitbox hitbox) {
-		for (Rectangle r1 : this) for (Rectangle r2 : hitbox) {
+		for (Rectangle r1 : regions) for (Rectangle r2 : hitbox.regions) {
 			if (r1.overlaps(r2)) return true;
 		}
 		return false;
 	}
 
-	private Rectangle convert(Rectangle r) {
-		translate(r, x, y);
-		scale(r, width / 2, height / 2);
+	public Hitbox translate(float dx, float dy) {
+		for (Rectangle r : regions) translate(r, dx, dy);
+		return this;
+	}
+
+	private Rectangle translate(Rectangle r, float dx, float dy) {
+		r.setPosition(r.getX() + dx, r.getY() + dy);
 		return r;
 	}
 
-	public Hitbox translate(float dx, float dy) {
-		for (Rectangle r : this) translate(r, dx, dy);
-		return this;
-	}
-
-	private void translate(Rectangle r, float dx, float dy) {
-		r.setPosition(r.getX() + dx, r.getY() + dy);
-	}
-
 	private Hitbox scale(float scaleX, float scaleY) {
-		for (Rectangle r : this) scale(r, scaleX, scaleY);
+		for (Rectangle r : regions) scale(r, scaleX, scaleY);
 		return this;
 	}
 
-	private void scale(Rectangle r, float scaleX, float scaleY) {
+	private Rectangle scale(Rectangle r, float scaleX, float scaleY) {
 		final float centerX = r.getX() + r.getWidth() / 2;
 		final float centerY = r.getY() + r.getHeight() / 2;
 		r.setSize(r.getWidth() * scaleX, r.getHeight() * scaleY);
 		r.setCenter(centerX, centerY);
-	}
-
-	@Override
-	public void add(Rectangle hitbox) {
-		super.add(convert(hitbox));
-	}
-
-	@Override
-	public void addAll(Array<? extends Rectangle> hitboxes) {
-		for (Rectangle r : hitboxes) add(r);
-	}
-
-	@Override
-	public void addAll(Rectangle[] hitboxes) {
-		for (Rectangle r : hitboxes) add(r);
+		return r;
 	}
 }
