@@ -12,7 +12,7 @@ public class Hitbox {
 	private Array<Rectangle> regions;
 
 	public Hitbox() {
-		this(new Rectangle[] {new Rectangle(-1, -1, 2, 2)});
+		this(new Rectangle[] {new Rectangle(0, 0, 1, 1)});
 	}
 
 	public Hitbox(Hitbox hitbox) {
@@ -32,7 +32,7 @@ public class Hitbox {
 		this.width = 1;
 		this.height = 1;
 		this.regions = new Array<Rectangle>();
-		for (Rectangle r : regions) this.regions.add(scale(r, 0.5f, 0.5f));
+		for (Rectangle r : regions) this.regions.add(translate(r, -0.5f, -0.5f));
 	}
 
 	public void setCenter(float x, float y) {
