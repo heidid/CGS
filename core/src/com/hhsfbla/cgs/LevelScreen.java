@@ -44,7 +44,11 @@ public class LevelScreen extends StageScreen {
 		foreground.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {
-				return Float.compare(b.getY(), a.getY());
+				float za = (a instanceof Obstacle && !((Obstacle) a).isBlocked())
+						? Float.MAX_VALUE : a.getY();
+				float zb = (b instanceof Obstacle && !((Obstacle) b).isBlocked())
+						? Float.MAX_VALUE : b.getY();
+				return Float.compare(zb, za);
 			}
 		});
 
