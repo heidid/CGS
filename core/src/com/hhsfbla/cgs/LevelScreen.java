@@ -21,7 +21,7 @@ public class LevelScreen extends StageScreen {
 		this.level = level;
 		level.setScreen(this);
 		background = new Group();
-		foreground = new Group();
+		foreground = level;
 		ui = new Group();
 	}
 
@@ -29,8 +29,6 @@ public class LevelScreen extends StageScreen {
 	public void show() {
 		super.show();
 		background.addActor(new Image(new Texture(Gdx.files.internal("background.png"))));
-
-		for (Actor actor : level.getActors()) foreground.addActor(actor);
 
 		stage.addActor(background);
 		stage.addActor(foreground);
