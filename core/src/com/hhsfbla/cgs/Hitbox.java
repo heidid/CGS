@@ -28,7 +28,7 @@ public class Hitbox {
 		this(regions.items);
 	}
 
-	public Hitbox(Rectangle[] regions) {
+	public Hitbox(Rectangle...regions) {
 		this.width = 1;
 		this.height = 1;
 		this.regions = new Array<Rectangle>();
