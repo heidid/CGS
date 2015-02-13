@@ -52,10 +52,11 @@ public class OverworldPlayer extends Player {
 				tryConnection(current.r);
 				return true;
 			} else if (keycode == Input.Keys.ENTER) {
-				if (current.unlocked && current.getLevel() != null)
+				if (current.unlocked && current.getLevel() != null) {
 					os.g.setScreen(new LevelScreen(os.getStage(),
 							new TextureAtlas(), current.getLevel()));
 					current.getLevel().init();
+				}
 			} else
 				setIdle();
 			return true;
