@@ -30,7 +30,6 @@ public class OverworldLevel {
 		actors.get(2).setLevel(Levels.Level2());
 		actors.get(3).setLevel(Levels.Level3());
 		actors.get(4).setLevel(Levels.Level4());
-		OverworldActor actor;
 		OverworldActor.Connector.connectH(actors.get(0), actors.get(5));
 		OverworldActor.Connector.connectV(actors.get(1), actors.get(2));
 		OverworldActor.Connector.connectV(actors.get(4), actors.get(1));
