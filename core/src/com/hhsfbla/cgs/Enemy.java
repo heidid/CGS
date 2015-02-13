@@ -9,9 +9,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Enemy extends MovableActor {
+	private int health;
 
 	public Enemy() {
-
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("minion-up.png")))));
@@ -32,5 +32,22 @@ public class Enemy extends MovableActor {
 		}});
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom);
+		health = 30;
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public void setHealth(int health) {
+		this.health = health;
+		if (health <= 0) {
+			// TODO: Add dying animation
+			getLevel().remove(this);
+		}
+	}
+
+	public void damage(int damage) {
+		setHealth(health - damage);
 	}
 }
