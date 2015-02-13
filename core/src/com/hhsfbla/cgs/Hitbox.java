@@ -19,7 +19,7 @@ public class Hitbox extends Array<Rectangle> {
 		y = hitbox.y;
 		width = hitbox.width;
 		height = hitbox.height;
-		for (Rectangle r : hitbox) add(new Rectangle(r));
+		for (Rectangle r : hitbox) super.add(new Rectangle(r));
 	}
 
 	public Hitbox(Array<? extends Rectangle> hitboxes) {
@@ -53,22 +53,30 @@ public class Hitbox extends Array<Rectangle> {
 	}
 
 	private Rectangle convert(Rectangle r) {
-		translate(x, y);
-		scale(width / 2, height / 2);
+		translate(r, x, y);
+		scale(r, width / 2, height / 2);
 		return r;
 	}
 
 	public Hitbox translate(float dx, float dy) {
-		for (Rectangle r : this) r.setPosition(r.getX() + dx, r.getY() + dy);
+		for (Rectangle r : this) translate(r, dx, dy);
 		return this;
 	}
 
+	private void translate(Rectangle r, float dx, float dy) {
+		r.setPosition(r.getX() + dx, r.getY() + dy);
+	}
+
 	private Hitbox scale(float scaleX, float scaleY) {
-		for (Rectangle r : this) {
-			r.setSize(r.getWidth() * scaleX, r.getHeight() * scaleY);
-			r.setPosition((r.getX() - x) * scaleY + x, (r.getY() - y) * scaleY + y);
-		}
+		for (Rectangle r : this) scale(r, scaleX, scaleY);
 		return this;
+	}
+
+	private void scale(Rectangle r, float scaleX, float scaleY) {
+		final float centerX = r.getX() + r.getWidth() / 2;
+		final float centerY = r.getY() + r.getHeight() / 2;
+		r.setSize(r.getWidth() * scaleX, r.getHeight() * scaleY);
+		r.setCenter(centerX, centerY);
 	}
 
 	@Override
