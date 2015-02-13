@@ -72,7 +72,8 @@ public class Player extends MovableActor {
 				setMoving(DIR_LEFT);
 			} else if (right) {
 				setMoving(DIR_RIGHT);
-			} else if (space) {
+			}
+			if (space) {
 				if (canShoot)
 					addAction(new ShootAction());
 			} else {
