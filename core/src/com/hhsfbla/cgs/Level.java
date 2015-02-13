@@ -10,13 +10,14 @@ public abstract class Level {
 	protected Player player;
 	protected Array<Enemy> enemies;
 	protected Array<Obstacle> obstacles;
+	protected Array<Projectile> projectiles;
 	protected StageScreen screen;
 	Grid grid;
 
 	public void init() {
-		
+
 	}
-	
+
 	public Level() {
 		player = new Player();
 		player.addListener(player.new LevelInputListener());
@@ -67,6 +68,12 @@ public abstract class Level {
 		addAnimatedActor(obstacle);
 	}
 
+	public void addProjectile(Obstacle obstacle, float x, float y) {
+		obstacle.setPosition(x, y);
+		obstacles.add(obstacle);
+		addAnimatedActor(obstacle);
+	}
+
 	public void remove(AnimatedActor actor) {
 		actors.removeValue(actor, true);
 		actor.setLevel(null);
@@ -80,6 +87,11 @@ public abstract class Level {
 	public void remove(Obstacle obstacle) {
 		obstacles.removeValue(obstacle, true);
 		remove((AnimatedActor) obstacle);
+	}
+
+	public void remove(Projectile projectile) {
+		projectiles.removeValue(projectile, true);
+		remove((AnimatedActor) projectile);
 	}
 
 	public void setScreen(StageScreen screen) {
