@@ -30,5 +30,16 @@ public class OverworldActor extends AnimatedActor {
 		ma.setPosition(other.getX(), other.getY());
 		return new OverworldConnection(other, new SequenceAction(ma));
 	}
+	
+	static class Connector {
+		static void connectH(OverworldActor a, OverworldActor b) { //horizontal
+			a.r = a.conTo(b);
+			b.l = b.conTo(a);
+		}
+		static void connectV(OverworldActor a, OverworldActor b) { //vertical
+			a.u = a.conTo(b);
+			b.d = b.conTo(a);
+		}
+	}
 
 }
