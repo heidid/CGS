@@ -58,7 +58,6 @@ public abstract class Level extends Group {
 
 	public void addEnemy(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
-		enemy.setLevel(this);
 		enemies.add(enemy);
 		addAnimatedActor(enemy);
 	}
@@ -77,7 +76,6 @@ public abstract class Level extends Group {
 
 	public void remove(AnimatedActor actor) {
 		actors.removeValue(actor, true);
-		actor.setLevel(null);
 		removeActor(actor);
 	}
 
