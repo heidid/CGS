@@ -3,7 +3,6 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -173,6 +172,7 @@ public class AnimatedActor extends Actor {
 
 	public void setHitbox(TreeMap<Integer, Hitbox> orientedHitbox) {
 		this.orientedHitbox = orientedHitbox;
+		updateHitbox();
 	}
 
 	public void setHitbox(Hitbox hitbox) {
