@@ -68,10 +68,10 @@ public abstract class Level extends Group {
 		addAnimatedActor(obstacle);
 	}
 
-	public void addProjectile(Obstacle obstacle, float x, float y) {
-		obstacle.setPosition(x, y);
-		obstacles.add(obstacle);
-		addAnimatedActor(obstacle);
+	public void addProjectile(Projectile projectile, float x, float y) {
+		projectile.setPosition(x, y);
+		projectiles.add(projectile);
+		addAnimatedActor(projectile);
 	}
 
 	public void remove(AnimatedActor actor) {
