@@ -46,8 +46,8 @@ public class Enemy extends MovableActor {
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 0) {
+			clearActions();
 			setSprite(getDyingSprite());
-//			getLevel().remove(this);
 		}
 	}
 
