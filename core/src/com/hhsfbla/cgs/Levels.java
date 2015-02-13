@@ -7,13 +7,15 @@ public class Levels {
 		Enemy enemy = new Enemy();
 		level.addEnemy(enemy, 7, 0);
 		for (int i = 0; i < 5; i++) {
-			level.addObstacle(new Wall(), 6 + i, 6);
-			level.addObstacle(new Wall(), 6 + i, 8);
-			level.addObstacle(new Wall(), 6 + i, 4);
-			level.addObstacle(new Wall(), 6 + i, 2);
+			final int dir = i == 0 ? Wall.DIR_DOWN : Wall.DIR_UP;
+			final boolean end = i % 5 == 0;
+			level.addObstacle(new Wall(dir, end), 6 + i, 6);
+			level.addObstacle(new Wall(dir, end), 6 + i, 8);
+			level.addObstacle(new Wall(dir, end), 6 + i, 4);
+			level.addObstacle(new Wall(dir, end), 6 + i, 2);
 		}
 		for (int i = 0; i < 6; i++) {
-			level.addObstacle(new Wall(Wall.DIR_LEFT), 12, 2 + i);
+			level.addObstacle(new Wall(i == 0 ? Wall.DIR_RIGHT : Wall.DIR_LEFT, i % 6 == 0), 12, 2 + i);
 		}
 		return level;
 	}
