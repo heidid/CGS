@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Enemy extends MovableActor {
 	private int health;
+	private TreeMap<Integer, Animation> hurtSprite;
+	private TreeMap<Integer, Animation> dyingSprite;
 
 	public Enemy() {
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
@@ -32,6 +34,8 @@ public class Enemy extends MovableActor {
 		}});
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom);
+		hurtSprite = new TreeMap<>();
+		dyingSprite = new TreeMap<>();
 		health = 30;
 	}
 
@@ -42,12 +46,28 @@ public class Enemy extends MovableActor {
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 0) {
-			// TODO: Add dying animation
-			getLevel().remove(this);
+			setSprite(getDyingSprite());
+//			getLevel().remove(this);
 		}
 	}
 
 	public void damage(int damage) {
 		setHealth(health - damage);
+	}
+
+	public TreeMap<Integer, Animation> getHurtSprite() {
+		return hurtSprite;
+	}
+
+	public void setHurtSprite(TreeMap<Integer, Animation> hurtSprite) {
+		this.hurtSprite = hurtSprite;
+	}
+
+	public TreeMap<Integer, Animation> getDyingSprite() {
+		return dyingSprite;
+	}
+
+	public void setDyingSprite(TreeMap<Integer, Animation> dyingSprite) {
+		this.dyingSprite = dyingSprite;
 	}
 }
