@@ -69,10 +69,10 @@ public class Wall extends Obstacle {
 		setHitbox(new TreeMap<Integer, Hitbox>() {{
 			final Hitbox dfault = new Hitbox();
 
-			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 0.5f, 1)) : dfault);
-			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0.5f, 0, 0.5f, 1)) : dfault);
-			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(0, 0, 1, 0.5f)) : dfault);
-			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0.5f, 1, 0.5f)) : dfault);
+			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 0.5f)) : dfault);
+			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 0.5f, 1, 0.5f)) : dfault);
+			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(0.5f, 0, 0.5f, 1)) : dfault);
+			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 0.5f, 1)) : dfault);
 			// TODO: Add diagonal wall hitboxes
 		}});
 
