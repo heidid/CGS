@@ -21,6 +21,7 @@ public class Level {
 		actors = new Array<>();
 		grid = new Grid(this);
 		grid.generate();
+
 		actors.add(player);
 		player.setLevel(this);
 	}
@@ -53,16 +54,29 @@ public class Level {
 	public void addEnemy(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
 		enemy.setLevel(this);
-		enemy.setScreen(screen);
 		enemies.add(enemy);
 		addAnimatedActor(enemy);
 	}
 
 	public void addObstacle(Obstacle obstacle, float x, float y) {
 		obstacle.setPosition(x, y);
-		obstacle.setScreen(screen);
 		obstacles.add(obstacle);
 		addAnimatedActor(obstacle);
+	}
+
+	public void remove(AnimatedActor actor) {
+		actors.removeValue(actor, true);
+		actor.setLevel(null);
+	}
+
+	public void remove(Enemy enemy) {
+		enemies.removeValue(enemy, true);
+		remove((AnimatedActor) enemy);
+	}
+
+	public void remove(Obstacle obstacle) {
+		obstacles.removeValue(obstacle, true);
+		remove((AnimatedActor) obstacle);
 	}
 
 	public void setScreen(StageScreen screen) {

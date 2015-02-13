@@ -5,93 +5,19 @@ import java.util.TreeMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class MovableActor extends AnimatedActor {
 	private float speed;
 	private TreeMap<Integer, Animation> idleSprite;
 	private TreeMap<Integer, Animation> moveSprite;
 	private boolean moving;
+	private Array<AnimatedActor> collisions;
 
 	public MovableActor() {
-		this(new TreeMap<Integer, Animation>());
-		this.idleSprite = new TreeMap<>();
-		this.moveSprite = new TreeMap<>();
-	}
-
-	public MovableActor(Animation sprite) {
-		super(sprite);
-		this.idleSprite = new TreeMap<>();
-		this.moveSprite = new TreeMap<>();
-		setIdleSprite(sprite);
-	}
-
-	public MovableActor(TextureRegion sprite) {
-		super(sprite);
-		this.idleSprite = new TreeMap<>();
-		this.moveSprite = new TreeMap<>();
-		setIdleSprite(sprite);
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite) {
-		super(idleSprite);
-		speed = 1;
-		this.idleSprite = idleSprite;
-		this.moveSprite = idleSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction) {
-		super(idleSprite, direction);
-		speed = 1;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction,
-			float speed) {
-		super(idleSprite, direction);
-		this.speed = speed;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction,
-			float speed, float width, float height) {
-		super(idleSprite, direction, width, height);
-		this.speed = speed;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction,
-			float speed, float width, float height, Hitbox hitbox) {
-		super(idleSprite, direction, width, height, hitbox);
-		this.speed = speed;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction,
-			float speed, TreeMap<Integer, Vector2> orientedSize) {
-		super(idleSprite, direction, orientedSize);
-		this.speed = speed;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
-	}
-
-	public MovableActor(TreeMap<Integer, Animation> idleSprite,
-			TreeMap<Integer, Animation> moveSprite, int direction, float speed,
-			TreeMap<Integer, Vector2> orientedSize,
-			TreeMap<Integer, Hitbox> orientedHitbox) {
-		super(idleSprite, direction, orientedSize, orientedHitbox);
-		this.speed = speed;
-		this.idleSprite = idleSprite;
-		this.moveSprite = moveSprite;
+		idleSprite = new TreeMap<>();
+		moveSprite = new TreeMap<>();
+		collisions = new Array<>();
 	}
 
 	public float getSpeed() {
@@ -154,17 +80,27 @@ public class MovableActor extends AnimatedActor {
 		setSprite(getIdleSprite());
 	}
 
-	private boolean checkCollisions(float dx, float dy) {
+	private boolean detectCollisions(float dx, float dy) {
+		if (getHitbox() == null) return false;
 		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
+		collisions.clear();
 
-		for (Obstacle o : getLevel().getObstacles()) {
-			if (o.getHitbox().overlaps(newBounds)) {
-				return true;
+		for (AnimatedActor actor : getLevel().getActors()) {
+			if (actor != this && actor.getHitbox() != null
+					&& actor.getHitbox().overlaps(newBounds)) {
+				if (actor instanceof Obstacle && ((Obstacle) actor).isBlocked()) {
+					return true;
+				}
+
+				collisions.add(actor);
 			}
 		}
 
+		for (AnimatedActor actor : collisions) resolveCollision(actor);
 		return false;
 	}
+
+	protected void resolveCollision(AnimatedActor actor) {}
 
 	@Override
 	public void act(float delta) {
@@ -173,7 +109,7 @@ public class MovableActor extends AnimatedActor {
 			final float d = speed * Gdx.graphics.getDeltaTime();
 			final float dx = d * (float) Math.cos(r);
 			final float dy = d * (float) Math.sin(r);
-			if (!checkCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
+			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
 		}
 		super.act(delta);
 	}
