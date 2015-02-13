@@ -75,7 +75,7 @@ public class Player extends MovableActor {
 			} else {
 				setIdle();
 			}
-			
+			System.out.println(space);
 			if (space == 1 && canShoot) {
 				space = 2;
 				addAction(new ShootAction());
@@ -85,19 +85,20 @@ public class Player extends MovableActor {
 		@Override
 		public boolean keyDown(InputEvent event, int keycode) {
 			switch (keycode) {
-			case Input.Keys.UP:
+			case Input.Keys.W:
 				up = true;
 				break;
-			case Input.Keys.DOWN:
+			case Input.Keys.S:
 				down = true;
 				break;
-			case Input.Keys.LEFT:
+			case Input.Keys.A:
 				left = true;
 				break;
-			case Input.Keys.RIGHT:
+			case Input.Keys.D:
 				right = true;
 				break;
-			case Input.Keys.SPACE:
+			case Input.Keys.ENTER:
+				System.out.println("SPACE");
 				if(space == 0)
 					space = 1;
 				break;
@@ -121,7 +122,7 @@ public class Player extends MovableActor {
 			case Input.Keys.RIGHT:
 				right = false;
 				break;
-			case Input.Keys.SPACE:
+			case Input.Keys.A:
 				space = 0;
 				break;
 			}
