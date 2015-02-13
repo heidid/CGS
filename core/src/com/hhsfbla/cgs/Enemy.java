@@ -52,6 +52,7 @@ public class Enemy extends MovableActor {
 	}
 
 	public void damage(int damage) {
+		setSprite(getHurtSprite());
 		setHealth(health - damage);
 	}
 
