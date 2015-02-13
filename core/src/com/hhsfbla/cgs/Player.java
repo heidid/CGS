@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Player extends MovableActor {
-	final static float SHOOT_DELAY = 1;
+	final static float SHOOT_DELAY = 0.4f;
 	boolean canShoot = true;
 	@SuppressWarnings("serial")
 	public Player() {
@@ -53,7 +53,7 @@ public class Player extends MovableActor {
 		private boolean down;
 		private boolean left;
 		private boolean right;
-		private boolean space;
+		private byte space;
 
 		private void handleInput() {
 			if (up && left) {
@@ -76,8 +76,10 @@ public class Player extends MovableActor {
 				setIdle();
 			}
 			
-			if (space && canShoot)
+			if (space == 1 && canShoot) {
+				space = 2;
 				addAction(new ShootAction());
+			}
 		}
 
 		@Override
@@ -96,7 +98,8 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.SPACE:
-				space = true;
+				if(space == 0)
+					space = 1;
 				break;
 			}
 			handleInput();
@@ -119,7 +122,7 @@ public class Player extends MovableActor {
 				right = false;
 				break;
 			case Input.Keys.SPACE:
-				space = false;
+				space = 0;
 				break;
 			}
 			handleInput();

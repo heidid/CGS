@@ -25,6 +25,7 @@ public class Disc extends Projectile {
 		super.resolveCollision(actor);
 		if (actor instanceof Enemy) {
 			((Enemy) actor).damage(getDamage());
+			getLevel().remove(this);
 		}
 	}
 }
