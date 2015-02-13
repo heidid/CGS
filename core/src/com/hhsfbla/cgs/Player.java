@@ -75,7 +75,6 @@ public class Player extends MovableActor {
 			} else {
 				setIdle();
 			}
-			System.out.println(space);
 			if (space == 1 && canShoot) {
 				space = 2;
 				addAction(new ShootAction());
@@ -98,7 +97,6 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.ENTER:
-				System.out.println("SPACE");
 				if(space == 0)
 					space = 1;
 				break;
