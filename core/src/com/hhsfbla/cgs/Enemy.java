@@ -14,6 +14,7 @@ public class Enemy extends MovableActor {
 	private TreeMap<Integer, Animation> dyingSprite;
 
 	public Enemy() {
+		//Spritesheet for different directions
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("minion-up.png")))));
@@ -33,7 +34,7 @@ public class Enemy extends MovableActor {
 					new Texture(Gdx.files.internal("minion-down-right.png")))));
 		}});
 		setMoveSprite(getIdleSprite());
-		setOrigin(Align.bottom);
+		setOrigin(Align.bottom); //alignment for drawing
 		hurtSprite = new TreeMap<>();
 		dyingSprite = new TreeMap<>();
 		health = 30;
@@ -46,7 +47,7 @@ public class Enemy extends MovableActor {
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 0) {
-			clearActions();
+			clearActions(); //stop moving if enemy dies
 			setSprite(getDyingSprite());
 		}
 	}

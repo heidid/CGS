@@ -7,8 +7,8 @@ public class Grid {
 	CellGraph ng;
 	Level l;
 	Array<Cell> cells;
-	IndexedAStarPathFinder<Cell> finder;
-	CellHeuristic h;
+	IndexedAStarPathFinder<Cell> finder; //PathFinder to look through the CellGraph
+	CellHeuristic h; //Heuristic to optimize algorithm (approximation for distance), we use the distance formula
 	
 	public Grid(Level l) {
 		super();
@@ -23,7 +23,7 @@ public class Grid {
 		for (Cell c : cells)
 			c.blocked = false;
 		for (Obstacle o : l.getObstacles()){
-			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS || !o.isBlocked())
+			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS || !o.isBlocked()) //bound check
 				continue;
 			getCell((int) (o.getX()), (int) (o.getY())).blocked = true;
 		}
@@ -35,9 +35,9 @@ public class Grid {
 			Array<CellConnection> possibles = new Array<CellConnection>();
 			for (int x = -1; x <= 1; x++) {
 				for (int y = -1; y <= 1; y++) {
-					if((cell.x + x < 0 || cell.x + x >= Level.GRID_COLS) ||
+					if((cell.x + x < 0 || cell.x + x >= Level.GRID_COLS) || //bound checks
 							(cell.y + y < 0 || cell.y + y >= Level.GRID_ROWS) ||
-							(x == 0 && y == 0))
+							(x == 0 && y == 0)) //check we aren't on the current cell
 						continue;
 					float dist = 1.0f;
 					if ((Math.abs(x) + Math.abs(y)) == 2)
@@ -53,6 +53,7 @@ public class Grid {
 
 	public void generate() {
 		cells = new Array<Cell>();
+		//create 2D cell array on a 1D array
 		for (int i = 0; i < Level.GRID_ROWS; i++) {
 			for (int j = 0; j < Level.GRID_COLS; j++) {
 				cells.add(new Cell(i * Level.GRID_COLS + j, false, j, i, this));
