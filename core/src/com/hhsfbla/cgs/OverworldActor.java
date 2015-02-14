@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class OverworldActor extends AnimatedActor {
-	OverworldConnection l, r, u, d;
+	OverworldConnection l, r, u, d; //left right up and down connections
 	boolean unlocked = true;
 
 	public OverworldActor(float x, float y, String img) {
