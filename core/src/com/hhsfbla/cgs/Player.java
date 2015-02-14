@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Player extends MovableActor {
-	final static float SHOOT_DELAY = 0.4f;
+	final static float SHOOT_DELAY = 0.4f; //number of seconds inbetween firing CDs
 	boolean canShoot = true;
 	@SuppressWarnings("serial")
 	public Player() {

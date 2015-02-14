@@ -5,6 +5,7 @@ import java.util.Iterator;
 import com.badlogic.gdx.ai.pfa.GraphPath;
 import com.badlogic.gdx.utils.Array;
 
+//Standard Path implementation
 public class CellPath implements GraphPath<Cell> {
 
 	Array<Cell> array = new Array<Cell>();

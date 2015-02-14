@@ -8,7 +8,7 @@ public class Cell implements IndexedNode<Cell> {
 	int index;
 	Array<CellConnection> possibles;
 	Array<Connection<Cell>> temp = new Array<Connection<Cell>>();
-	boolean blocked;
+	boolean blocked; //is this cell able to be passed through
 	Grid g;
 	int x, y;
 
@@ -26,12 +26,13 @@ public class Cell implements IndexedNode<Cell> {
 		return index;
 	}
 
+	//Update blocked field of cells
 	public void updateConnections(){
 		temp.clear();
 		for (Connection<Cell> c : possibles) {
 			if (c.getToNode().blocked)
 				continue;
-			if (Math.abs(this.x - c.getToNode().x) + Math.abs(this.y - c.getToNode().y) == 2) {
+			if (Math.abs(this.x - c.getToNode().x) + Math.abs(this.y - c.getToNode().y) == 2) { //Can't go diagonally through an obstacle
 				if (g.getCell(this.x, c.getToNode().y).blocked || g.getCell(c.getToNode().x, this.y).blocked)
 					continue;
 			}

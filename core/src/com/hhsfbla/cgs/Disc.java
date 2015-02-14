@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class Disc extends Projectile {
+	
 	public Disc(int direction) {
 		super(direction);
 		setSprite(new TextureRegion(new Texture(Gdx.files.internal("disc.png"))));
@@ -23,9 +24,9 @@ public class Disc extends Projectile {
 	@Override
 	protected void resolveCollision(AnimatedActor actor) {
 		super.resolveCollision(actor);
-		if (actor instanceof Enemy) {
-			((Enemy) actor).damage(getDamage());
-			getLevel().remove(this);
+		if (actor instanceof Enemy) { ///check if collision is with an Enemy
+			((Enemy) actor).damage(getDamage()); //damage the enemy
+			getLevel().remove(this); //remove the disc from the level
 		}
 	}
 }

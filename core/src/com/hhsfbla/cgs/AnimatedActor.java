@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class AnimatedActor extends Actor {
+	//Degree values for directions
 	public static int DIR_RIGHT = 0;
 	public static int DIR_UP = 90;
 	public static int DIR_LEFT = 180;
@@ -192,7 +193,7 @@ public class AnimatedActor extends Actor {
 			final float width = getWidth() * gridWidth;
 			final float height = image.getRegionHeight() * width
 					/ image.getRegionWidth();
-
+			//Draw with all the properties of this actor
 			batch.draw(image, x, y, getOriginX(), getOriginY(), width, height,
 					getScaleX(), getScaleY(), getRotation());
 
