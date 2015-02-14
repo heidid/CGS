@@ -27,6 +27,7 @@ public class StageScreen extends ScreenAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		stage.act();
 		stage.draw();
+		//draw grid
 		/*sr.begin(ShapeType.Filled);
 		for(int i=0;i<Level.GRID_ROWS;i++)
 			sr.rectLine(0, i*this.getStage().getHeight()/Level.GRID_ROWS, this.getStage().getWidth(), i*this.getStage().getHeight()/Level.GRID_ROWS, 5);

@@ -18,7 +18,7 @@ public class PathFindingAction extends SequenceAction {
 				return;
 			}
 			Cell n = cp.array.get(i + 1);
-			if (c.x - oldX == n.x - c.x && c.y - oldY == n.y - c.y)
+			if (c.x - oldX == n.x - c.x && c.y - oldY == n.y - c.y) //combine multiple moves in the same direction
 				continue;
 			oldX = c.x;
 			oldY = c.y;
