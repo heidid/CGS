@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class Wall extends Obstacle {
 	private boolean edge;
@@ -84,6 +85,7 @@ public class Wall extends Obstacle {
 	protected void directionChanged() {
 		super.directionChanged();
 		final int dir = getDirection();
+		setOrigin(Align.center);
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
 			setOriginY(-0.5f);
 		} else {
