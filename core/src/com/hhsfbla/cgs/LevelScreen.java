@@ -39,6 +39,7 @@ public class LevelScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
+		//sort all the objects based on their z indexes
 		foreground.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {

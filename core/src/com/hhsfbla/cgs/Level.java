@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Level extends Group {
+	//constants for level size
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 

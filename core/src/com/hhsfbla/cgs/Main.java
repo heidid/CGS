@@ -10,12 +10,8 @@ public class Main extends Game {
 
 	@Override
 	public void create() {
-		boolean overworld = true;
-		stage = new Stage(new FitViewport(1280, 720));
-		if (overworld)
-			setScreen(new OverworldScreen(stage, new TextureAtlas(), this));
-		else {
-		}
+		stage = new Stage(new FitViewport(1280, 720)); //set resolution
+		setScreen(new OverworldScreen(stage, new TextureAtlas(), this)); //start at overworld
 	}
 	
 }
