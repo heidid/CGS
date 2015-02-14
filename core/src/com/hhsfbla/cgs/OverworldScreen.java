@@ -11,6 +11,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+/**
+ * The overworld screen where the use can select a level.
+ */
 public class OverworldScreen extends StageScreen {
 	private OverworldLevel level;
 	private Group background;
@@ -41,7 +44,7 @@ public class OverworldScreen extends StageScreen {
 		stage.addActor(background);
 		stage.addActor(foreground);
 		stage.addActor(ui);
-		
+
 		stage.setKeyboardFocus(level.getPlayer());
 	}
 

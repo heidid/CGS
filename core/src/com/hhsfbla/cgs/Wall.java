@@ -10,6 +10,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
+/**
+ * The most basic obstacle. The type of wall changes based on its orientation.
+ */
 public class Wall extends Obstacle {
 	private boolean edge;
 

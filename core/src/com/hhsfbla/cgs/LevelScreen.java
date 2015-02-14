@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
+/**
+ * The main screen for displaying levels
+ */
 public class LevelScreen extends StageScreen {
 	private Level level;
 	private Group background;

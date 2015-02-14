@@ -2,13 +2,16 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * Represents a selectable level on the OverworldScreen
+ */
 public class OverworldLevel {
 	Array<OverworldActor> actors = new Array<OverworldActor>();
 	StageScreen screen;
 	OverworldPlayer player;
-	
+
 	public OverworldLevel() {
-		
+
 	}
 
 	public Array<OverworldActor> getActors() {
@@ -26,7 +29,7 @@ public class OverworldLevel {
 		actors.add(new OverworldActor(8, 1, "computer.png"));
 		actors.add(new OverworldActor(5, 3, "switch.png"));
 		//double the size
-		for(AnimatedActor a : actors) 
+		for(AnimatedActor a : actors)
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
 		actors.get(0).setLevel(new Level1());
 		actors.get(1).setLevel(new Level1());
@@ -42,9 +45,9 @@ public class OverworldLevel {
 		player.setOverworldActor(actors.get(0));
 		player.addListener(player.new OverworldLevelInputListener(screen));
 	}
-	
+
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 }

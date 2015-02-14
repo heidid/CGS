@@ -8,6 +8,9 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
+/**
+ * A Screen that uses a Stage
+ */
 public class StageScreen extends ScreenAdapter {
 	protected Stage stage;
 	public TextureAtlas atlas;

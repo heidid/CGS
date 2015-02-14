@@ -1,5 +1,8 @@
 package com.hhsfbla.cgs;
 
+/**
+ * A projectile that moves in one direction and can damage enemies
+ */
 public class Projectile extends MovableActor {
 	private int damage;
 

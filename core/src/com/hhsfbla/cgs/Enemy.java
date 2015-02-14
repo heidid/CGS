@@ -8,6 +8,11 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
+/**
+ * Base class for Enemies
+ * @author Simon
+ *
+ */
 public class Enemy extends MovableActor {
 	private int health;
 	private TreeMap<Integer, Animation> hurtSprite;

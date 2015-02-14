@@ -2,6 +2,9 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 
+/**
+ * A MoveToAction that uses MoveActor animations
+ */
 public class AnimatedMoveToAction extends Action {
 	private float x;
 	private float y;

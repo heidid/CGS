@@ -3,22 +3,25 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.ai.pfa.indexed.IndexedAStarPathFinder;
 import com.badlogic.gdx.utils.Array;
 
+/**
+ * A Grid used for pathfinding in Level
+ */
 public class Grid {
 	CellGraph ng;
 	Level l;
 	Array<Cell> cells;
 	IndexedAStarPathFinder<Cell> finder; //PathFinder to look through the CellGraph
 	CellHeuristic h; //Heuristic to optimize algorithm (approximation for distance), we use the distance formula
-	
+
 	public Grid(Level l) {
 		super();
 		this.l = l;
 	}
-	
+
 	public Cell getCell(int x, int y) {
 		return cells.get(y * Level.GRID_COLS + x);
 	}
-	
+
 	public void updateBlocked(){
 		for (Cell c : cells)
 			c.blocked = false;
@@ -28,7 +31,7 @@ public class Grid {
 			getCell((int) (o.getX()), (int) (o.getY())).blocked = true;
 		}
 	}
-	
+
 	public void updateConnections(){
 		for (int i = 0; i < cells.size; i++) {
 			Cell cell = cells.get(i);
@@ -65,7 +68,7 @@ public class Grid {
 		finder = new IndexedAStarPathFinder<Cell>(ng);
 		h = new CellHeuristic();
 	}
-	
+
 	public CellPath getPath(int x1, int y1, int x2, int y2){
 		updateBlocked();
 		CellPath ret = new CellPath();
