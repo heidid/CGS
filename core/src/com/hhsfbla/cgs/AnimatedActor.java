@@ -11,6 +11,10 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
+/**
+ * Represents an actor in an Level that has an orientation and multiple sizes,
+ * animated sprites, and hitboxes for each orientation
+ */
 public class AnimatedActor extends Actor {
 	//Degree values for directions
 	public static int DIR_RIGHT = 0;
@@ -32,6 +36,9 @@ public class AnimatedActor extends Actor {
 	private Hitbox hitbox;
 	private float animationStateTime;
 
+	/**
+	 * Creates a new AnimatedActor
+	 */
 	public AnimatedActor() {
 		direction = DIR_DOWN;
 		orientedSize = new TreeMap<>();
@@ -50,7 +57,7 @@ public class AnimatedActor extends Actor {
 	public void setLevel(Level level) {
 		this.level = level;
 	}
-	
+
 	public TreeMap<Integer, Vector2> getOrientedSize() {
 		return orientedSize;
 	}
@@ -76,6 +83,10 @@ public class AnimatedActor extends Actor {
 		setSize(getWidth(), height);
 	}
 
+	/**
+	 * Gets the current frame of the current animation
+	 * @return returns
+	 */
 	public TextureRegion getCurrentSpriteFrame() {
 		return sprite != null ? sprite.getKeyFrame(animationStateTime) : null;
 	}
