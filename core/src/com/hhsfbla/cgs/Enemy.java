@@ -6,6 +6,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 /**
@@ -41,7 +42,7 @@ public class Enemy extends MovableActor {
 		}});
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom); //alignment for drawing
-		
+
 		// sprites for enemy being hit
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0.03f, new TextureRegion(
@@ -61,9 +62,9 @@ public class Enemy extends MovableActor {
 			put(DIR_DOWN_RIGHT, new Animation(0.03f, new TextureRegion(
 					new Texture(Gdx.files.internal("minion-down-right copy.png")))));
 		}});
-		
+
 		// sprites for enemy dying
-		final Animation leftDie = new Animation(0.03f, 
+		final Animation leftDie = new Animation(0.03f,
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-1.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-2.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-3.png"))),
@@ -71,7 +72,7 @@ public class Enemy extends MovableActor {
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-5.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-6.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-7.png"))));
-		final Animation rightDie = new Animation(0.03f, 
+		final Animation rightDie = new Animation(0.03f,
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-1.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-2.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-3.png"))),
@@ -79,7 +80,7 @@ public class Enemy extends MovableActor {
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-5.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-6.png"))),
             new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-7.png"))));
-		final Animation downDie = new Animation(0.03f, 
+		final Animation downDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-7.png"))),
@@ -90,7 +91,7 @@ public class Enemy extends MovableActor {
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-2.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-1.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-0.png"))));
-		final Animation upDie = new Animation(0.03f, 
+		final Animation upDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-7.png"))),
@@ -101,7 +102,7 @@ public class Enemy extends MovableActor {
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-2.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-1.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-0.png"))));
-		final Animation upRightDie = new Animation(0.03f, 
+		final Animation upRightDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-7.png"))),
@@ -112,7 +113,7 @@ public class Enemy extends MovableActor {
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-2.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-1.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-0.png"))));
-		final Animation upLeftDie = new Animation(0.03f, 
+		final Animation upLeftDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-7.png"))),
@@ -123,7 +124,7 @@ public class Enemy extends MovableActor {
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-2.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-1.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-0.png"))));
-		final Animation downLeftDie = new Animation(0.03f, 
+		final Animation downLeftDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-7.png"))),
@@ -134,7 +135,7 @@ public class Enemy extends MovableActor {
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-2.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-1.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-0.png"))));
-		final Animation downRightDie = new Animation(0.03f, 
+		final Animation downRightDie = new Animation(0.03f,
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-9.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-8.png"))),
 			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-7.png"))),
@@ -155,7 +156,7 @@ public class Enemy extends MovableActor {
 		        put(DIR_DOWN_LEFT, downLeftDie);
 		        put(DIR_DOWN_RIGHT, downRightDie);
 		}});
-		
+
 		health = 30;
 	}
 
@@ -167,7 +168,7 @@ public class Enemy extends MovableActor {
 		this.health = health;
 		if (health <= 0) {
 			clearActions(); //stop moving if enemy dies
-			setSprite(getDyingSprite());
+			addAction(new DyingAction());
 		}
 	}
 
@@ -190,5 +191,37 @@ public class Enemy extends MovableActor {
 
 	public void setDyingSprite(TreeMap<Integer, Animation> dyingSprite) {
 		this.dyingSprite = dyingSprite;
+	}
+
+	public class HurtAction extends TemporalAction {
+		@Override
+		protected void begin() {
+			setSprite(getHurtSprite());
+			setDuration(getSprite().getAnimationDuration());
+		}
+
+		@Override
+		protected void update(float percent) {}
+
+		@Override
+		protected void end() {
+			getLevel().remove(Enemy.this);
+		}
+	}
+
+	public class DyingAction extends TemporalAction {
+		@Override
+		protected void begin() {
+			setSprite(getDyingSprite());
+			setDuration(getSprite().getAnimationDuration());
+		}
+
+		@Override
+		protected void update(float percent) {}
+
+		@Override
+		protected void end() {
+			getLevel().remove(Enemy.this);
+		}
 	}
 }
