@@ -8,7 +8,6 @@ public abstract class Level extends Group {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
-	protected Array<AnimatedActor> actors;
 	protected Player player;
 	protected Array<Enemy> enemies;
 	protected Array<Obstacle> obstacles;
@@ -24,16 +23,11 @@ public abstract class Level extends Group {
 		enemies = new Array<>();
 		obstacles = new Array<>();
 		projectiles = new Array<>();
-		actors = new Array<>();
 		grid = new Grid(this);
 		grid.generate();
 
 		addAnimatedActor(player);
 		player.setLevel(this);
-	}
-
-	public Array<AnimatedActor> getActors() {
-		return actors;
 	}
 
 	public Player getPlayer() {
@@ -54,7 +48,6 @@ public abstract class Level extends Group {
 
 	public void addAnimatedActor(AnimatedActor aa) {
 		aa.setLevel(this);
-		actors.add(aa);
 		addActor(aa);
 	}
 
@@ -77,7 +70,6 @@ public abstract class Level extends Group {
 	}
 
 	public void remove(AnimatedActor actor) {
-		actors.removeValue(actor, true);
 		removeActor(actor);
 	}
 

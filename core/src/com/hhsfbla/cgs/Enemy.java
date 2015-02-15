@@ -18,6 +18,7 @@ public class Enemy extends MovableActor {
 	private TreeMap<Integer, Animation> hurtSprite;
 	private TreeMap<Integer, Animation> dyingSprite;
 
+	@SuppressWarnings("serial")
 	public Enemy() {
 		//Spritesheet for different directions
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
