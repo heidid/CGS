@@ -41,8 +41,121 @@ public class Enemy extends MovableActor {
 		}});
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom); //alignment for drawing
-		hurtSprite = new TreeMap<>();
-		dyingSprite = new TreeMap<>();
+		
+		// sprites for enemy being hit
+		setHurtSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_UP, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-up copy.png")))));
+			put(DIR_DOWN, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-down copy.png")))));
+			put(DIR_LEFT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-left copy.png")))));
+			put(DIR_RIGHT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-right copy.png")))));
+			put(DIR_UP_LEFT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-up-left copy.png")))));
+			put(DIR_UP_RIGHT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-up-right copy.png")))));
+			put(DIR_DOWN_LEFT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-down-left copy.png")))));
+			put(DIR_DOWN_RIGHT, new Animation(0.03f, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-down-right copy.png")))));
+		}});
+		
+		// sprites for enemy dying
+		final Animation leftDie = new Animation(0.03f, 
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-1.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-2.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-3.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-4.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-5.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-6.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-left-die-7.png"))));
+		final Animation rightDie = new Animation(0.03f, 
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-1.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-2.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-3.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-4.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-5.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-6.png"))),
+            new TextureRegion(new Texture(Gdx.files.internal("minion-right-die-7.png"))));
+		final Animation downDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-die-0.png"))));
+		final Animation upDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-die-0.png"))));
+		final Animation upRightDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-right-0.png"))));
+		final Animation upLeftDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-up-left-die-0.png"))));
+		final Animation downLeftDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-left-0.png"))));
+		final Animation downRightDie = new Animation(0.03f, 
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-9.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-8.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-7.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-6.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-5.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-4.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-3.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-2.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-1.png"))),
+			new TextureRegion(new Texture(Gdx.files.internal("minion-down-right-0.png"))));
+		setDyingSprite(new TreeMap<Integer, Animation>() {{
+		        put(DIR_UP, upDie);
+		        put(DIR_DOWN, downDie);
+		        put(DIR_LEFT, leftDie);
+		        put(DIR_RIGHT, rightDie);
+		        put(DIR_UP_LEFT, upLeftDie);
+		        put(DIR_UP_RIGHT, upRightDie);
+		        put(DIR_DOWN_LEFT, downLeftDie);
+		        put(DIR_DOWN_RIGHT, downRightDie);
+		}});
+		
 		health = 30;
 	}
 
