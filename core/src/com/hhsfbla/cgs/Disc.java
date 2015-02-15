@@ -11,7 +11,7 @@ public class Disc extends Projectile {
 	public Disc(int direction) {
 		super(direction);
 		setSprite(new TextureRegion(new Texture(Gdx.files.internal("disc.png"))));
-		setSpeed(3);
+		setSpeed(5);
 		setDamage(10);
 	}
 
