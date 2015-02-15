@@ -65,6 +65,8 @@ public class AnimatedActor extends Actor {
 	@Override
 	public void setSize(float width, float height) {
 		size.set(width, height);
+		setOrigin(getOriginX() * width / getWidth(),
+				getOriginY() * height / getHeight());
 		super.setSize(width, height);
 	}
 
@@ -186,9 +188,8 @@ public class AnimatedActor extends Actor {
 	}
 
 	protected void directionChanged() {
-		updateSize();
 		updateSprite();
-		updateHitbox();
+		updateSize();
 	}
 
 	@Override

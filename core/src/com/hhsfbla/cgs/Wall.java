@@ -67,7 +67,6 @@ public class Wall extends Obstacle {
 			put(DIR_UP_RIGHT, diagonal);
 			put(DIR_DOWN_LEFT, diagonal);
 			put(DIR_DOWN_RIGHT, diagonal);
-
 		}});
 
 		setHitbox(new TreeMap<Integer, Hitbox>() {{
@@ -88,7 +87,6 @@ public class Wall extends Obstacle {
 	protected void directionChanged() {
 		super.directionChanged();
 		final int dir = getDirection();
-		setOrigin(Align.center);
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
 			setOriginY(-0.5f);
 		} else {
