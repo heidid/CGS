@@ -18,10 +18,14 @@ public class Player extends MovableActor {
 	@SuppressWarnings("serial")
 	public Player() {
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_UP, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("player-up.png")))));
+			put(DIR_DOWN, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("player-down.png")))));
 			put(DIR_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("tracker-left.png")))));
+					new Texture(Gdx.files.internal("player-left.png")))));
 			put(DIR_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("tracker-right.png")))));
+					new Texture(Gdx.files.internal("player-right.png")))));
 		}});
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom);
