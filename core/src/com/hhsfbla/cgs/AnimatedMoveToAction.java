@@ -19,36 +19,33 @@ public class AnimatedMoveToAction extends Action {
 
 	@Override
 	public boolean act(float delta) {
-		if (!started) {
-			//Convert slope to direction
-			direction = (int) (Math.round(Math.toDegrees((Math.atan2(
-					y - actor.getY(), x - actor.getX()) + 360) % 360) / 45)) * 45;
-			started = true;
-		}
-
 		if (done) return true;
 
+		final MovableActor actor = (MovableActor) getActor();
+
 		if (!started) {
+			// Round angle to nearest octilinear direction
+			direction = ((int) Math.round(Math.toDegrees(Math.atan2(
+					y - actor.getY(), x - actor.getX())))
+					/ 45 * 45 + 360) % 360;
+			actor.setMoving(direction);
 			started = true;
 		}
-
-		final MovableActor actor = (MovableActor) getActor();
-		final float epsilon = actor.getSpeed() * delta;
 
 		final boolean horizontal = direction % 180 == 0;
 		final boolean vertical = direction % 180 == 90;
 
 		final float distX = Math.abs(actor.getX() - x);
 		final float distY = Math.abs(actor.getY() - y);
+		final float epsilon = actor.getSpeed() * delta;
 
-		if (done || vertical && distY < epsilon
-				|| horizontal && distX < epsilon
-				|| !vertical && !horizontal
+		// stopping condition
+		if (vertical && distY < epsilon				// same Y if vertical
+				|| horizontal && distX < epsilon	// same X if horizontal
+				|| !vertical && !horizontal			// same X or Y if diagonal
 				&& (distX < epsilon || distY < epsilon)) {
 			actor.setIdle();
 			done = true;
-		} else {
-			actor.setMoving(direction);
 		}
 
 		return done;
