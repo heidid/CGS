@@ -16,8 +16,8 @@ public class FloorSwitch extends Obstacle {
 	public void setPressed(boolean pressed) {
 		this.pressed = pressed;
 		if (pressed)
-			setSprite(new TextureRegion(new Texture(Gdx.files.internal("ground-swtich-pressed.png"))));
+			setSprite(new TextureRegion(new Texture(Gdx.files.internal("ground-switch-pressed.png"))));
 		else
-			setSprite(new TextureRegion(new Texture(Gdx.files.internal("ground-swtich.png"))));
+			setSprite(new TextureRegion(new Texture(Gdx.files.internal("ground-switch.png"))));
 	}
 }
