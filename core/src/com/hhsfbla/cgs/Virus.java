@@ -132,22 +132,30 @@ public class Virus extends Enemy {
 		}});
 		
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, new Animation(0.1f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-up copy.png")))));
-			put(DIR_DOWN, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-down copy.png")))));
-			put(DIR_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-left copy.png")))));
-			put(DIR_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-right copy.png")))));
-			put(DIR_UP_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-up-left copy.png")))));
-			put(DIR_UP_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-up-right copy.png")))));
-			put(DIR_DOWN_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-down-left copy.png")))));
-			put(DIR_DOWN_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("virus-down-right copy.png")))));
+            put(DIR_UP, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up.png")))));
+            put(DIR_DOWN, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down.png")))));
+            put(DIR_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-left.png")))));
+            put(DIR_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-right.png")))));
+            put(DIR_UP_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up-left.png")))));
+            put(DIR_UP_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-up-right.png")))));
+            put(DIR_DOWN_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down-left.png")))));
+            put(DIR_DOWN_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("virus-down-right.png")))));
 		}});
 	}
 }

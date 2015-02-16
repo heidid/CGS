@@ -133,22 +133,30 @@ public class Trojan extends Enemy {
 		}});
 		
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-up copy.png")))));
-			put(DIR_DOWN, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-down copy.png")))));
-			put(DIR_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-left copy.png")))));
-			put(DIR_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-right copy.png")))));
-			put(DIR_UP_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-up-left copy.png")))));
-			put(DIR_UP_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-up-right copy.png")))));
-			put(DIR_DOWN_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-down-left copy.png")))));
-			put(DIR_DOWN_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("trojan-down-right copy.png")))));
-		}});
+            put(DIR_UP, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up.png")))));
+            put(DIR_DOWN, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down.png")))));
+            put(DIR_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-left.png")))));
+            put(DIR_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-right.png")))));
+            put(DIR_UP_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up-left.png")))));
+            put(DIR_UP_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-up-right.png")))));
+            put(DIR_DOWN_LEFT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down-left copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down-left.png")))));
+            put(DIR_DOWN_RIGHT, new Animation(0.05f, 
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down-right copy.png"))),
+                    new TextureRegion(new Texture(Gdx.files.internal("trojan-down-right.png")))));
+    }});
 	}
 }

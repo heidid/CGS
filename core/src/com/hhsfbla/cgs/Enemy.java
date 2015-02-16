@@ -5,6 +5,7 @@ import java.util.TreeMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -40,27 +41,56 @@ public class Enemy extends MovableActor {
 			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
 					new Texture(Gdx.files.internal("minion-down-right.png")))));
 		}});
-		setMoveSprite(getIdleSprite());
+		final Animation upMove = new Animation(0.1f, 
+				new TextureRegion(new Texture(Gdx.files.internal("minion-up.png"))), 
+				new TextureRegion(new Texture(Gdx.files.internal("minion-up-move.png"))));
+		upMove.setPlayMode(PlayMode.LOOP);
+		setMoveSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_UP, upMove);
+			put(DIR_DOWN, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down.png"))), 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down.png")))));
+			put(DIR_LEFT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-left.png")))));
+			put(DIR_RIGHT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-right.png")))));
+			put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-up-left.png")))));
+			put(DIR_UP_RIGHT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-up-right.png")))));
+			put(DIR_DOWN_LEFT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-down-left.png")))));
+			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
+					new Texture(Gdx.files.internal("minion-down-right.png")))));
+		}});
 		setOrigin(Align.bottom); //alignment for drawing
 
 		// sprites for enemy being hit
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-up copy.png")))));
-			put(DIR_DOWN, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-down copy.png")))));
-			put(DIR_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-left copy.png")))));
-			put(DIR_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-right copy.png")))));
-			put(DIR_UP_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-up-left copy.png")))));
-			put(DIR_UP_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-up-right copy.png")))));
-			put(DIR_DOWN_LEFT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-down-left copy.png")))));
-			put(DIR_DOWN_RIGHT, new Animation(0.03f, new TextureRegion(
-					new Texture(Gdx.files.internal("minion-down-right copy.png")))));
+			put(DIR_UP, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up.png")))));
+			put(DIR_DOWN, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down.png")))));
+			put(DIR_LEFT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-left copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-left.png")))));
+			put(DIR_RIGHT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-right copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-right.png")))));
+			put(DIR_UP_LEFT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up-left copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up-left.png")))));
+			put(DIR_UP_RIGHT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up-right copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-up-right.png")))));
+			put(DIR_DOWN_LEFT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down-left copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down-left.png")))));
+			put(DIR_DOWN_RIGHT, new Animation(0.05f, 
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down-right copy.png"))),
+					new TextureRegion(new Texture(Gdx.files.internal("minion-down-right.png")))));
 		}});
 
 		// sprites for enemy dying
