@@ -12,8 +12,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 /**
  * Base class for Enemies
- * @author Simon
- *
  */
 public class Enemy extends MovableActor {
 	private int health;
@@ -197,13 +195,13 @@ public class Enemy extends MovableActor {
 	public void setHealth(int health) {
 		this.health = health;
 		if (health <= 0) {
-			clearActions(); //stop moving if enemy dies
+			clearActions();
 			addAction(new DyingAction());
 		}
 	}
 
 	public void damage(int damage) {
-		setSprite(getHurtSprite());
+		addAction(new HurtAction());
 		setHealth(health - damage);
 	}
 
@@ -224,8 +222,12 @@ public class Enemy extends MovableActor {
 	}
 
 	public class HurtAction extends TemporalAction {
+		private boolean moving;
+
 		@Override
 		protected void begin() {
+			moving = isMoving();
+			setIdle();
 			setSprite(getHurtSprite());
 			setDuration(getSprite().getAnimationDuration());
 		}
@@ -235,7 +237,11 @@ public class Enemy extends MovableActor {
 
 		@Override
 		protected void end() {
-			getLevel().remove(Enemy.this);
+			if (moving) {
+				setMoving(getDirection());
+			} else {
+				setIdle();
+			}
 		}
 	}
 
