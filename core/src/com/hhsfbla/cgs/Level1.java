@@ -27,6 +27,6 @@ public class Level1 extends Level {
 					i % 6 == 0), 12, 1 + i);
 		}
 
-		addObstacle(new FloorSwitch(), 10, 6);
+		addObstacle(new FloorSwitch(), 8, 6);
 	}
 }

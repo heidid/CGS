@@ -47,7 +47,7 @@ public class FloorSwitch extends Obstacle {
 
 	@Override
 	protected void resolveCollision(AnimatedActor actor) {
-		setPresser(actor);
+		if (actor instanceof Player) setPresser(actor);
 	}
 
 	@Override
