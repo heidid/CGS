@@ -56,7 +56,7 @@ public class Wall extends Obstacle {
 
 		setSize(new TreeMap<Integer, Vector2>() {{
 			final Vector2 horizontal = new Vector2(1, 1/6f);
-			final Vector2 vertical = new Vector2(1, 1);	// TODO: Change width to 1/6f
+			final Vector2 vertical = new Vector2(1/6f, 1);
 			final Vector2 diagonal = new Vector2(1, 1);
 
 			put(DIR_UP, vertical);
