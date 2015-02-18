@@ -31,27 +31,38 @@ public class Player extends MovableActor {
 		setOrigin(Align.bottom);
 		setSpeed(2);
 	}
-	
+
+	@Override
+	protected boolean detectCollisions(float dx, float dy) {
+		final float x = getX() + dx;
+		final float y = getY() + dy;
+		if (x <= 0 || x >= Level.GRID_COLS - 1
+				|| y <= 0 || y >= Level.GRID_ROWS - 2) {
+			return true;
+		}
+		return super.detectCollisions(dx, dy);
+	}
+
 	public class ShootAction extends TemporalAction {
 		public ShootAction() {
-			this.setDuration(SHOOT_DELAY);
+			setDuration(SHOOT_DELAY);
 		}
+
 		@Override
 		protected void begin() {
 			canShoot = false;
 			getLevel().addProjectile(new Disc(getDirection()), getX(), getY());
-			
 		}
+
 		@Override
-		protected void update(float percent) {
-			
-		}
+		protected void update(float percent) {}
+
 		@Override
 		public void end() {
 			canShoot = true;
 		}
 	}
-	
+
 	public class LevelInputListener extends InputListener {
 		private boolean up;
 		private boolean down;
