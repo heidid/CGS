@@ -17,7 +17,7 @@ public class Wall extends Obstacle {
 	private boolean edge;
 
 	public Wall() {
-		this(DIR_LEFT);
+		this(DIR_RIGHT);
 	}
 
 	public Wall(int direction) {
@@ -76,22 +76,28 @@ public class Wall extends Obstacle {
 			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 3/8f, 1, 5/8f)) : dfault);
 			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 5/8f, 1)) : dfault);
 			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 5/8f, 1)) : dfault);
-			// TODO: Add diagonal wall hitboxes
+			put(DIR_UP_LEFT, new Hitbox(new Rectangle(0, 0, 1, 5/8f),
+					new Rectangle(0, 0, 1, 5/8f)));
 		}});
 
 		this.edge = edge;
 		setDirection(direction);
+		updateOrigin();
 	}
 
-	@Override
-	protected void directionChanged() {
-		super.directionChanged();
+	private void updateOrigin() {
 		final int dir = getDirection();
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
 			setOriginY(-1/2f);
 		} else {
 			setOriginY(1/2f);
 		}
+	}
+
+	@Override
+	protected void directionChanged() {
+		super.directionChanged();
+		updateOrigin();
 	}
 
 	public boolean isEdge() {

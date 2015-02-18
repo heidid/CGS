@@ -41,7 +41,7 @@ public class AnimatedActor extends Actor {
 	 * Creates a new AnimatedActor
 	 */
 	public AnimatedActor() {
-		direction = DIR_DOWN;
+		direction = DIR_RIGHT;
 		orientedSize = new TreeMap<>();
 		orientedSprite = new TreeMap<>();
 		orientedHitbox = new TreeMap<>();
