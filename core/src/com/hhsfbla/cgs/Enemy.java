@@ -222,6 +222,15 @@ public class Enemy extends MovableActor {
 		this.dyingSprite = dyingSprite;
 	}
 
+	@Override
+	protected void resolveCollision(AnimatedActor actor) {
+		if (actor instanceof Disc) {
+			final Disc disc = (Disc) actor;
+			damage(disc.getDamage());
+			getLevel().remove(actor);
+		}
+	}
+
 	public class HurtAction extends TemporalAction {
 		private boolean moving;
 

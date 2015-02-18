@@ -22,13 +22,4 @@ public class Disc extends Projectile {
 		// TODO: Add Disc collision animation
 		return blocked;
 	}
-
-	@Override
-	protected void resolveCollision(AnimatedActor actor) {
-		super.resolveCollision(actor);
-		if (actor instanceof Enemy) { ///check if collision is with an Enemy
-			((Enemy) actor).damage(getDamage()); //damage the enemy
-			getLevel().remove(this); //remove the disc from the level
-		}
-	}
 }
