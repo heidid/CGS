@@ -164,6 +164,8 @@ public class AnimatedActor extends Actor {
 		return null;
 	}
 
+	protected void resolveCollision(AnimatedActor actor) {}
+
 	protected void updateSize() {
 		if (orientedSize.isEmpty()) {
 			orientedSize.put(0, new Vector2(getWidth(), getHeight()));

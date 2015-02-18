@@ -74,7 +74,6 @@ public class MovableActor extends AnimatedActor {
 		moving = true;
 		setDirection(direction);
 		setSprite(getMoveSprite());
-		updateSprite();
 	}
 
 	public void setIdle() {
@@ -99,11 +98,9 @@ public class MovableActor extends AnimatedActor {
 			}
 		}
 
-		for (AnimatedActor actor : collisions) resolveCollision(actor);
+		for (AnimatedActor actor : collisions) actor.resolveCollision(this);
 		return false;
 	}
-
-	protected void resolveCollision(AnimatedActor actor) {}
 
 	@Override
 	public void act(float delta) {
@@ -112,8 +109,7 @@ public class MovableActor extends AnimatedActor {
 			final float d = speed * Gdx.graphics.getDeltaTime();
 			final float dx = d * (float) Math.cos(r);
 			final float dy = d * (float) Math.sin(r);
-			if (!detectCollisions(dx, dy)){ setPosition(getX() + dx, getY() + dy); }
-			
+			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
 		}
 		super.act(delta);
 	}
