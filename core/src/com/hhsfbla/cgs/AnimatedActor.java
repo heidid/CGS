@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
@@ -153,6 +154,14 @@ public class AnimatedActor extends Actor {
 		final int oldDirection = this.direction;
 		this.direction = direction;
 		if (direction != oldDirection) directionChanged();
+	}
+
+	public Action addActionOnce(Action action) {
+		for (Action a : getActions()) {
+			if (a.getClass().isInstance(action.getClass())) return a;
+		}
+		addAction(action);
+		return null;
 	}
 
 	protected void updateSize() {
