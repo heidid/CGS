@@ -55,8 +55,8 @@ public class Wall extends Obstacle {
 		}});
 
 		setSize(new TreeMap<Integer, Vector2>() {{
-			final Vector2 horizontal = new Vector2(1, 0.25f);
-			final Vector2 vertical = new Vector2(0.25f, 1);
+			final Vector2 horizontal = new Vector2(1, 1/4f);
+			final Vector2 vertical = new Vector2(1/4f, 1);
 			final Vector2 diagonal = new Vector2(1, 1);
 
 			put(DIR_UP, vertical);
@@ -72,10 +72,10 @@ public class Wall extends Obstacle {
 		setHitbox(new TreeMap<Integer, Hitbox>() {{
 			final Hitbox dfault = new Hitbox();
 
-			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 0.5f)) : dfault);
-			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 0.5f, 1, 0.5f)) : dfault);
-			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(0.5f, 0, 0.5f, 1)) : dfault);
-			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 0.5f, 1)) : dfault);
+			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 5/8f)) : dfault);
+			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 3/8f, 1, 5/8f)) : dfault);
+			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 5/8f, 1)) : dfault);
+			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 5/8f, 1)) : dfault);
 			// TODO: Add diagonal wall hitboxes
 		}});
 
@@ -88,9 +88,9 @@ public class Wall extends Obstacle {
 		super.directionChanged();
 		final int dir = getDirection();
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
-			setOriginY(-0.5f);
+			setOriginY(-1/2f);
 		} else {
-			setOriginY(0.5f);
+			setOriginY(1/2f);
 		}
 	}
 

@@ -4,7 +4,6 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
 public class Hitbox {
-
 	private float x;
 	private float y;
 	private float width;
