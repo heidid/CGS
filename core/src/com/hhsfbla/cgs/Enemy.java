@@ -185,7 +185,7 @@ public class Enemy extends MovableActor {
 		        put(DIR_DOWN_RIGHT, downRightDie);
 		}});
 
-		health = 20;
+		health = 10;
 	}
 
 	public int getHealth() {
