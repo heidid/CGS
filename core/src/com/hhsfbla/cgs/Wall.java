@@ -55,8 +55,8 @@ public class Wall extends Obstacle {
 		}});
 
 		setSize(new TreeMap<Integer, Vector2>() {{
-			final Vector2 horizontal = new Vector2(1, 1/4f);
-			final Vector2 vertical = new Vector2(1, 1);
+			final Vector2 horizontal = new Vector2(1, 1/6f);
+			final Vector2 vertical = new Vector2(1, 1);	// TODO: Change width to 1/6f
 			final Vector2 diagonal = new Vector2(1, 1);
 
 			put(DIR_UP, vertical);
@@ -72,12 +72,18 @@ public class Wall extends Obstacle {
 		setHitbox(new TreeMap<Integer, Hitbox>() {{
 			final Hitbox dfault = new Hitbox();
 
-			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 5/8f)) : dfault);
-			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 3/8f, 1, 5/8f)) : dfault);
-			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 5/8f, 1)) : dfault);
-			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 5/8f, 1)) : dfault);
-			put(DIR_UP_LEFT, new Hitbox(new Rectangle(0, 0, 1, 5/8f),
-					new Rectangle(0, 0, 1, 5/8f)));
+			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 7/12f)) : dfault);
+			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 5/12f, 1, 7/12f)) : dfault);
+			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 7/12f, 1)) : dfault);
+			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 7/12f, 1)) : dfault);
+			put(DIR_UP_LEFT, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 7/12f),
+					new Rectangle(5/12f, 0, 7/12f, 1)));
+			put(DIR_UP_RIGHT, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 7/12f),
+					new Rectangle(0, 0, 7/12f, 1)));
+			put(DIR_DOWN_LEFT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
+					new Rectangle(5/12f, 0, 7/12f, 1)));
+			put(DIR_DOWN_RIGHT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
+					new Rectangle(0, 0, 7/12f, 1)));
 		}});
 
 		this.edge = edge;
@@ -90,7 +96,7 @@ public class Wall extends Obstacle {
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
 			setOriginY(-1/2f);
 		} else {
-			setOriginY(1/2f);
+			setOriginY(5/12f);
 		}
 	}
 
