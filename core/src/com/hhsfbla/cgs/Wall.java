@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 /**
  * The most basic obstacle. The type of wall changes based on its orientation.
@@ -26,58 +25,72 @@ public class Wall extends Obstacle {
 
 	@SuppressWarnings("serial")
 	public Wall(int direction, final boolean edge) {
-		setSprite(new TreeMap<Integer, Animation>() {{
-			final Animation horizontal = new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h.png"))));
-			final Animation vertical = new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-middle.png"))));
+		setSprite(new TreeMap<Integer, Animation>() {
+			{
+				final Animation horizontal = new Animation(0,
+						new TextureRegion(new Texture(
+								Gdx.files.internal("wall-h.png"))));
+				final Animation vertical = new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-v-middle.png"))));
 
-			put(DIR_UP, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-half.png"))))
-					: vertical);
-			put(DIR_DOWN, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-bottom.png"))))
-					: vertical);
-			put(DIR_LEFT, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h-half-left.png"))))
-					: horizontal);
-			put(DIR_RIGHT, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h-half-right.png"))))
-					: horizontal);
-			put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-tl.png")))));
-			put(DIR_UP_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-tr.png")))));
-			put(DIR_DOWN_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-bl.png")))));
-			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-br.png")))));
-		}});
+				put(DIR_UP, edge ? new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-v-half.png"))))
+						: vertical);
+				put(DIR_DOWN, edge ? new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-v-bottom.png"))))
+						: vertical);
+				put(DIR_LEFT,
+						edge ? new Animation(0, new TextureRegion(new Texture(
+								Gdx.files.internal("wall-h-half-left.png"))))
+								: horizontal);
+				put(DIR_RIGHT,
+						edge ? new Animation(0, new TextureRegion(new Texture(
+								Gdx.files.internal("wall-h-half-right.png"))))
+								: horizontal);
+				put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-corner-tl.png")))));
+				put(DIR_UP_RIGHT, new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-corner-tr.png")))));
+				put(DIR_DOWN_LEFT, new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-corner-bl.png")))));
+				put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
+						new Texture(Gdx.files.internal("wall-corner-br.png")))));
+			}
+		});
 
-		setSize(new TreeMap<Integer, Vector2>() {{
-			final Vector2 horizontal = new Vector2(1, 1/4f);
-			final Vector2 vertical = new Vector2(1/4f, 1);
-			final Vector2 diagonal = new Vector2(1, 1);
+		setSize(new TreeMap<Integer, Vector2>() {
+			{
+				final Vector2 horizontal = new Vector2(1, 1 / 4f);
+				final Vector2 vertical = new Vector2(1, 1);
+				final Vector2 diagonal = new Vector2(1, 1);
 
-			put(DIR_UP, vertical);
-			put(DIR_DOWN, vertical);
-			put(DIR_LEFT, horizontal);
-			put(DIR_RIGHT, horizontal);
-			put(DIR_UP_LEFT, diagonal);
-			put(DIR_UP_RIGHT, diagonal);
-			put(DIR_DOWN_LEFT, diagonal);
-			put(DIR_DOWN_RIGHT, diagonal);
-		}});
+				put(DIR_UP, vertical);
+				put(DIR_DOWN, vertical);
+				put(DIR_LEFT, horizontal);
+				put(DIR_RIGHT, horizontal);
+				put(DIR_UP_LEFT, diagonal);
+				put(DIR_UP_RIGHT, diagonal);
+				put(DIR_DOWN_LEFT, diagonal);
+				put(DIR_DOWN_RIGHT, diagonal);
+			}
+		});
 
-		setHitbox(new TreeMap<Integer, Hitbox>() {{
-			final Hitbox dfault = new Hitbox();
+		setHitbox(new TreeMap<Integer, Hitbox>() {
+			{
+				final Hitbox dfault = new Hitbox();
 
-			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 5/8f)) : dfault);
-			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 3/8f, 1, 5/8f)) : dfault);
-			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 5/8f, 1)) : dfault);
-			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 5/8f, 1)) : dfault);
-			// TODO: Add diagonal wall hitboxes
-		}});
+				put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 5 / 8f))
+						: dfault);
+				put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 3 / 8f, 1,
+						5 / 8f)) : dfault);
+				put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3 / 8f, 0,
+						5 / 8f, 1)) : dfault);
+				put(DIR_RIGHT,
+						edge ? new Hitbox(new Rectangle(0, 0, 5 / 8f, 1))
+								: dfault);
+				// TODO: Add diagonal wall hitboxes
+			}
+		});
 
 		this.edge = edge;
 		setDirection(direction);
@@ -88,9 +101,9 @@ public class Wall extends Obstacle {
 		super.directionChanged();
 		final int dir = getDirection();
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
-			setOriginY(-1/2f);
+			setOriginY(-1 / 2f);
 		} else {
-			setOriginY(1/2f);
+			setOriginY(1 / 2f);
 		}
 	}
 
