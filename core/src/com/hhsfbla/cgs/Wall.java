@@ -74,16 +74,16 @@ public class Wall extends Obstacle {
 
 			put(DIR_UP, edge ? new Hitbox(new Rectangle(0, 0, 1, 7/12f)) : dfault);
 			put(DIR_DOWN, edge ? new Hitbox(new Rectangle(0, 5/12f, 1, 7/12f)) : dfault);
-			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(3/8f, 0, 7/12f, 1)) : dfault);
+			put(DIR_LEFT, edge ? new Hitbox(new Rectangle(5/12f, 0, 7/12f, 1)) : dfault);
 			put(DIR_RIGHT, edge ? new Hitbox(new Rectangle(0, 0, 7/12f, 1)) : dfault);
 			put(DIR_UP_LEFT, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 7/12f),
-					new Rectangle(5/12f, 0, 7/12f, 1)));
+					new Rectangle(5/12f, 5/12f, 7/12f, 1/6f)));
 			put(DIR_UP_RIGHT, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 7/12f),
-					new Rectangle(0, 0, 7/12f, 1)));
+					new Rectangle(0, 5/12f, 7/12f, 1/6f)));
 			put(DIR_DOWN_LEFT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
-					new Rectangle(5/12f, 0, 7/12f, 1)));
+					new Rectangle(5/12f, 5/12f, 7/12f, 1/6f)));
 			put(DIR_DOWN_RIGHT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
-					new Rectangle(0, 0, 7/12f, 1)));
+					new Rectangle(0, 5/12f, 7/12f, 1/6f)));
 		}});
 
 		this.edge = edge;
