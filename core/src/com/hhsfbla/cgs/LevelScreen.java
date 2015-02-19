@@ -31,7 +31,7 @@ public class LevelScreen extends StageScreen {
 	@Override
 	public void show() {
 		super.show();
-		background.addActor(new Image(new Texture(Gdx.files.internal("background.png"))));
+		background.addActor(new Image(Images.get("background.png")));
 
 		stage.addActor(background);
 		stage.addActor(foreground);

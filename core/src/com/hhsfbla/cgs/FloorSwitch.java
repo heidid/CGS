@@ -1,14 +1,10 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class FloorSwitch extends Obstacle {
-	private static final TextureRegion offSprite = new TextureRegion(
-			new Texture(Gdx.files.internal("ground-switch.png")));
-	private static final TextureRegion onSprite = new TextureRegion(
-			new Texture(Gdx.files.internal("ground-switch-pressed.png")));
+	private static final TextureRegion offSprite = Images.get("ground-switch.png");
+	private static final TextureRegion onSprite = Images.get("ground-switch-pressed.png");
 
 	private boolean on;
 	private AnimatedActor presser;

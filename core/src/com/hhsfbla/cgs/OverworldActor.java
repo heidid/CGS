@@ -1,8 +1,5 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
@@ -13,7 +10,7 @@ public class OverworldActor extends AnimatedActor {
 	public OverworldActor(float x, float y, String img) {
 		setX(x);
 		setY(y);
-		setSprite(new TextureRegion(new Texture(Gdx.files.internal(img))));
+		setSprite(Images.get(img));
 	}
 
 	public void setConnections(OverworldConnection l, OverworldConnection r,

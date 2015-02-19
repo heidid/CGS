@@ -27,31 +27,21 @@ public class Wall extends Obstacle {
 	@SuppressWarnings("serial")
 	public Wall(int direction, final boolean edge) {
 		setSprite(new TreeMap<Integer, Animation>() {{
-			final Animation horizontal = new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h.png"))));
-			final Animation vertical = new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-middle.png"))));
+			final Animation horizontal = new Animation(0, Images.get("wall-h.png"));
+			final Animation vertical = new Animation(0, Images.get("wall-v-middle.png"));
 
-			put(DIR_UP, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-half.png"))))
+			put(DIR_UP, edge ? new Animation(0, Images.get("wall-v-half.png"))
 					: vertical);
-			put(DIR_DOWN, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-v-bottom.png"))))
+			put(DIR_DOWN, edge ? new Animation(0, Images.get("wall-v-bottom.png"))
 					: vertical);
-			put(DIR_LEFT, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h-half-left.png"))))
+			put(DIR_LEFT, edge ? new Animation(0, Images.get("wall-h-half-left.png"))
 					: horizontal);
-			put(DIR_RIGHT, edge ? new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-h-half-right.png"))))
+			put(DIR_RIGHT, edge ? new Animation(0, Images.get("wall-h-half-right.png"))
 					: horizontal);
-			put(DIR_UP_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-tl.png")))));
-			put(DIR_UP_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-tr.png")))));
-			put(DIR_DOWN_LEFT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-bl.png")))));
-			put(DIR_DOWN_RIGHT, new Animation(0, new TextureRegion(
-					new Texture(Gdx.files.internal("wall-corner-br.png")))));
+			put(DIR_UP_LEFT, new Animation(0, Images.get("wall-corner-tl.png")));
+			put(DIR_UP_RIGHT, new Animation(0, Images.get("wall-corner-tr.png")));
+			put(DIR_DOWN_LEFT, new Animation(0, Images.get("wall-corner-bl.png")));
+			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("wall-corner-br.png")));
 		}});
 
 		setSize(new TreeMap<Integer, Vector2>() {{
