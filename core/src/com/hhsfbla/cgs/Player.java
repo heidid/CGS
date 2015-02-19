@@ -47,7 +47,7 @@ public class Player extends MovableActor {
 		@Override
 		protected void begin() {
 			canShoot = false;
-			getLevel().addProjectile(new Disc(getDirection()), getX(), getY());
+			getLevel().add(new Disc(getDirection()), getX(), getY());
 		}
 
 		@Override

@@ -15,8 +15,6 @@ public abstract class Level extends Group {
 	protected StageScreen screen;
 	Grid grid;
 
-	public void init() {}
-
 	public Level() {
 		player = new Player();
 		player.addListener(player.new LevelInputListener());
@@ -26,9 +24,11 @@ public abstract class Level extends Group {
 		grid = new Grid(this);
 		grid.generate();
 
-		addAnimatedActor(player);
+		add(player);
 		player.setLevel(this);
 	}
+
+	public void init() {}
 
 	public Player getPlayer() {
 		return player;
@@ -46,27 +46,27 @@ public abstract class Level extends Group {
 		return enemies;
 	}
 
-	public void addAnimatedActor(AnimatedActor aa) {
+	public void add(AnimatedActor aa) {
 		aa.setLevel(this);
 		addActor(aa);
 	}
 
-	public void addEnemy(Enemy enemy, float x, float y) {
+	public void add(Enemy enemy, float x, float y) {
 		enemy.setPosition(x, y);
 		enemies.add(enemy);
-		addAnimatedActor(enemy);
+		add(enemy);
 	}
 
-	public void addObstacle(Obstacle obstacle, float x, float y) {
+	public void add(Obstacle obstacle, float x, float y) {
 		obstacle.setPosition(x, y);
 		obstacles.add(obstacle);
-		addAnimatedActor(obstacle);
+		add(obstacle);
 	}
 
-	public void addProjectile(Projectile projectile, float x, float y) {
+	public void add(Projectile projectile, float x, float y) {
 		projectile.setPosition(x, y);
 		projectiles.add(projectile);
-		addAnimatedActor(projectile);
+		add(projectile);
 	}
 
 	public void remove(AnimatedActor actor) {

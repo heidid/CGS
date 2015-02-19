@@ -10,20 +10,20 @@ public class Level3 extends Level {
 
 	public Level3() {
 		setPlayerPosition(1, 7);
-		addEnemy(enemy, 1, 1);
+		add(enemy, 1, 1);
 
 		for (int i = 0; i < 5; i++) {
 			final int dir = i == 0 ? Wall.DIR_LEFT : Wall.DIR_RIGHT;
 			final boolean end = i % 4 == 0;
 
-			addObstacle(new Wall(dir, end), 6 + i, 7);
-			addObstacle(new Wall(dir, end), 6 + i, 5);
-			addObstacle(new Wall(dir, end), 6 + i, 3);
-			addObstacle(new Wall(dir, end), 6 + i, 1);
+			add(new Wall(dir, end), 6 + i, 7);
+			add(new Wall(dir, end), 6 + i, 5);
+			add(new Wall(dir, end), 6 + i, 3);
+			add(new Wall(dir, end), 6 + i, 1);
 		}
 
 		for (int i = 0; i < 7; i++) {
-			addObstacle(new Wall(i == 0 ? Wall.DIR_DOWN : Wall.DIR_UP,
+			add(new Wall(i == 0 ? Wall.DIR_DOWN : Wall.DIR_UP,
 					i % 6 == 0), 12, 1 + i);
 		}
 	}
