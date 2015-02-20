@@ -32,7 +32,7 @@ public class OverworldScreen extends StageScreen {
 	@Override
 	public void show() {
 		super.show();
-		background.addActor(new Image(Images.get("background.png")));
+		background.addActor(new Image(Images.get("background-overworld.png")));
 
 		for (Actor actor : level.getActors()) {
 			foreground.addActor(actor);
