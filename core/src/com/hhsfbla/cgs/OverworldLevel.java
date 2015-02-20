@@ -46,7 +46,7 @@ public class OverworldLevel {
 		player.addListener(player.new OverworldLevelInputListener(screen));
 	}
 
-	public Player getPlayer() {
+	public OverworldPlayer getPlayer() {
 		return player;
 	}
 
