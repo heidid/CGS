@@ -7,7 +7,7 @@ public class PathFindingAction extends SequenceAction {
 	
 	public PathFindingAction(Level level, Actor a, int x, int y, int endOffset) {
 		CellPath cp = level.grid.getPath((int) a.getX(), (int) a.getY(), x, y);
-		if (cp.array.size - endOffset == 1)
+		if (cp.array.size == 0 || cp.array.size - endOffset == 1)
 			return;
 		float oldX = a.getX();
 		float oldY = a.getY();
