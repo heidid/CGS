@@ -4,6 +4,7 @@ public class Item extends AnimatedActor {
 
 	public void addTo(Player player) {
 		player.addItem(this);
+		getLevel().remove(this);
 	}
 
 	@Override
