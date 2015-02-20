@@ -33,6 +33,7 @@ public class Door extends Obstacle {
 			if (player.getInventory().contains(key, true)) {
 				// TODO: Add door animation
 				setBlocked(false);
+				player.removeItem(key);
 			}
 		}
 	}
