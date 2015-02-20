@@ -5,7 +5,6 @@ import java.util.TreeMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.utils.Array;
 
 public class MovableActor extends AnimatedActor {
@@ -86,8 +85,7 @@ public class MovableActor extends AnimatedActor {
 		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
 		collisions.clear();
 
-		for (Actor generic : getLevel().getChildren()) {
-			AnimatedActor actor = (AnimatedActor) generic;
+		for (AnimatedActor actor : getLevel().getActors()) {
 			if (actor != this && actor.getHitbox() != null
 					&& actor.getHitbox().overlaps(newBounds)) {
 				if (actor instanceof Obstacle && ((Obstacle) actor).isBlocked()) {
