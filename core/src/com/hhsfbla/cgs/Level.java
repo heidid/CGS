@@ -23,6 +23,7 @@ public abstract class Level extends AnimatedActorGroup {
 		obstacles = new Array<>();
 		items = new Array<>();
 		projectiles = new Array<>();
+		fileStacks = new Array<>();
 		grid = new Grid(this);
 		grid.generate();
 
