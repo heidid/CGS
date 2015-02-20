@@ -12,6 +12,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<Obstacle> obstacles;
 	protected Array<Item> items;
 	protected Array<Projectile> projectiles;
+	protected Array<FileStack> fileStacks;
 	protected StageScreen screen;
 	Grid grid;
 
@@ -38,6 +39,10 @@ public abstract class Level extends AnimatedActorGroup {
 		return obstacles;
 	}
 
+	public Array<FileStack> getFileStacks(){
+		return fileStacks;
+	}
+
 	public void setPlayerPosition(float x, float y) {
 		player.setPosition(x, y);
 	}
@@ -49,6 +54,12 @@ public abstract class Level extends AnimatedActorGroup {
 	public void add(AnimatedActor aa) {
 		aa.setLevel(this);
 		addActor(aa);
+	}
+
+	public void add(FileStack fs, float x, float y) {
+		fileStacks.add(fs);
+		add((Obstacle) fs, x, y);
+		add(fs);
 	}
 
 	public void add(Enemy enemy, float x, float y) {
@@ -77,6 +88,11 @@ public abstract class Level extends AnimatedActorGroup {
 
 	public void remove(AnimatedActor actor) {
 		removeActor(actor);
+	}
+
+	public void remove(FileStack fs) {
+		fileStacks.removeValue(fs, true);
+		remove((AnimatedActor) fs);
 	}
 
 	public void remove(Enemy enemy) {

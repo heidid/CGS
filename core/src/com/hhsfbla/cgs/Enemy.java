@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  */
 public class Enemy extends MovableActor {
 	private int health;
+	private float damagePerMS;
 	private TreeMap<Integer, Animation> hurtSprite;
 	private TreeMap<Integer, Animation> dyingSprite;
 
@@ -95,6 +96,7 @@ public class Enemy extends MovableActor {
 		}});
 
 		health = 10;
+		setDamage(0.005f);
 	}
 
 	public int getHealth() {
@@ -138,6 +140,14 @@ public class Enemy extends MovableActor {
 			damage(disc.getDamage());
 			getLevel().remove(actor);
 		}
+	}
+
+	public float getDamage() {
+		return damagePerMS;
+	}
+
+	public void setDamage(float f) {
+		this.damagePerMS = f;
 	}
 
 	public class HurtAction extends TemporalAction {
