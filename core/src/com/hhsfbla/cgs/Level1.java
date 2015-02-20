@@ -10,7 +10,7 @@ public class Level1 extends Level {
 
 	public Level1() {
 		setPlayerPosition(1, 6);
-		add(enemy, 1, 1);
+		add(enemy, 2, 1);
 
 		for (int i = 0; i < 15; i++) {
 			add(new Wall(), i, 7);
@@ -30,6 +30,9 @@ public class Level1 extends Level {
 		for (int i = 0; i < 2; i++) add(new Wall(Wall.DIR_UP), 11, 3 + i);
 		add(new Wall(Wall.DIR_DOWN_RIGHT), 11, 2);
 
+		final File key = new File();
 		add(new FloorSwitch(), 13, 3);
+		add(new Door(key), 1, 1);
+		add(key, 3, 1);
 	}
 }
