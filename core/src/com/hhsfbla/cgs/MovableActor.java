@@ -89,7 +89,8 @@ public class MovableActor extends AnimatedActor {
 			if (actor != this && actor.getHitbox() != null
 					&& actor.getHitbox().overlaps(newBounds)) {
 				if (actor instanceof Obstacle && ((Obstacle) actor).isBlocked()) {
-					return true;
+					actor.resolveCollision(this);
+					return ((Obstacle) actor).isBlocked();
 				}
 
 				collisions.add(actor);
