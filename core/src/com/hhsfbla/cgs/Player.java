@@ -8,12 +8,19 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
+import com.badlogic.gdx.utils.Array;
 
 public class Player extends MovableActor {
-	final static float SHOOT_DELAY = 0.4f; //number of seconds inbetween firing CDs
-	boolean canShoot = true;
+	private static final float SHOOT_DELAY = 0.4f; // number of seconds between firing CDs
+
+	private Array<Item> inventory;
+	private boolean canShoot;
+
 	@SuppressWarnings("serial")
 	public Player() {
+		inventory = new Array<>();
+		canShoot = true;
+
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("player-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("player-down.png")));
@@ -23,6 +30,18 @@ public class Player extends MovableActor {
 		setMoveSprite(getIdleSprite());
 		setOrigin(Align.bottom);
 		setSpeed(2);
+	}
+
+	public Array<Item> getInventory() {
+		return inventory;
+	}
+
+	public void addItem(Item item) {
+		inventory.add(item);
+	}
+
+	public void removeItem(Item item) {
+		inventory.removeValue(item, true);
 	}
 
 	@Override

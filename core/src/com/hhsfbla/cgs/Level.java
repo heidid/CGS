@@ -11,6 +11,7 @@ public abstract class Level extends Group {
 	protected Player player;
 	protected Array<Enemy> enemies;
 	protected Array<Obstacle> obstacles;
+	protected Array<Item> items;
 	protected Array<Projectile> projectiles;
 	protected StageScreen screen;
 	Grid grid;
@@ -63,6 +64,12 @@ public abstract class Level extends Group {
 		add(obstacle);
 	}
 
+	public void add(Item item, float x, float y) {
+		item.setPosition(x, y);
+		items.add(item);
+		add(item);
+	}
+
 	public void add(Projectile projectile, float x, float y) {
 		projectile.setPosition(x, y);
 		projectiles.add(projectile);
@@ -81,6 +88,11 @@ public abstract class Level extends Group {
 	public void remove(Obstacle obstacle) {
 		obstacles.removeValue(obstacle, true);
 		remove((AnimatedActor) obstacle);
+	}
+
+	public void remove(Item item) {
+		items.removeValue(item, true);
+		remove((AnimatedActor) item);
 	}
 
 	public void remove(Projectile projectile) {
