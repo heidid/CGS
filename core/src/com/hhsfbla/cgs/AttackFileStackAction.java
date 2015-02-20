@@ -16,6 +16,8 @@ public class AttackFileStackAction extends SequenceAction {
 		}
 	}
 	public AttackFileStackAction(Enemy enemy) {
+		if (enemy.getLevel().getFileStacks().size == 0)
+			return;
 		this.enemy = enemy;
 		int shortest = Integer.MAX_VALUE;
 		FileStack closest = null;
