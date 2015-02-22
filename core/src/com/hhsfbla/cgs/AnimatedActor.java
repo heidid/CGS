@@ -108,6 +108,7 @@ public class AnimatedActor extends Actor {
 	}
 
 	public void setSprite(TreeMap<Integer, Animation> orientedSprite) {
+		if (orientedSprite == null) return;
 		this.orientedSprite = orientedSprite;
 		updateSprite();
 	}
