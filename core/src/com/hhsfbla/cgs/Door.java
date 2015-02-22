@@ -1,6 +1,6 @@
 package com.hhsfbla.cgs;
 
-public class Door extends Obstacle {
+public class Door extends UnblockableObstacle {
 	private File key;
 
 	public Door() {
@@ -9,7 +9,9 @@ public class Door extends Obstacle {
 
 	public Door(File key) {
 		this.key = key;
-		setSprite(Images.get("door.png"));
+		setBlockedSprite(Images.get("door.png"));
+		setUnblockedSprite(Images.get("doormat2.png"));
+		updateBlocked();
 	}
 
 	public File getKey() {
@@ -21,18 +23,11 @@ public class Door extends Obstacle {
 	}
 
 	@Override
-	public void setBlocked(boolean blocked) {
-		super.setBlocked(blocked);
-		if (!blocked) setSprite(Images.get("conveyor-belt-right.png"));
-	}
-
-	@Override
 	protected void resolveCollision(AnimatedActor actor) {
 		if (actor instanceof Player) {
 			final Player player = (Player) actor;
 			if (player.getInventory().contains(key, true)) {
-				// TODO: Add door animation
-				setBlocked(false);
+				addAction(new UnblockAction());
 				player.removeItem(key);
 			}
 		}
