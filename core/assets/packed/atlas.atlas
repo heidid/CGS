@@ -27,14 +27,14 @@ blank
   index: -1
 conveyor-belt-left
   rotate: false
-  xy: 1614, 30
+  xy: 1246, 30
   size: 120, 57
   orig: 120, 57
   offset: 0, 0
   index: -1
 conveyor-belt-right
   rotate: false
-  xy: 1736, 30
+  xy: 1368, 30
   size: 120, 57
   orig: 120, 57
   offset: 0, 0
@@ -60,6 +60,13 @@ door2
   orig: 120, 180
   offset: 0, 0
   index: -1
+doormat2
+  rotate: false
+  xy: 1368, 89
+  size: 120, 180
+  orig: 120, 180
+  offset: 0, 0
+  index: -1
 factory
   rotate: false
   xy: 3670, 116
@@ -69,14 +76,14 @@ factory
   index: -1
 file
   rotate: false
-  xy: 3904, 2504
+  xy: 3911, 3017
   size: 76, 100
   orig: 76, 100
   offset: 0, 0
   index: -1
 file-important
   rotate: false
-  xy: 4002, 475
+  xy: 3904, 2508
   size: 72, 96
   orig: 72, 96
   offset: 0, 0
@@ -97,63 +104,63 @@ file-pw2
   index: -1
 firewall
   rotate: false
-  xy: 1368, 89
+  xy: 1490, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 firewall-0
   rotate: false
-  xy: 1490, 89
+  xy: 1612, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 firewall-2
   rotate: false
-  xy: 1612, 89
+  xy: 1734, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 firewall-appear-1
   rotate: false
-  xy: 3911, 3028
+  xy: 3428, 58
   size: 120, 89
   orig: 120, 89
   offset: 0, 0
   index: -1
 firewall-appear-2
   rotate: false
-  xy: 3428, 157
+  xy: 3642, 2
   size: 120, 112
   orig: 120, 112
   offset: 0, 0
   index: -1
 firewall-appear-3
   rotate: false
-  xy: 3184, 134
+  xy: 3306, 134
   size: 120, 135
   orig: 120, 135
   offset: 0, 0
   index: -1
 firewall-appear-4
   rotate: false
-  xy: 2466, 111
+  xy: 2588, 111
   size: 120, 158
   orig: 120, 158
   offset: 0, 0
   index: -1
 firewall-disabled
   rotate: false
-  xy: 1492, 16
+  xy: 1490, 16
   size: 120, 71
   orig: 120, 71
   offset: 0, 0
   index: -1
 firewall-no-fire
   rotate: false
-  xy: 1734, 89
+  xy: 1856, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
@@ -167,7 +174,7 @@ ground-switch
   index: -1
 ground-switch-pressed
   rotate: false
-  xy: 2466, 2
+  xy: 2588, 2
   size: 96, 107
   orig: 96, 107
   offset: 0, 0
@@ -475,28 +482,28 @@ minion-right-die-2
   index: -1
 player-down
   rotate: false
-  xy: 2588, 143
+  xy: 2710, 143
   size: 147, 126
   orig: 147, 126
   offset: 0, 0
   index: -1
 player-left
   rotate: false
-  xy: 2737, 143
+  xy: 2859, 143
   size: 147, 126
   orig: 147, 126
   offset: 0, 0
   index: -1
 player-right
   rotate: false
-  xy: 2886, 143
+  xy: 3008, 143
   size: 147, 126
   orig: 147, 126
   offset: 0, 0
   index: -1
 player-up
   rotate: false
-  xy: 3035, 143
+  xy: 3157, 143
   size: 147, 126
   orig: 147, 126
   offset: 0, 0
@@ -538,7 +545,7 @@ port-exit-left
   index: -1
 port-exit-right
   rotate: false
-  xy: 3904, 2806
+  xy: 3550, 71
   size: 90, 198
   orig: 90, 198
   offset: 0, 0
@@ -552,14 +559,14 @@ port-trojan-down
   index: -1
 port-trojan-left
   rotate: false
-  xy: 3904, 2606
+  xy: 3904, 2806
   size: 90, 198
   orig: 90, 198
   offset: 0, 0
   index: -1
 port-trojan-right
   rotate: false
-  xy: 4002, 573
+  xy: 3904, 2606
   size: 90, 198
   orig: 90, 198
   offset: 0, 0
@@ -573,7 +580,7 @@ printer
   index: -1
 router
   rotate: false
-  xy: 3550, 203
+  xy: 1612, 21
   size: 114, 66
   orig: 114, 66
   offset: 0, 0
@@ -594,14 +601,14 @@ switch
   index: -1
 switch-firewall-off
   rotate: false
-  xy: 1246, 4
+  xy: 3764, 31
   size: 121, 83
   orig: 121, 83
   offset: 0, 0
   index: -1
 switch-firewall-on
   rotate: false
-  xy: 1369, 4
+  xy: 3887, 31
   size: 121, 83
   orig: 121, 83
   offset: 0, 0
@@ -657,35 +664,35 @@ wall-corner-br
   index: -1
 wall-corner-tl
   rotate: false
-  xy: 1856, 89
+  xy: 1978, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 wall-corner-tr
   rotate: false
-  xy: 1978, 89
+  xy: 2100, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 wall-h
   rotate: false
-  xy: 2100, 89
+  xy: 2222, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 wall-h-half-left
   rotate: false
-  xy: 2222, 89
+  xy: 2344, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
   index: -1
 wall-h-half-right
   rotate: false
-  xy: 2344, 89
+  xy: 2466, 89
   size: 120, 180
   orig: 120, 180
   offset: 0, 0
@@ -713,7 +720,7 @@ wall-v-middle
   index: -1
 wormhole
   rotate: false
-  xy: 3306, 149
+  xy: 3428, 149
   size: 120, 120
   orig: 120, 120
   offset: 0, 0
