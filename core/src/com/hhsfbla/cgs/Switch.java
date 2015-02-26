@@ -91,11 +91,6 @@ public class Switch extends Obstacle {
 	}
 
 	@Override
-	protected void resolveCollision(AnimatedActor actor) {
-		if (actor instanceof Player) setPresser(actor);
-	}
-
-	@Override
 	public void act(float delta) {
 		super.act(delta);
 		if (presser != null && !presser.getHitbox().overlaps(getHitbox())) {

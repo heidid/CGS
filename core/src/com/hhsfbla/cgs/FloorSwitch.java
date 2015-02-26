@@ -5,4 +5,9 @@ public class FloorSwitch extends Switch {
 		setOffSprite(Images.get("ground-switch.png"));
 		setOnSprite(Images.get("ground-switch-pressed.png"));
 	}
+
+	@Override
+	protected void resolveCollision(AnimatedActor actor) {
+		if (actor instanceof Player) setPresser(actor);
+	}
 }
