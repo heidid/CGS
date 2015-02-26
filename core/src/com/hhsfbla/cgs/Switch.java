@@ -4,15 +4,17 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.utils.Array;
 
 public class Switch extends Obstacle {
 	private boolean on;
 	private TreeMap<Integer, Animation> offSprite;
 	private TreeMap<Integer, Animation> onSprite;
 	private AnimatedActor presser;
-	private Obstacle link;
+	private Array<SwitchListener> listeners;
 
 	public Switch() {
+		listeners = new Array<SwitchListener>();
 		setBlocked(false);
 	}
 
@@ -23,9 +25,6 @@ public class Switch extends Obstacle {
 	public void setOn(boolean on) {
 		this.on = on;
 		updateOn();
-		if (on) {
-			// TODO: Do something with link
-		}
 	}
 
 	public TreeMap<Integer, Animation> getOffSprite() {
@@ -62,6 +61,9 @@ public class Switch extends Obstacle {
 
 	protected void updateOn() {
 		setSprite(on ? onSprite : offSprite);
+		for (SwitchListener listener : listeners) {
+			listener.onSwitchStateChanged(on);
+		}
 	}
 
 	public AnimatedActor getPresser() {
@@ -71,6 +73,18 @@ public class Switch extends Obstacle {
 	public void setPresser(AnimatedActor presser) {
 		if (this.presser == null && presser != null) setOn(!on);
 		this.presser = presser;
+	}
+
+	public Array<SwitchListener> getSwitchListeners() {
+		return listeners;
+	}
+
+	public void addSwitchListener(SwitchListener listener) {
+		listeners.add(listener);
+	}
+
+	public void removeSwitchListener(SwitchListener listener) {
+		listeners.removeValue(listener, true);
 	}
 
 	@Override
