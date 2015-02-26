@@ -31,8 +31,7 @@ public class Level1 extends Level {
 		add(new Wall(Wall.DIR_DOWN_RIGHT), 11, 2);
 
 		final File key = new File();
-		final Switch swtch = new FirewallSwitch();
-		swtch.setOn(true);
+		final Switch swtch = new FirewallSwitch(true);
 		add(swtch, 13, 3);
 		add(new Firewall(swtch), 1, 1);
 		add(key, 13, 5);

@@ -14,6 +14,11 @@ public class Switch extends Obstacle {
 	private Array<SwitchListener> listeners;
 
 	public Switch() {
+		this(false);
+	}
+
+	public Switch(boolean on) {
+		this.on = on;
 		listeners = new Array<SwitchListener>();
 		setBlocked(false);
 	}

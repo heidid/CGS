@@ -7,6 +7,11 @@ public class FirewallSwitch extends Switch {
 	private final Hitbox offHitbox = new Hitbox(new Rectangle(0, 0, 1/2f, 1));
 
 	public FirewallSwitch() {
+		this(false);
+	}
+
+	public FirewallSwitch(boolean on) {
+		super(on);
 		setSize(2, 1);
 		setBlocked(true);
 		setOffSprite(Images.get("switch-firewall-off.png"));
