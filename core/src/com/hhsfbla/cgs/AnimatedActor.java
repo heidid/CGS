@@ -157,6 +157,17 @@ public class AnimatedActor extends Actor {
 		if (direction != oldDirection) directionChanged();
 	}
 
+	public float getZValue() {
+		if (this instanceof Obstacle) {
+			final Obstacle obstacle = (Obstacle) this;
+			if (!obstacle.isBlocked() || obstacle instanceof FirewallSwitch) {
+				return Float.MAX_VALUE;
+			}
+		}
+
+		return getY();
+	}
+
 	public Action addActionOnce(Action action) {
 		for (Action a : getActions()) {
 			if (a.getClass().isInstance(action.getClass())) return a;

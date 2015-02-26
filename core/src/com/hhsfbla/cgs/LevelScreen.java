@@ -40,15 +40,12 @@ public class LevelScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
-		//sort all the objects based on their z indexes
+		// sort all actors based on their z-values
 		foreground.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {
-				float za = (a instanceof Obstacle && !((Obstacle) a).isBlocked())
-						? Float.MAX_VALUE : a.getY();
-				float zb = (b instanceof Obstacle && !((Obstacle) b).isBlocked())
-						? Float.MAX_VALUE : b.getY();
-				return Float.compare(zb, za);
+				return Float.compare(((AnimatedActor) b).getZValue(),
+						((AnimatedActor) a).getZValue());
 			}
 		});
 
