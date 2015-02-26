@@ -7,7 +7,6 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 		setBlockingAnimation(Images.getAnimation("firewall-appear-%d.png", 1, 4, 0.03f));
 		setUnblockingAnimation(Images.getAnimation("firewall-appear-%d.png", 4, 1, 0.03f));
 		swtch.addSwitchListener(this);
-		updateBlocked();
 	}
 
 	@Override

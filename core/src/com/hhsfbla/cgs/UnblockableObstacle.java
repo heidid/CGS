@@ -60,8 +60,13 @@ public class UnblockableObstacle extends Obstacle {
 		return blockingAnimation;
 	}
 
+	public TreeMap<Integer, Animation> getUnblockingAnimation() {
+		return unblockingAnimation;
+	}
+
 	public void setBlockingAnimation(TreeMap<Integer, Animation> blockingAnimation) {
 		this.blockingAnimation = blockingAnimation;
+		updateOrientedSprite();
 	}
 
 	public void setBlockingAnimation(final Animation blockingAnimation) {
@@ -70,13 +75,10 @@ public class UnblockableObstacle extends Obstacle {
 		}});
 	}
 
-	public TreeMap<Integer, Animation> getUnblockingAnimation() {
-		return unblockingAnimation;
-	}
-
 	public void setUnblockingAnimation(
 			TreeMap<Integer, Animation> unblockingAnimation) {
 		this.unblockingAnimation = unblockingAnimation;
+		updateOrientedSprite();
 	}
 
 	public void setUnblockingAnimation(final Animation unblockingAnimation) {
@@ -88,10 +90,10 @@ public class UnblockableObstacle extends Obstacle {
 	@Override
 	public void setBlocked(boolean blocked) {
 		super.setBlocked(blocked);
-		updateBlocked();
+		updateOrientedSprite();
 	}
 
-	protected void updateBlocked() {
+	protected void updateOrientedSprite() {
 		setSprite(isBlocked() ? getBlockedSprite() : getUnblockedSprite());
 	}
 

@@ -24,7 +24,11 @@ public class Switch extends Obstacle {
 
 	public void setOn(boolean on) {
 		this.on = on;
-		updateOn();
+		updateOrientedSprite();
+
+		for (SwitchListener listener : listeners) {
+			listener.onSwitchStateChanged(on);
+		}
 	}
 
 	public TreeMap<Integer, Animation> getOffSprite() {
@@ -37,6 +41,7 @@ public class Switch extends Obstacle {
 
 	public void setOffSprite(TreeMap<Integer, Animation> offSprite) {
 		this.offSprite = offSprite;
+		updateOrientedSprite();
 	}
 
 	public void setOffSprite(final Animation offSprite) {
@@ -49,6 +54,7 @@ public class Switch extends Obstacle {
 
 	public void setOnSprite(TreeMap<Integer, Animation> onSprite) {
 		this.onSprite = onSprite;
+		updateOrientedSprite();
 	}
 
 	public void setOnSprite(final Animation onSprite) {
@@ -59,11 +65,8 @@ public class Switch extends Obstacle {
 		setOnSprite(new Animation(0, onSprite));
 	}
 
-	protected void updateOn() {
+	protected void updateOrientedSprite() {
 		setSprite(on ? onSprite : offSprite);
-		for (SwitchListener listener : listeners) {
-			listener.onSwitchStateChanged(on);
-		}
 	}
 
 	public AnimatedActor getPresser() {

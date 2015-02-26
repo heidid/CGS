@@ -11,7 +11,6 @@ public class Door extends UnblockableObstacle {
 		this.key = key;
 		setBlockedSprite(Images.get("door.png"));
 		setUnblockedSprite(Images.get("doormat2.png"));
-		updateBlocked();
 	}
 
 	public File getKey() {
