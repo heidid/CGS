@@ -64,6 +64,12 @@ public class UnblockableObstacle extends Obstacle {
 		this.blockingAnimation = blockingAnimation;
 	}
 
+	public void setBlockingAnimation(final Animation blockingAnimation) {
+		setBlockingAnimation(new TreeMap<Integer, Animation>(){{
+			put(0, blockingAnimation);
+		}});
+	}
+
 	public TreeMap<Integer, Animation> getUnblockingAnimation() {
 		return unblockingAnimation;
 	}
@@ -71,6 +77,12 @@ public class UnblockableObstacle extends Obstacle {
 	public void setUnblockingAnimation(
 			TreeMap<Integer, Animation> unblockingAnimation) {
 		this.unblockingAnimation = unblockingAnimation;
+	}
+
+	public void setUnblockingAnimation(final Animation unblockingAnimation) {
+		setUnblockingAnimation(new TreeMap<Integer, Animation>(){{
+			put(0, unblockingAnimation);
+		}});
 	}
 
 	@Override

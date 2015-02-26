@@ -31,8 +31,9 @@ public class Level1 extends Level {
 		add(new Wall(Wall.DIR_DOWN_RIGHT), 11, 2);
 
 		final File key = new File();
-		add(new FloorSwitch(), 13, 3);
-		add(new Door(key), 1, 1);
-		add(key, 3, 1);
+		final FloorSwitch swtch = new FloorSwitch();
+		add(swtch, 13, 3);
+		add(new Firewall(swtch), 1, 1);
+		add(key, 13, 3);
 	}
 }
