@@ -3,7 +3,6 @@ package com.hhsfbla.cgs;
 import java.util.Comparator;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,16 +16,14 @@ public class OverworldScreen extends StageScreen {
 	private Group background;
 	private Group foreground;
 	private Group ui;
-	Game g;
 
-	public OverworldScreen(Stage stage, TextureAtlas atlas, Game g) {
-		super(stage, atlas);
+	public OverworldScreen(Game game, Stage stage) {
+		super(game, stage);
 		this.level = new OverworldLevel();
 		level.setScreen(this);
 		background = new Group();
 		foreground = new Group();
 		ui = new Group();
-		this.g = g;
 	}
 
 	@Override

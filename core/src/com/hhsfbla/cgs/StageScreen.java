@@ -1,29 +1,29 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 
 /**
  * A Screen that uses a Stage
  */
 public class StageScreen extends ScreenAdapter {
+	protected Game game;
 	protected Stage stage;
-	public TextureAtlas atlas;
 
-	public StageScreen(Stage stage, TextureAtlas atlas) {
-		this.stage = stage;
-		this.atlas = atlas;
+	public StageScreen(Game game, Stage stage) {
+		this.game = game;
+		setStage(stage);
 	}
 
 	@Override
 	public void show() {
 		Gdx.input.setInputProcessor(stage);
 	}
+
 	ShapeRenderer sr = new ShapeRenderer();
 	@Override
 	public void render(float delta) {
@@ -48,10 +48,6 @@ public class StageScreen extends ScreenAdapter {
 	@Override
 	public void hide() {
 
-	}
-
-	public Stage getStage() {
-		return stage;
 	}
 
 	public final void setStage(Stage stage) {

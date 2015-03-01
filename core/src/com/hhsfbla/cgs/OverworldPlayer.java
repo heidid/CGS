@@ -4,13 +4,11 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class OverworldPlayer extends MovableActor {
-
 	OverworldActor current;
 
 	@SuppressWarnings("serial")
@@ -72,8 +70,8 @@ public class OverworldPlayer extends MovableActor {
 				return true;
 			} else if (keycode == Input.Keys.ENTER) {
 				if (current.unlocked && current.getLevel() != null) {
-					os.g.setScreen(new LevelScreen(os.getStage(),
-							new TextureAtlas(), current.getLevel()));
+					os.game.setScreen(new LevelScreen(os.game, os.stage,
+							current.getLevel()));
 					//initialize the level
 					current.getLevel().init();
 				}

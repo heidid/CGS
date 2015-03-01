@@ -2,7 +2,7 @@ package com.hhsfbla.cgs;
 
 import java.util.Comparator;
 
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -17,8 +17,8 @@ public class LevelScreen extends StageScreen {
 	private Group foreground;
 	private Group ui;
 
-	public LevelScreen(Stage stage, TextureAtlas atlas, Level level) {
-		super(stage, atlas);
+	public LevelScreen(Game game, Stage stage, Level level) {
+		super(game, stage);
 		this.level = level;
 		level.setScreen(this);
 		background = new Group();
