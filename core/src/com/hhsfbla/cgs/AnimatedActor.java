@@ -18,14 +18,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  */
 public class AnimatedActor extends Actor {
 	//Degree values for directions
-	public static int DIR_RIGHT = 0;
-	public static int DIR_UP = 90;
-	public static int DIR_LEFT = 180;
-	public static int DIR_DOWN = 270;
-	public static int DIR_UP_RIGHT = 45;
-	public static int DIR_UP_LEFT = 135;
-	public static int DIR_DOWN_RIGHT = 315;
-	public static int DIR_DOWN_LEFT = 225;
+	public static final int DIR_RIGHT = 0;
+	public static final int DIR_UP = 90;
+	public static final int DIR_LEFT = 180;
+	public static final int DIR_DOWN = 270;
+	public static final int DIR_UP_RIGHT = 45;
+	public static final int DIR_UP_LEFT = 135;
+	public static final int DIR_DOWN_RIGHT = 315;
+	public static final int DIR_DOWN_LEFT = 225;
 
 	private Level level;
 	private int direction;
