@@ -39,13 +39,13 @@ public class MovableActor extends AnimatedActor {
 
 	public void setIdleSprite(TreeMap<Integer, Animation> idleSprite) {
 		this.idleSprite = idleSprite;
-		setSprite(idleSprite);
+		updateOrientedSprite();
 	}
 
 	public void setIdleSprite(Animation sprite) {
 		idleSprite.clear();
 		idleSprite.put(0, sprite);
-		setSprite(sprite);
+		updateOrientedSprite();
 	}
 
 	public void setIdleSprite(TextureRegion sprite) {
@@ -54,30 +54,38 @@ public class MovableActor extends AnimatedActor {
 
 	public void setMoveSprite(TreeMap<Integer, Animation> moveSprite) {
 		this.moveSprite = moveSprite;
+		updateOrientedSprite();
 	}
 
 	public void setMoveSprite(Animation sprite) {
 		moveSprite.clear();
 		moveSprite.put(0, sprite);
-	}
-
-	public boolean isMoving() {
-		return moving;
+		updateOrientedSprite();
 	}
 
 	public void setMoveSprite(TextureRegion sprite) {
 		setMoveSprite(new Animation(0, sprite));
 	}
 
+	public boolean isMoving() {
+		return moving;
+	}
+
 	public void setMoving(int direction) {
+		if (getAnimatedAction() != null) return;
 		moving = true;
 		setDirection(direction);
-		setSprite(getMoveSprite());
+		updateOrientedSprite();
 	}
 
 	public void setIdle() {
+		if (getAnimatedAction() != null) return;
 		moving = false;
-		setSprite(getIdleSprite());
+		updateOrientedSprite();
+	}
+
+	protected void updateOrientedSprite() {
+		setSprite(moving ? getMoveSprite() : getIdleSprite());
 	}
 
 	protected boolean detectCollisions(float dx, float dy) {
@@ -103,7 +111,7 @@ public class MovableActor extends AnimatedActor {
 
 	@Override
 	public void act(float delta) {
-		if (moving) {
+		if (moving && getAnimatedAction() == null) {
 			final double r = Math.toRadians(getDirection());
 			final float d = speed * Gdx.graphics.getDeltaTime();
 			final float dx = d * (float) Math.cos(r);

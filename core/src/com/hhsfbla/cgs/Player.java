@@ -57,7 +57,7 @@ public class Player extends MovableActor {
 
 	public class ShootAction extends TemporalAction {
 		public ShootAction() {
-			setDuration(SHOOT_DELAY);
+			super(SHOOT_DELAY);
 		}
 
 		@Override

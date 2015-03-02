@@ -36,6 +36,7 @@ public class AnimatedActor extends Actor {
 	private Animation sprite;
 	private Hitbox hitbox;
 	private float animationStateTime;
+	private AnimatedAction animatedAction;
 
 	/**
 	 * Creates a new AnimatedActor
@@ -155,6 +156,20 @@ public class AnimatedActor extends Actor {
 		final int oldDirection = this.direction;
 		this.direction = direction;
 		if (direction != oldDirection) directionChanged();
+	}
+
+	public AnimatedAction getAnimatedAction() {
+		return animatedAction;
+	}
+
+	public void startAnimatedAction(AnimatedAction animatedAction) {
+		animatedAction.setPreviousSprite(this.animatedAction != null
+				? this.animatedAction.getPreviousSprite() : orientedSprite);
+		this.animatedAction = animatedAction;
+	}
+
+	public void endAnimatedAction() {
+		animatedAction = null;
 	}
 
 	public float getZValue() {

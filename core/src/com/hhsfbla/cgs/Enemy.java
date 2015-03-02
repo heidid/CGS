@@ -150,47 +150,20 @@ public class Enemy extends MovableActor {
 		this.damagePerMS = f;
 	}
 
-	public class HurtAction extends TemporalAction {
-		private boolean moving;
-
-		@Override
-		protected void begin() {
-			moving = isMoving();
-			restart();
-		}
-
-		@Override
-		public void restart() {
-			setIdle();
-			setSprite(getHurtSprite());
-			setDuration(getSprite().getAnimationDuration());
-		}
-
-		@Override
-		protected void update(float percent) {}
-
-		@Override
-		protected void end() {
-			if (moving) {
-				setMoving(getDirection());
-			} else {
-				setIdle();
-			}
+	public class HurtAction extends AnimatedAction {
+		public HurtAction() {
+			super(getHurtSprite());
 		}
 	}
 
-	public class DyingAction extends TemporalAction {
-		@Override
-		protected void begin() {
-			setSprite(getDyingSprite());
-			setDuration(getSprite().getAnimationDuration());
+	public class DyingAction extends AnimatedAction {
+		public DyingAction() {
+			super(getDyingSprite());
 		}
 
 		@Override
-		protected void update(float percent) {}
-
-		@Override
 		protected void end() {
+			super.end();
 			getLevel().remove(Enemy.this);
 		}
 	}
