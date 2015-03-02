@@ -17,10 +17,6 @@ public class MovableActor extends AnimatedActor {
 	private Array<AnimatedActor> collisions;
 
 	public MovableActor() {
-		idleSprite = new TreeMap<>();
-		moveSprite = new TreeMap<>();
-		appearSprite = new TreeMap<>();
-		disappearSprite = new TreeMap<>();
 		collisions = new Array<>();
 		setSpeed(1.0f);
 	}

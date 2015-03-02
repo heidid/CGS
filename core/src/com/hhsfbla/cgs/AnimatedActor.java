@@ -64,17 +64,16 @@ public class AnimatedActor extends Actor {
 		return orientedSize;
 	}
 
-	@Override
-	public void setSize(float width, float height) {
-		size.set(width, height);
-		setOrigin(getOriginX() * width / getWidth(),
-				getOriginY() * height / getHeight());
-		super.setSize(width, height);
-	}
-
 	public void setSize(TreeMap<Integer, Vector2> orientedSize) {
 		this.orientedSize = orientedSize;
 		updateSize();
+	}
+
+	@Override
+	public void setSize(final float width, final float height) {
+		setSize(new TreeMap<Integer, Vector2>(){{
+			put(0, new Vector2(width, height));
+		}});
 	}
 
 	@Override
@@ -114,13 +113,13 @@ public class AnimatedActor extends Actor {
 		updateSprite();
 	}
 
-	public void setSprite(Animation sprite) {
-		orientedSprite.clear();
-		orientedSprite.put(0, sprite);
-		updateSprite();
+	public void setSprite(final Animation sprite) {
+		if (sprite == null) return;
+		setSprite(new TreeMap<Integer, Animation>(){{ put(0, sprite); }});
 	}
 
 	public void setSprite(TextureRegion sprite) {
+		if (sprite == null) return;
 		setSprite(new Animation(0, sprite));
 	}
 
@@ -138,14 +137,14 @@ public class AnimatedActor extends Actor {
 	}
 
 	public void setHitbox(TreeMap<Integer, Hitbox> orientedHitbox) {
+		if (orientedHitbox == null) return;
 		this.orientedHitbox = orientedHitbox;
 		updateHitbox();
 	}
 
-	public void setHitbox(Hitbox hitbox) {
-		orientedHitbox.clear();
-		orientedHitbox.put(0, hitbox);
-		updateHitbox();
+	public void setHitbox(final Hitbox hitbox) {
+		if (hitbox == null) return;
+		setHitbox(new TreeMap<Integer, Hitbox>(){{ put(0, hitbox); }});
 	}
 
 	public int getDirection() {
@@ -198,7 +197,9 @@ public class AnimatedActor extends Actor {
 			orientedSize.put(0, new Vector2(getWidth(), getHeight()));
 		}
 		size = orientedSize.floorEntry(direction).getValue();
-		setSize(size.x, size.y);
+		setOrigin(getOriginX() * size.x / getWidth(),
+				getOriginY() * size.y / getHeight());
+		super.setSize(size.x, size.y);
 	}
 
 	protected void updateSprite() {
