@@ -14,7 +14,6 @@ public class Enemy extends MovableActor {
 	private int health;
 	private float damagePerMS;
 	private TreeMap<Integer, Animation> hurtSprite;
-	private TreeMap<Integer, Animation> dyingSprite;
 
 	@SuppressWarnings("serial")
 	public Enemy() {
@@ -75,24 +74,26 @@ public class Enemy extends MovableActor {
 					Images.get("minion-down-right.png")));
 		}});
 
-		// sprites for enemy dying
-		final Animation leftDie = Images.getAnimation("minion-left-die-%d.png", 1, 7, 0.03f);
-		final Animation rightDie = Images.getAnimation("minion-right-die-%d.png", 1, 7, 0.03f);
-		final Animation downDie = Images.getAnimation("minion-down-die-%d.png", 9, 0, 0.03f);
-		final Animation upDie = Images.getAnimation("minion-up-die-%d.png", 9, 0, 0.03f);
-		final Animation upRightDie = Images.getAnimation("minion-up-right-%d.png", 9, 0, 0.03f);
-		final Animation upLeftDie = Images.getAnimation("minion-up-left-die-%d.png", 9, 0, 0.03f);
-		final Animation downLeftDie = Images.getAnimation("minion-down-left-%d.png", 9, 0, 0.03f);
-		final Animation downRightDie = Images.getAnimation("minion-down-right-%d.png", 9, 0, 0.03f);
-		setDyingSprite(new TreeMap<Integer, Animation>() {{
-		        put(DIR_UP, upDie);
-		        put(DIR_DOWN, downDie);
-		        put(DIR_LEFT, leftDie);
-		        put(DIR_RIGHT, rightDie);
-		        put(DIR_UP_LEFT, upLeftDie);
-		        put(DIR_UP_RIGHT, upRightDie);
-		        put(DIR_DOWN_LEFT, downLeftDie);
-		        put(DIR_DOWN_RIGHT, downRightDie);
+		// sprites for enemy spawning and dying
+		setAppearSprite(new TreeMap<Integer, Animation>() {{
+		        put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 0, 9, 0.03f));
+		        put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 0, 9, 0.03f));
+		        put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 7, 1, 0.03f));
+		        put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 7, 1, 0.03f));
+		        put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 0, 9, 0.03f));
+		        put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 0, 9, 0.03f));
+		        put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 0, 9, 0.03f));
+		        put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 0, 9, 0.03f));
+		}});
+		setDisappearSprite(new TreeMap<Integer, Animation>() {{
+		        put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 9, 0, 0.03f));
+		        put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 9, 0, 0.03f));
+		        put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 1, 7, 0.03f));
+		        put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 1, 7, 0.03f));
+		        put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 9, 0, 0.03f));
+		        put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 9, 0, 0.03f));
+		        put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 9, 0, 0.03f));
+		        put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 9, 0, 0.03f));
 		}});
 
 		health = 10;
@@ -125,14 +126,6 @@ public class Enemy extends MovableActor {
 		this.hurtSprite = hurtSprite;
 	}
 
-	public TreeMap<Integer, Animation> getDyingSprite() {
-		return dyingSprite;
-	}
-
-	public void setDyingSprite(TreeMap<Integer, Animation> dyingSprite) {
-		this.dyingSprite = dyingSprite;
-	}
-
 	@Override
 	protected void resolveCollision(AnimatedActor actor) {
 		if (actor instanceof Disc) {
@@ -156,11 +149,7 @@ public class Enemy extends MovableActor {
 		}
 	}
 
-	public class DyingAction extends AnimatedAction {
-		public DyingAction() {
-			super(getDyingSprite());
-		}
-
+	public class DyingAction extends DisappearAction {
 		@Override
 		protected void end() {
 			super.end();

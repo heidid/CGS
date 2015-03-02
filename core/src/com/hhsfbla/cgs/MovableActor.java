@@ -11,12 +11,16 @@ public class MovableActor extends AnimatedActor {
 	private float speed;
 	private TreeMap<Integer, Animation> idleSprite;
 	private TreeMap<Integer, Animation> moveSprite;
+	private TreeMap<Integer, Animation> appearSprite;
+	private TreeMap<Integer, Animation> disappearSprite;
 	private boolean moving;
 	private Array<AnimatedActor> collisions;
 
 	public MovableActor() {
 		idleSprite = new TreeMap<>();
 		moveSprite = new TreeMap<>();
+		appearSprite = new TreeMap<>();
+		disappearSprite = new TreeMap<>();
 		collisions = new Array<>();
 		setSpeed(1.0f);
 	}
@@ -65,6 +69,23 @@ public class MovableActor extends AnimatedActor {
 
 	public void setMoveSprite(TextureRegion sprite) {
 		setMoveSprite(new Animation(0, sprite));
+	}
+
+	public TreeMap<Integer, Animation> getAppearSprite() {
+		return appearSprite;
+	}
+
+	public void setAppearSprite(TreeMap<Integer, Animation> appearSprite) {
+		this.appearSprite = appearSprite;
+	}
+
+	public TreeMap<Integer, Animation> getDisappearSprite() {
+		return disappearSprite;
+	}
+
+	public void setDisappearSprite(
+			TreeMap<Integer, Animation> disappearSprite) {
+		this.disappearSprite = disappearSprite;
 	}
 
 	public boolean isMoving() {
@@ -119,5 +140,17 @@ public class MovableActor extends AnimatedActor {
 			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
 		}
 		super.act(delta);
+	}
+
+	public class AppearAction extends AnimatedAction {
+		public AppearAction() {
+			super(getAppearSprite());
+		}
+	}
+
+	public class DisappearAction extends AnimatedAction {
+		public DisappearAction() {
+			super(getDisappearSprite());
+		}
 	}
 }
