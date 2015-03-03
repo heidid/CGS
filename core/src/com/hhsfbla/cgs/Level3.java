@@ -5,7 +5,7 @@ public class Level3 extends Level {
 
 	@Override
 	public void init() {
-		enemy.addAction(new PathfindingAction2(0, 0, 1));
+		enemy.addAction(new PathfindingAction(0, 0, 1));
 	}
 
 	public Level3() {
