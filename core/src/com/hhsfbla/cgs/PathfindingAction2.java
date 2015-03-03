@@ -2,16 +2,16 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
-public class PathFindingAction extends SequenceAction {
+public class PathfindingAction2 extends SequenceAction {
 	private int x;
 	private int y;
 	private int endOffset;
 
-	public PathFindingAction(float x, float y) {
+	public PathfindingAction2(float x, float y) {
 		this(x, y, 0);
 	}
 
-	public PathFindingAction(float x, float y, int endOffset) {
+	public PathfindingAction2(float x, float y, int endOffset) {
 		this.x = (int) x;
 		this.y = (int) y;
 		this.endOffset = endOffset;
