@@ -5,7 +5,6 @@ public class Level1 extends Level {
 
 	@Override
 	public void init() {
-		enemy.addAction(new MoveToAttack(this, enemy, player.getX(), player.getY()));
 	}
 
 	public Level1() {
@@ -35,5 +34,6 @@ public class Level1 extends Level {
 		add(swtch, 13, 3);
 		add(new Firewall(swtch), 1, 1);
 		add(key, 13, 5);
+		enemy.addAction(new MoveToAttack(player.getX(), player.getY()));
 	}
 }

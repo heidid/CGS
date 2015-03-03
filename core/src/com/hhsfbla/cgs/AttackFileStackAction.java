@@ -28,7 +28,7 @@ public class AttackFileStackAction extends SequenceAction {
 				closest = fs;
 			}
 		}
-		addAction(new MoveToAttack(enemy.getLevel(), enemy, closest.getX(), closest.getY()));
+		addAction(new MoveToAttack(closest.getX(), closest.getY()));
 		this.fileStack = closest;
 		addAction(new KillFileStack());
 	}
