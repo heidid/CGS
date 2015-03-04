@@ -42,10 +42,8 @@ public class MovableActor extends AnimatedActor {
 		updateOrientedSprite();
 	}
 
-	public void setIdleSprite(Animation sprite) {
-		idleSprite.clear();
-		idleSprite.put(0, sprite);
-		updateOrientedSprite();
+	public void setIdleSprite(final Animation sprite) {
+		setIdleSprite(new TreeMap<Integer, Animation>(){{ put(0, sprite); }});
 	}
 
 	public void setIdleSprite(TextureRegion sprite) {
@@ -57,10 +55,8 @@ public class MovableActor extends AnimatedActor {
 		updateOrientedSprite();
 	}
 
-	public void setMoveSprite(Animation sprite) {
-		moveSprite.clear();
-		moveSprite.put(0, sprite);
-		updateOrientedSprite();
+	public void setMoveSprite(final Animation sprite) {
+		setMoveSprite(new TreeMap<Integer, Animation>(){{ put(0, sprite); }});
 	}
 
 	public void setMoveSprite(TextureRegion sprite) {

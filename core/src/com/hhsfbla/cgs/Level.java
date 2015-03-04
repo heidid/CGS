@@ -126,4 +126,8 @@ public abstract class Level extends AnimatedActorGroup {
 		projectiles.removeValue(projectile, true);
 		remove((AnimatedActor) projectile);
 	}
+
+	public void end() {
+		screen.game.setScreen(new OverworldScreen(screen.game, screen.stage));
+	}
 }

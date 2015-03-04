@@ -21,9 +21,9 @@ public class Level1 extends Level {
 		final File key = new File();
 		final Switch swtch = new FirewallSwitch();
 		add(swtch, 13, 3);
-		add(new Firewall(swtch), 1, 1);
+		add(new Firewall(false, swtch), 13, 6);
 		add(key, 13, 5);
 
-		add(new Port(), 0, 0);
+		add(new ExitPort(), 0, 0);
 	}
 }

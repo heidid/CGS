@@ -26,26 +26,30 @@ public class Player extends MovableActor {
 			put(DIR_DOWN, new Animation(0, Images.get("player-down.png")));
 			put(DIR_LEFT, new Animation(0, Images.get("player-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("player-right.png")));
+			put(DIR_UP_LEFT, new Animation(0, Images.get("player-left.png")));
+			put(DIR_UP_RIGHT, new Animation(0, Images.get("player-right.png")));
+			put(DIR_DOWN_LEFT, new Animation(0, Images.get("player-left.png")));
+			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("player-right.png")));
 		}});
 		setMoveSprite(getIdleSprite());
 		// TODO: Add actual player appear/disappear sprites
 		setAppearSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("minion-left-die-%d.png", 7, 1, 0.03f));
-			put(DIR_DOWN, Images.getAnimation("minion-right-die-%d.png", 7, 1, 0.03f));
-			put(DIR_LEFT, Images.getAnimation("minion-down-die-%d.png", 0, 9, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("minion-up-die-%d.png", 0, 9, 0.03f));
-			put(DIR_UP_LEFT, Images.getAnimation("minion-up-right-%d.png", 0, 9, 0.03f));
-			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-left-die-%d.png", 0, 9, 0.03f));
+			put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 0, 9, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 0, 9, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 7, 1, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 7, 1, 0.03f));
+			put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 0, 9, 0.03f));
+			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 0, 9, 0.03f));
 		}});
 		setDisappearSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("minion-left-die-%d.png", 1, 7, 0.03f));
-			put(DIR_DOWN, Images.getAnimation("minion-right-die-%d.png", 1, 7, 0.03f));
-			put(DIR_LEFT, Images.getAnimation("minion-down-die-%d.png", 9, 0, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("minion-up-die-%d.png", 9, 0, 0.03f));
-			put(DIR_UP_LEFT, Images.getAnimation("minion-up-right-%d.png", 9, 0, 0.03f));
-			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-left-die-%d.png", 9, 0, 0.03f));
+			put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 9, 0, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 9, 0, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 1, 7, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 1, 7, 0.03f));
+			put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 9, 0, 0.03f));
+			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 9, 0, 0.03f));
 		}});
@@ -85,6 +89,7 @@ public class Player extends MovableActor {
 		@Override
 		protected void begin() {
 			canShoot = false;
+			// TODO: Fix Disc shooting start point
 			getLevel().add(new Disc(getDirection()), getX(), getY());
 		}
 
@@ -94,6 +99,14 @@ public class Player extends MovableActor {
 		@Override
 		public void end() {
 			canShoot = true;
+		}
+	}
+
+	public class ExitAction extends DisappearAction {
+		@Override
+		protected void end() {
+			super.end();
+			getLevel().end();
 		}
 	}
 
