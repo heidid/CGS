@@ -40,8 +40,7 @@ public class EnemySpawn extends SpawnPort {
 
 		time += delta;
 		if (time >= delay) {
-			spawn(new Enemy(new PathfindingAction(getLevel().getPlayer().getX(),
-					getLevel().getPlayer().getY())));
+			spawn(new Enemy(new AttackFileStackAction()));
 			generateDelay();
 			time = 0;
 		}
