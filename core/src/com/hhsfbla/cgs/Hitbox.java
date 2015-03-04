@@ -53,6 +53,13 @@ public class Hitbox {
 		return false;
 	}
 
+	public boolean contains(float x, float y) {
+		for (Rectangle r : regions) {
+			if (r.contains(x, y)) return true;
+		}
+		return false;
+	}
+
 	public Hitbox translate(float dx, float dy) {
 		for (Rectangle r : regions) translate(r, dx, dy);
 		return this;

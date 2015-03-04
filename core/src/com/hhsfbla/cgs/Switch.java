@@ -10,7 +10,6 @@ public class Switch extends Obstacle {
 	private boolean on;
 	private TreeMap<Integer, Animation> offSprite;
 	private TreeMap<Integer, Animation> onSprite;
-	private AnimatedActor presser;
 	private Array<SwitchListener> listeners;
 
 	public Switch() {
@@ -74,15 +73,6 @@ public class Switch extends Obstacle {
 		setSprite(on ? onSprite : offSprite);
 	}
 
-	public AnimatedActor getPresser() {
-		return presser;
-	}
-
-	public void setPresser(AnimatedActor presser) {
-		if (this.presser == null && presser != null) setOn(!on);
-		this.presser = presser;
-	}
-
 	public Array<SwitchListener> getSwitchListeners() {
 		return listeners;
 	}
@@ -93,13 +83,5 @@ public class Switch extends Obstacle {
 
 	public void removeSwitchListener(SwitchListener listener) {
 		listeners.removeValue(listener, true);
-	}
-
-	@Override
-	public void act(float delta) {
-		super.act(delta);
-		if (presser != null && !presser.getHitbox().overlaps(getHitbox())) {
-			setPresser(null);
-		}
 	}
 }
