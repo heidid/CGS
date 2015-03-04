@@ -28,20 +28,30 @@ public abstract class Level extends AnimatedActorGroup {
 		grid.generate();
 
 		add(player);
-		player.setLevel(this);
 	}
 
-	public void init() {}
+	public void init() {
+		// LibGDX won't let me use a foreach loop
+		// something about "#iterator() cannot be used nested"
+		for (int i = 0; i < obstacles.size; i++) {
+			final Obstacle o = obstacles.get(i);
+			if (o instanceof PlayerSpawn) ((PlayerSpawn) o).spawn(getPlayer());
+		}
+	}
+
+	public void setScreen(StageScreen screen) {
+		this.screen = screen;
+	}
 
 	public Player getPlayer() {
 		return player;
 	}
 
-	public Array<Obstacle> getObstacles(){
+	public Array<Obstacle> getObstacles() {
 		return obstacles;
 	}
 
-	public Array<FileStack> getFileStacks(){
+	public Array<FileStack> getFileStacks() {
 		return fileStacks;
 	}
 
@@ -116,9 +126,4 @@ public abstract class Level extends AnimatedActorGroup {
 		projectiles.removeValue(projectile, true);
 		remove((AnimatedActor) projectile);
 	}
-
-	public void setScreen(StageScreen screen) {
-		this.screen = screen;
-	}
-
 }

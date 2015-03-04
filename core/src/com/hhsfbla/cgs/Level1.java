@@ -3,8 +3,7 @@ package com.hhsfbla.cgs;
 public class Level1 extends Level {
 
 	public Level1() {
-		setPlayerPosition(1, 6);
-		add(new Port(), 0, 6);
+		add(new PlayerSpawn(), 0, 6);
 
 		final Enemy enemy = new Enemy();
 		enemy.addAction(new MoveToAttack(player.getX(), player.getY()));
