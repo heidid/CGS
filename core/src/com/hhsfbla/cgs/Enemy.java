@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  */
 public class Enemy extends MovableActor {
 	private int health;
-	private float damagePerMS;
+	private int damage;
 	private TreeMap<Integer, Animation> hurtSprite;
 
 	public Enemy() {
@@ -101,7 +101,7 @@ public class Enemy extends MovableActor {
 		}});
 
 		health = 10;
-		setDamage(0.005f);
+		setDamage(10);
 		if (action != null) addAction(action);
 	}
 
@@ -140,12 +140,12 @@ public class Enemy extends MovableActor {
 		}
 	}
 
-	public float getDamage() {
-		return damagePerMS;
+	public int getDamage() {
+		return damage;
 	}
 
-	public void setDamage(float f) {
-		this.damagePerMS = f;
+	public void setDamage(int f) {
+		this.damage = f;
 	}
 
 	public class HurtAction extends AnimatedAction {
