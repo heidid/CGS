@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
-import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 /**
@@ -15,8 +15,12 @@ public class Enemy extends MovableActor {
 	private float damagePerMS;
 	private TreeMap<Integer, Animation> hurtSprite;
 
-	@SuppressWarnings("serial")
 	public Enemy() {
+		this(null);
+	}
+
+	@SuppressWarnings("serial")
+	public Enemy(Action action) {
 		//Spritesheet for different directions
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("minion-up.png")));
@@ -98,6 +102,7 @@ public class Enemy extends MovableActor {
 
 		health = 10;
 		setDamage(0.005f);
+		if (action != null) addAction(action);
 	}
 
 	public int getHealth() {

@@ -5,9 +5,8 @@ public class Level1 extends Level {
 	public Level1() {
 		add(new PlayerSpawn(), 0, 6);
 
-		final Enemy enemy = new Enemy();
-		enemy.addAction(new MoveToAttack(player.getX(), player.getY()));
-		add(enemy, 2, 1);
+		add(new Enemy(), 2, 1);
+		add(new EnemySpawn(), 13, 7);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);
