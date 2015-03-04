@@ -12,7 +12,7 @@ public class FirewallSwitch extends Switch {
 
 	public FirewallSwitch(boolean on) {
 		super(on);
-		setSize(2, 1);
+		setSize(1, 1/3f);
 		setBlocked(true);
 		setOffSprite(Images.get("switch-firewall-off.png"));
 		setOnSprite(Images.get("switch-firewall-on.png"));
