@@ -26,9 +26,13 @@ public class Grid {
 		for (Cell c : cells)
 			c.blocked = false;
 		for (Obstacle o : l.getObstacles()){
-			if(o.getY() >= Level.GRID_ROWS || o.getX() >= Level.GRID_COLS || !o.isBlocked()) //bound check
-				continue;
-			getCell((int) (o.getX()), (int) (o.getY())).blocked = true;
+			for(int x = (int) o.getX(); x < (int) o.getX() + Math.ceil(o.getWidth()); x++){
+				for(int y = (int) o.getY(); y < (int) o.getY() + Math.ceil(o.getHeight()); y++){
+					if(y >= Level.GRID_ROWS || x >= Level.GRID_COLS || !o.isBlocked()) //bound check
+						continue;
+					getCell(x, y).blocked = true;
+				}
+			}
 		}
 	}
 
