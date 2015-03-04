@@ -1,22 +1,22 @@
 package com.hhsfbla.cgs;
 
 public class FileStack extends Obstacle {
-	private float health = 10;
+	private int health = 100;
 
 	public FileStack() {
-		
+		setSprite(Images.get("filestack-4.png"));
 	}
 
-	public void damage(float f) {
-		setHealth(getHealth() - f);
+	public void damage(int damage) {
+		setHealth(health - damage);
 	}
 
-	public float getHealth() {
+	public int getHealth() {
 		return health;
 	}
 
-	public void setHealth(float f) {
-		this.health = f;
+	public void setHealth(int health) {
+		// TODO: Update FileStack sprite based on health
+		this.health = health;
 	}
-
 }
