@@ -10,8 +10,10 @@ public class AttackFileStackAction extends SequenceAction {
 	class ContinuallyKillFileStack extends Action {
 		@Override
 		public boolean act(float delta) {
-			if(fileStack != null && fileStack.getHealth() > 0)
-				enemy.addAction(new SequenceAction(new KillFileStack(), new ContinuallyKillFileStack()));
+			if(enemy.getActions().size == 0 && fileStack != null && fileStack.getHealth() > 0) {
+				enemy.addAction(new KillFileStack());
+				return false;
+			}
 			return true;
 		}
 	}
