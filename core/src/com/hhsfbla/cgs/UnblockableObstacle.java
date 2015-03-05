@@ -30,6 +30,7 @@ public class UnblockableObstacle extends Obstacle {
 
 	public void setBlockedSprite(TreeMap<Integer, Animation> blockedSprite) {
 		this.blockedSprite = blockedSprite;
+		updateOrientedSprite();
 	}
 
 	public void setBlockedSprite(final Animation blockedSprite) {
@@ -44,6 +45,7 @@ public class UnblockableObstacle extends Obstacle {
 
 	public void setUnblockedSprite(TreeMap<Integer, Animation> unblockedSprite) {
 		this.unblockedSprite = unblockedSprite;
+		updateOrientedSprite();
 	}
 
 	public void setUnblockedSprite(final Animation unblockedSprite) {
@@ -66,7 +68,6 @@ public class UnblockableObstacle extends Obstacle {
 
 	public void setBlockingAnimation(TreeMap<Integer, Animation> blockingAnimation) {
 		this.blockingAnimation = blockingAnimation;
-		updateOrientedSprite();
 	}
 
 	public void setBlockingAnimation(final Animation blockingAnimation) {
@@ -78,7 +79,6 @@ public class UnblockableObstacle extends Obstacle {
 	public void setUnblockingAnimation(
 			TreeMap<Integer, Animation> unblockingAnimation) {
 		this.unblockingAnimation = unblockingAnimation;
-		updateOrientedSprite();
 	}
 
 	public void setUnblockingAnimation(final Animation unblockingAnimation) {
@@ -97,36 +97,27 @@ public class UnblockableObstacle extends Obstacle {
 		setSprite(isBlocked() ? getBlockedSprite() : getUnblockedSprite());
 	}
 
-	public class UnblockAction extends TemporalAction {
-		@Override
-		protected void begin() {
-			setSprite(getUnblockingAnimation());
-			setDuration(getSprite().getAnimationDuration());
+	public class UnblockAction extends AnimatedAction {
+		public UnblockAction() {
+			super(getUnblockingAnimation());
 		}
 
 		@Override
-		protected void update(float percent) {}
-
-		@Override
 		protected void end() {
+			super.end();
 			setBlocked(false);
 		}
 	}
 
-	public class BlockAction extends TemporalAction {
-		@Override
-		protected void begin() {
-			setBlocked(true);
-			setSprite(getBlockingAnimation());
-			setDuration(getSprite().getAnimationDuration());
+	public class BlockAction extends AnimatedAction {
+		public BlockAction() {
+			super(getBlockingAnimation());
 		}
 
 		@Override
-		protected void update(float percent) {}
-
-		@Override
-		protected void end() {
-			setSprite(getBlockedSprite());
+		protected void begin() {
+			setBlocked(true);
+			super.begin();
 		}
 	}
 }
