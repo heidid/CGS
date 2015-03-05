@@ -72,7 +72,6 @@ public abstract class Level extends AnimatedActorGroup {
 	public void add(FileStack fs, float x, float y) {
 		fileStacks.add(fs);
 		add((Obstacle) fs, x, y);
-		add((AnimatedActor) fs, x, y);
 	}
 
 	public void add(Enemy enemy, float x, float y) {

@@ -9,11 +9,13 @@ public class AttackFileStackAction extends SequenceAction {
 	FileStack fileStack;
 
 	class ContinuallyKillFileStack extends Action {
+		KillFileStack kfs = null;
 		@Override
 		public boolean act(float delta) {
 			if (fileStack != null && fileStack.getHealth() > 0) {
-				if (enemy.getActions().size == 0) {
-					enemy.addAction(new KillFileStack());
+				if(kfs == null || (kfs.getTime() >= kfs.getDuration())) {
+					kfs = new KillFileStack();
+					enemy.addAction(kfs);
 				}
 				return false;
 			}
@@ -52,7 +54,6 @@ public class AttackFileStackAction extends SequenceAction {
 				closest = fs;
 			}
 		}
-
 		addAction(new MoveToAttack(closest.getX(), closest.getY()));
 		this.fileStack = closest;
 		addAction(new ContinuallyKillFileStack());
