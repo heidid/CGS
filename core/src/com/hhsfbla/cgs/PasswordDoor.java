@@ -1,16 +1,16 @@
 package com.hhsfbla.cgs;
 
-public class Door extends UnblockableObstacle {
+public class PasswordDoor extends UnblockableObstacle {
 	private File key;
 
-	public Door() {
+	public PasswordDoor() {
 		this(null);
 	}
 
-	public Door(File key) {
+	public PasswordDoor(File key) {
 		this.key = key;
 		setBlockedSprite(Images.get("door.png"));
-		setUnblockedSprite(Images.get("doormat2.png"));
+		setUnblockedSprite(Images.get("doormat.png"));
 	}
 
 	public File getKey() {
