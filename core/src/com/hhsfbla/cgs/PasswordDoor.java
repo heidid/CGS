@@ -11,6 +11,7 @@ public class PasswordDoor extends UnblockableObstacle {
 		this.key = key;
 		setBlockedSprite(Images.get("door.png"));
 		setUnblockedSprite(Images.get("doormat.png"));
+		setOriginY(5/12f);
 	}
 
 	public File getKey() {

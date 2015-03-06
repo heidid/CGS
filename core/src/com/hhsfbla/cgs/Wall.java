@@ -77,7 +77,7 @@ public class Wall extends Obstacle {
 		updateOrigin();
 	}
 
-	private void updateOrigin() {
+	protected void updateOrigin() {
 		final int dir = getDirection();
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
 			setOriginY(-1/2f);

@@ -1,5 +1,7 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.scenes.scene2d.utils.Align;
+
 public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListener {
 	private int switchCount;
 	private int onCount;
@@ -17,6 +19,7 @@ public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListen
 		// TODO: Add SwitchGroupDoor sprite
 		setBlockedSprite(Images.get("door.png"));
 		setUnblockedSprite(Images.get("doormat.png"));
+		setOriginY(5/12f);
 		for (Switch swtch : switches) {
 			swtch.addSwitchListener(this);
 			switchCount++;
