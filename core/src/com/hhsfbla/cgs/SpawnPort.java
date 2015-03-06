@@ -12,16 +12,22 @@ public class SpawnPort extends Port {
 	public void spawn(MovableActor actor) {
 		final float spawnX = getX() + (float) Math.cos(Math.toRadians(getDirection()));
 		final float spawnY = getY() + (float) Math.sin(Math.toRadians(getDirection()));
+		final Level level = getLevel();
 
-		for (Obstacle o : getLevel().getObstacles()) {
-			if (o != this && o.getX() == spawnX && o.getY() == spawnY
-					&& o.isBlocked()) {
+		for (Obstacle o : level.getObstacles()) {
+			if (o != this && o.isBlocked() && o.getHitbox()
+					.contains(spawnX, spawnY)) {
 				return;
 			}
 		}
 
-		if (!getLevel().getActors().contains(actor, true)) getLevel().add(actor);
-		actor.setPosition(spawnX, spawnY);
+		if (actor instanceof Player) {
+			level.setPlayerPosition(spawnX, spawnY);
+		} else if (actor instanceof Enemy) {
+			level.add((Enemy) actor, spawnX, spawnY);
+		} else {
+			level.add(actor, spawnX, spawnY);
+		}
 		actor.addAction(actor.new AppearAction());
 	}
 }

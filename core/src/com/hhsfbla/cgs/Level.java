@@ -27,7 +27,7 @@ public abstract class Level extends AnimatedActorGroup {
 		grid = new Grid(this);
 		grid.generate();
 
-		add(player);
+		add(player, 0, 0);
 	}
 
 	public void init() {
@@ -63,39 +63,36 @@ public abstract class Level extends AnimatedActorGroup {
 		return enemies;
 	}
 
-	public void add(AnimatedActor aa) {
+	public void add(AnimatedActor aa, float x, float y) {
 		aa.setLevel(this);
+		aa.setPosition(x, y);
 		addActor(aa);
 	}
 
 	public void add(FileStack fs, float x, float y) {
 		fileStacks.add(fs);
 		add((Obstacle) fs, x, y);
-		add(fs);
+		add((AnimatedActor) fs, x, y);
 	}
 
 	public void add(Enemy enemy, float x, float y) {
-		enemy.setPosition(x, y);
 		enemies.add(enemy);
-		add(enemy);
+		add((AnimatedActor) enemy, x, y);
 	}
 
 	public void add(Obstacle obstacle, float x, float y) {
-		obstacle.setPosition(x, y);
 		obstacles.add(obstacle);
-		add(obstacle);
+		add((AnimatedActor) obstacle, x, y);
 	}
 
 	public void add(Item item, float x, float y) {
-		item.setPosition(x, y);
 		items.add(item);
-		add(item);
+		add((AnimatedActor) item, x, y);
 	}
 
 	public void add(Projectile projectile, float x, float y) {
-		projectile.setPosition(x, y);
 		projectiles.add(projectile);
-		add(projectile);
+		add((AnimatedActor) projectile, x, y);
 	}
 
 	public void remove(AnimatedActor actor) {
