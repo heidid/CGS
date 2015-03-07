@@ -18,6 +18,7 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 
 	@Override
 	public void onSwitchStateChanged(boolean on) {
-		addActionOnce(on ? new BlockAction() : new UnblockAction());
+		if (on && !isBlocked()) addActionOnce(new BlockAction());
+		else if (!on && isBlocked()) addActionOnce(new UnblockAction());
 	}
 }

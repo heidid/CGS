@@ -115,6 +115,18 @@ public class UnblockableObstacle extends Obstacle {
 		}
 
 		@Override
+		public boolean act(float delta) {
+			for (Enemy e : getLevel().getEnemies()) {
+				if (getHitbox().overlaps(e.getHitbox())) {
+					restart();
+					return false;
+				}
+			}
+
+			return super.act(delta);
+		}
+
+		@Override
 		protected void begin() {
 			setBlocked(true);
 			super.begin();

@@ -6,7 +6,7 @@ public class Level1 extends Level {
 		add(new PlayerSpawn(), 0, 6);
 
 		add(new Enemy(new AttackFileStackAction()), 2, 1);
-		//add(new EnemySpawn(), 13, 7);
+		add(new EnemySpawn(), 13, 7);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);
