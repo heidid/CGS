@@ -6,6 +6,7 @@ public class FileStack extends Obstacle {
 	private int health = FULL_HEALTH;
 
 	public FileStack() {
+		setOriginY(1/3f);
 		updateOrientedSprite();
 	}
 
