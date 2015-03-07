@@ -9,8 +9,8 @@ public class FloorSwitch extends Switch {
 
 	public FloorSwitch(boolean on) {
 		super(on);
-		setOffSprite(Images.get("ground-switch.png"));
-		setOnSprite(Images.get("ground-switch-pressed.png"));
+		setOffSprite(Images.get("floorswitch-0.png"));
+		setOnSprite(Images.get("floorswitch-1.png"));
 	}
 
 	public AnimatedActor getPresser() {
