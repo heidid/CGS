@@ -1,10 +1,12 @@
 package com.hhsfbla.cgs;
 
 public class FileStack extends Obstacle {
-	private int health = 100;
+	private static final int FULL_HEALTH = 300;
+
+	private int health = FULL_HEALTH;
 
 	public FileStack() {
-		setSprite(Images.get("filestack-4.png"));
+		updateOrientedSprite();
 	}
 
 	public void damage(int damage) {
@@ -16,7 +18,21 @@ public class FileStack extends Obstacle {
 	}
 
 	public void setHealth(int health) {
-		// TODO: Update FileStack sprite based on health
 		this.health = health;
+		updateOrientedSprite();
+	}
+
+	protected void updateOrientedSprite() {
+		if (health >= FULL_HEALTH * 3 / 4) {
+			setSprite(Images.get("filestack-4.png"));
+		} else if (health >= FULL_HEALTH / 2) {
+			setSprite(Images.get("filestack-3.png"));
+		} else if (health >= FULL_HEALTH / 4) {
+			setSprite(Images.get("filestack-2.png"));
+		} else if (health > 0) {
+			setSprite(Images.get("filestack-1.png"));
+		} else {
+			setSprite(Images.get("filestack-0.png"));
+		}
 	}
 }
