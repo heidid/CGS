@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class ConveyorBelt extends Obstacle {
-	private static final float BELT_SPEED = 2.5f;
+	private static final float BELT_SPEED = 4;
 
 	private int direction1;
 	private int direction2;
@@ -129,7 +129,9 @@ public class ConveyorBelt extends Obstacle {
 			addAction(Actions.run(new Runnable() {
 				@Override
 				public void run() {
-					((MovableActor) actor).setCanMove(true);
+					final MovableActor a = (MovableActor) actor;
+					a.setCanMove(true);
+					a.detectCollisions(0, 0);
 				}
 			}));
 		}
@@ -151,10 +153,18 @@ public class ConveyorBelt extends Obstacle {
 			addAction(Actions.run(new Runnable() {
 				@Override
 				public void run() {
-					((MovableActor) actor).setCanMove(true);
+					final MovableActor a = (MovableActor) actor;
+					a.setCanMove(true);
+					a.detectCollisions(0, 0);
+
 				}
 			}));
+		}
 
+		@Override
+		public String toString() {
+			return super.toString() + "@" + Integer.toHexString(
+					ConveyorBelt.this.hashCode());
 		}
 	}
 

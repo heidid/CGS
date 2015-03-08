@@ -140,10 +140,6 @@ public class MovableActor extends AnimatedActor {
 			final float dx = d * (float) Math.cos(r);
 			final float dy = d * (float) Math.sin(r);
 			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
-
-		// extra collision detections for conveyor belts
-		} else if (!canMove) {
-			detectCollisions(0, 0);
 		}
 
 		super.act(delta);

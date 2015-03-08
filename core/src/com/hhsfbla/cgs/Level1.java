@@ -10,7 +10,6 @@ public class Level1 extends Level {
 		for (int i = 5; i <= 11; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
-		add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT, ConveyorBelt.DIR_DOWN), 12, 6);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);
@@ -24,6 +23,7 @@ public class Level1 extends Level {
 		final File key = new File();
 		final Switch swtch = new FirewallSwitch();
 		add(new FileStack(), 7, 0);
+		add(new FileStack(), 9, 1);
 		add(swtch, 13, 1);
 		add(new Firewall(false, swtch), 13, 6);
 		add(key, 13, 5);
