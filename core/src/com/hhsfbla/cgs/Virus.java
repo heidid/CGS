@@ -26,26 +26,26 @@ public class Virus extends Enemy {
 		}});
 		setMoveSprite(getIdleSprite());
 		// TODO: Add Virus appear/disappear sprites
-//		setAppearSprite(new TreeMap<Integer, Animation>() {{
-//			put(DIR_UP, Images.getAnimation("virus-up-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_DOWN, Images.getAnimation("virus-down-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_LEFT, Images.getAnimation("virus-left-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_RIGHT, Images.getAnimation("virus-right-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_UP_LEFT, Images.getAnimation("virus-up-left-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_UP_RIGHT, Images.getAnimation("virus-up-right-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_DOWN_LEFT, Images.getAnimation("virus-down-left-die-%d.png", 0, 9, 0.03f));
-//			put(DIR_DOWN_RIGHT, Images.getAnimation("virus-down-right-die-%d.png", 0, 9, 0.03f));
-//		}});
-//		setDisappearSprite(new TreeMap<Integer, Animation>() {{
-//			put(DIR_UP, Images.getAnimation("virus-up-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_DOWN, Images.getAnimation("virus-down-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_LEFT, Images.getAnimation("virus-left-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_RIGHT, Images.getAnimation("virus-right-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_UP_LEFT, Images.getAnimation("virus-up-left-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_UP_RIGHT, Images.getAnimation("virus-up-right-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_DOWN_LEFT, Images.getAnimation("virus-down-left-die-%d.png", 9, 0, 0.03f));
-//			put(DIR_DOWN_RIGHT, Images.getAnimation("virus-down-right-die-%d.png", 9, 0, 0.03f));
-//		}});
+		setAppearSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_UP, Images.getAnimation("virus-up-%d.png", 0, 9, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("virus-down-%d.png", 0, 9, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("virus-left-%d.png", 0, 9, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("virus-right-%d.png", 0, 9, 0.03f));
+			put(DIR_UP_LEFT, Images.getAnimation("virus-up-left-%d.png", 0, 9, 0.03f));
+			put(DIR_UP_RIGHT, Images.getAnimation("virus-up-right-%d.png", 0, 9, 0.03f));
+			put(DIR_DOWN_LEFT, Images.getAnimation("virus-down-left-%d.png", 0, 9, 0.03f));
+			put(DIR_DOWN_RIGHT, Images.getAnimation("virus-down-right-%d.png", 0, 9, 0.03f));
+		}});
+		setDisappearSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_UP, Images.getAnimation("virus-up-%d.png", 9, 0, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("virus-down-%d.png", 9, 0, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("virus-left-%d.png", 9, 0, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("virus-right-%d.png", 9, 0, 0.03f));
+			put(DIR_UP_LEFT, Images.getAnimation("virus-up-left-%d.png", 9, 0, 0.03f));
+			put(DIR_UP_RIGHT, Images.getAnimation("virus-up-right-%d.png", 9, 0, 0.03f));
+			put(DIR_DOWN_LEFT, Images.getAnimation("virus-down-left-%d.png", 9, 0, 0.03f));
+			put(DIR_DOWN_RIGHT, Images.getAnimation("virus-down-right-%d.png", 9, 0, 0.03f));
+		}});
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0.05f,
 					Images.get("virus-up copy.png"),
