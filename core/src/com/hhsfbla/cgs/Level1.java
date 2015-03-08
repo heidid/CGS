@@ -4,10 +4,13 @@ public class Level1 extends Level {
 	public Level1() {
 		add(new PlayerSpawn(), 0, 6);
 
-		//add(new Enemy(new AttackFileStackAction()), 2, 1);
+		add(new Enemy(new AttackFileStackAction()), 2, 1);
 		add(new EnemySpawn(), 13, 7);
 
-		for (int i = 5; i <= 11; i++) {
+		final Factory factory = new Factory();
+		factory.setInfected(true);
+		add(factory, 5, 6);
+		for (int i = 6; i <= 10; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
 

@@ -114,7 +114,7 @@ public class Enemy extends MovableActor {
 		setOrigin(Align.bottom); // alignment for drawing
 
 		health = 10;
-		setDamage(100);
+		setDamage(5);
 		if (action != null) addAction(action);
 	}
 
