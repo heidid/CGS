@@ -2,17 +2,20 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
+import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 
 public class AttackFileStackAction extends SequenceAction {
 	Enemy enemy;
 	FileStack fileStack;
+	boolean moving = true;
 
 	class ContinuallyKillFileStack extends Action {
 		KillFileStack kfs = null;
 		@Override
 		public boolean act(float delta) {
+			moving = false;
 			if (fileStack != null && fileStack.getHealth() > 0) {
 				if(kfs == null || (kfs.getTime() >= kfs.getDuration())) {
 					kfs = new KillFileStack();
@@ -24,7 +27,28 @@ public class AttackFileStackAction extends SequenceAction {
 			return true;
 		}
 	}
-
+	class AttackMoveInterrupt extends Action {
+		float time;
+		@Override
+		public boolean act(float delta) {
+			if(!moving)
+				return true;
+			time += delta;
+			if(time > 0.1) {
+				if (fileStack == null || fileStack.getHealth() <= 0) {
+					enemy.clearActions();
+					enemy.setIdle();
+					enemy.addAction(new AttackFileStackAction());
+					return true;
+				}
+				time = 0;
+				
+			}
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
+	}
 	class KillFileStack extends TemporalAction {
 		public KillFileStack() {
 			setDuration(1.0f);
@@ -62,9 +86,8 @@ public class AttackFileStackAction extends SequenceAction {
 			return;
 		}
 		closest.enemiesTargettingMe++;
-		addAction(new MoveToAttack(closest.getX(), closest.getY(), shortest));
 		this.fileStack = closest;
-		addAction(new ContinuallyKillFileStack());
+		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
 		addAction(new AttackFileStackAction());
 	}
 

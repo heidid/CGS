@@ -5,7 +5,7 @@ public class FileStack extends Obstacle {
 
 	private int health = FULL_HEALTH;
 	public int enemiesTargettingMe = 0;
-	public int maxEnemiesTargettingMe = 2;
+	public int maxEnemiesTargettingMe = 999999;
 	
 	public FileStack() {
 		setOriginY(1/3f);

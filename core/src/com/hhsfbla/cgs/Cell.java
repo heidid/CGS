@@ -33,7 +33,7 @@ public class Cell implements IndexedNode<Cell> {
 			if (c.getToNode().blocked)
 				continue;
 			if (Math.abs(this.x - c.getToNode().x) + Math.abs(this.y - c.getToNode().y) == 2) { //Can't go diagonally through an obstacle
-				if (g.getCell(this.x, c.getToNode().y).blocked || g.getCell(c.getToNode().x, this.y).blocked)
+				//if (g.getCell(this.x, c.getToNode().y).blocked || g.getCell(c.getToNode().x, this.y).blocked)
 					continue;
 			}
 			temp.add(c);

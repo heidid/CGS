@@ -42,6 +42,7 @@ public class PathfindingAction extends SequenceAction {
 			final Cell c = cp.array.get(i);
 			if (i == cp.array.size - 1 - endOffset) {
 				addAction(new AnimatedMoveToAction(c.x, c.y));
+				//System.out.println(c.x+","+c.y);
 				return;
 			}
 			final Cell n = cp.array.get(i + 1);
@@ -53,6 +54,7 @@ public class PathfindingAction extends SequenceAction {
 
 			if (cont) continue;
 			addAction(new AnimatedMoveToAction(c.x, c.y));
+			//System.out.println(c.x+","+c.y);
 		}
 	}
 
@@ -61,4 +63,5 @@ public class PathfindingAction extends SequenceAction {
 		if (getActions().size == 0) init();
 		return super.act(delta);
 	}
+	
 }

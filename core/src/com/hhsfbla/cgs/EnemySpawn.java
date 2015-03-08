@@ -6,7 +6,7 @@ import java.util.TreeMap;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 public class EnemySpawn extends SpawnPort {
-	private static final float SPAWN_DELAY = 5;
+	private static final float SPAWN_DELAY = 10;
 	private static final float SPAWN_DELAY_ERROR_MARGIN = 1;
 
 	private float time;

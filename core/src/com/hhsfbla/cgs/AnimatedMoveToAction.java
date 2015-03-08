@@ -17,11 +17,13 @@ public class AnimatedMoveToAction extends Action {
 		this.y = y;
 	}
 
+	private MovableActor actor;
+	
 	@Override
 	public boolean act(float delta) {
 		if (done) return true;
 
-		final MovableActor actor = (MovableActor) getActor();
+		actor = (MovableActor) getActor();
 
 		if (!started) {
 			// Round angle to nearest octilinear direction
@@ -48,4 +50,5 @@ public class AnimatedMoveToAction extends Action {
 
 		return done;
 	}
+	
 }
