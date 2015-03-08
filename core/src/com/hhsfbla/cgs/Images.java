@@ -5,7 +5,7 @@ import java.util.HashMap;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 
@@ -29,5 +29,12 @@ public class Images {
 		for ( ; i != f; i += inc )
 			keyFrames.add(Images.get(String.format(format, i)));
 		return new Animation(duration, keyFrames);
+	}
+
+	public static Animation getAnimation(String format, int i, int f, float duration,
+			PlayMode playMode) {
+		Animation a = getAnimation(format, i, f, duration);
+		a.setPlayMode(playMode);
+		return a;
 	}
 }
