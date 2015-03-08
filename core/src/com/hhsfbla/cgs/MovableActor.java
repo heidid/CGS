@@ -14,10 +14,12 @@ public class MovableActor extends AnimatedActor {
 	private TreeMap<Integer, Animation> appearSprite;
 	private TreeMap<Integer, Animation> disappearSprite;
 	private boolean moving;
+	private boolean canMove;
 	private Array<AnimatedActor> collisions;
 
 	public MovableActor() {
 		collisions = new Array<>();
+		canMove = true;
 		setSpeed(1.0f);
 	}
 
@@ -97,6 +99,14 @@ public class MovableActor extends AnimatedActor {
 		updateOrientedSprite();
 	}
 
+	public boolean canMove() {
+		return canMove;
+	}
+
+	public void setCanMove(boolean canMove) {
+		this.canMove = canMove;
+	}
+
 	protected void updateOrientedSprite() {
 		setSprite(moving ? getMoveSprite() : getIdleSprite());
 	}
@@ -124,13 +134,18 @@ public class MovableActor extends AnimatedActor {
 
 	@Override
 	public void act(float delta) {
-		if (moving && getAnimatedAction() == null) {
+		if (moving && canMove && getAnimatedAction() == null) {
 			final double r = Math.toRadians(getDirection());
 			final float d = speed * Gdx.graphics.getDeltaTime();
 			final float dx = d * (float) Math.cos(r);
 			final float dy = d * (float) Math.sin(r);
 			if (!detectCollisions(dx, dy)) setPosition(getX() + dx, getY() + dy);
+
+		// extra collision detections for conveyor belts
+		} else if (!canMove) {
+			detectCollisions(0, 0);
 		}
+
 		super.act(delta);
 	}
 

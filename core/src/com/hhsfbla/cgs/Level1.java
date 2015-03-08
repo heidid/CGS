@@ -1,12 +1,16 @@
 package com.hhsfbla.cgs;
 
 public class Level1 extends Level {
-
 	public Level1() {
 		add(new PlayerSpawn(), 0, 6);
 
 		add(new Enemy(new AttackFileStackAction()), 2, 1);
 		add(new EnemySpawn(), 13, 7);
+
+		for (int i = 5; i <= 11; i++) {
+			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
+		}
+		add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT, ConveyorBelt.DIR_DOWN), 12, 6);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);
