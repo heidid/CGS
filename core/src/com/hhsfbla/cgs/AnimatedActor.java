@@ -257,4 +257,10 @@ public class AnimatedActor extends Actor {
 			animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}
+
+	public int getDirectionFacing(float x, float y) {
+		return ((int) Math.round(Math.toDegrees(Math.atan2(
+			y - this.getY(), x - this.getX())))
+			/ 45 * 45 + 360) % 360;
+	}
 }

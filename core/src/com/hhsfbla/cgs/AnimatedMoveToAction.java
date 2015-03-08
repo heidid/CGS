@@ -25,9 +25,7 @@ public class AnimatedMoveToAction extends Action {
 
 		if (!started) {
 			// Round angle to nearest octilinear direction
-			direction = ((int) Math.round(Math.toDegrees(Math.atan2(
-					y - actor.getY(), x - actor.getX())))
-					/ 45 * 45 + 360) % 360;
+			direction = actor.getDirectionFacing(x, y);
 			actor.setMoving(direction);
 			started = true;
 		}

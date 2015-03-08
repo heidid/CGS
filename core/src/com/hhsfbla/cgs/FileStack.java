@@ -4,7 +4,9 @@ public class FileStack extends Obstacle {
 	private static final int FULL_HEALTH = 300;
 
 	private int health = FULL_HEALTH;
-
+	public int enemiesTargettingMe = 0;
+	public int maxEnemiesTargettingMe = 2;
+	
 	public FileStack() {
 		setOriginY(1/3f);
 		updateOrientedSprite();

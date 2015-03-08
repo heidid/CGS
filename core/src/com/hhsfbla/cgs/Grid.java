@@ -79,5 +79,24 @@ public class Grid {
 		finder.searchNodePath(getCell(x1, y1), getCell(x2, y2), h, ret);
 		return ret;
 	}
+	
+	public CellPath getPathToObstacle(int x, int y, AnimatedActor a) {
+		int len = Integer.MAX_VALUE;
+		CellPath shortest = null;
+		for(int i = (int) (x - 1); i <= (int) (x + 1); i++) {
+			for(int j = (int) (y - 1); j <= (y + 1); j++) {
+				if((i == x && j == y) || (i != x && j != y) || i < 0 || j < 0 || i >= Level.GRID_COLS || j >= Level.GRID_ROWS)
+					continue;
+				final CellPath cp = a.getLevel().grid.getPath(
+						(int) a.getX(), (int) a.getY(), i, j);
+				if(cp.array.size == 0) continue;
+				if(cp.array.size < len) {
+					len = cp.array.size;
+					shortest = cp;
+				}
+			}
+		}
+		return shortest;
+	}
 
 }

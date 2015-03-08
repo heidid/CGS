@@ -20,6 +20,7 @@ public class AttackFileStackAction extends SequenceAction {
 				}
 				return false;
 			}
+			fileStack.enemiesTargettingMe--;
 			return true;
 		}
 	}
@@ -44,17 +45,15 @@ public class AttackFileStackAction extends SequenceAction {
 		enemy = (Enemy) getActor();
 		if (enemy.getLevel().getFileStacks().size == 0) return;
 
-		int shortest = Integer.MAX_VALUE;
 		FileStack closest = null;
+		CellPath shortest = null;
 		for (FileStack fs : enemy.getLevel().getFileStacks()) {
 			if(fs.getHealth() <= 0)
 				continue;
-			CellPath cp = enemy.getLevel().grid.getPath(
-					(int) enemy.getX(), (int) enemy.getY(),
-					(int) fs.getX(), (int) fs.getY());
-			if (cp.array.size < shortest) {
-				shortest = cp.array.size;
+			CellPath cp = enemy.getLevel().grid.getPathToObstacle((int) fs.getX(), (int) fs.getY(), enemy);
+			if (fs.enemiesTargettingMe != fs.maxEnemiesTargettingMe && cp != null && ((shortest == null) || (cp.array.size != 0 && cp.array.size < shortest.array.size))) {
 				closest = fs;
+				shortest = cp;
 			}
 		}
 		if(closest == null) {
@@ -62,7 +61,8 @@ public class AttackFileStackAction extends SequenceAction {
 			addAction(new AttackFileStackAction());
 			return;
 		}
-		addAction(new MoveToAttack(closest.getX(), closest.getY()));
+		closest.enemiesTargettingMe++;
+		addAction(new MoveToAttack(closest.getX(), closest.getY(), shortest));
 		this.fileStack = closest;
 		addAction(new ContinuallyKillFileStack());
 		addAction(new AttackFileStackAction());

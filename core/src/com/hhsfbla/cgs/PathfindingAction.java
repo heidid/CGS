@@ -6,6 +6,7 @@ public class PathfindingAction extends SequenceAction {
 	private int x;
 	private int y;
 	private int endOffset;
+	private CellPath cp = null;
 
 	public PathfindingAction(float x, float y) {
 		this(x, y, 0);
@@ -16,11 +17,18 @@ public class PathfindingAction extends SequenceAction {
 		this.y = (int) y;
 		this.endOffset = endOffset;
 	}
+	
+	public PathfindingAction(CellPath cp) {
+		this.cp = cp;
+	}
 
 	private void init() {
 		final AnimatedActor a = (AnimatedActor) getActor();
-		final CellPath cp = a.getLevel().grid.getPath(
-				(int) a.getX(), (int) a.getY(), x, y);
+		if(cp == null) {
+			cp = a.getLevel().grid.getPath(
+					(int) a.getX(), (int) a.getY(), x, y);
+			
+		}
 
 		if (cp.array.size == 0 || cp.array.size - endOffset == 1) return;
 
