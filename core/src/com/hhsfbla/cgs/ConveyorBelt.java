@@ -37,7 +37,7 @@ public class ConveyorBelt extends Obstacle {
 
 		setSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("conveyor-belt-up.png")));
-			put(DIR_DOWN, new Animation(0, Images.get("conveyor-belt-down.png")));
+			put(DIR_DOWN, Images.getAnimation("conveyorbelt-down-%d.png", 24, 0, 0.05f, PlayMode.LOOP));
 			put(DIR_LEFT, Images.getAnimation("conveyorbelt-left-%d.png", 24, 0, 0.05f, PlayMode.LOOP));
 			put(DIR_RIGHT, Images.getAnimation("conveyorbelt-%d.png", 24, 0, 0.05f, PlayMode.LOOP));
 			put(DIR_UP_LEFT, new Animation(0, Images.get("conveyor-belt-br.png")));
@@ -48,7 +48,7 @@ public class ConveyorBelt extends Obstacle {
 
 		setSize(new TreeMap<Integer, Vector2>() {{
 			final Vector2 horizontal = new Vector2(1, 1/2f);
-			final Vector2 vertical = new Vector2(1, 1);
+			final Vector2 vertical = new Vector2(1/2f, 1);
 			final Vector2 corner = new Vector2(1, 1);
 
 			put(DIR_UP, vertical);
