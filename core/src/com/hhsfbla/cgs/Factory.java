@@ -18,8 +18,8 @@ public class Factory extends Obstacle {
 
 	public Factory(int direction) {
 		setSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_LEFT, Images.getAnimation("factory-left-%d.png", 0, 11, 0.05f, PlayMode.LOOP));
-			put(DIR_RIGHT, Images.getAnimation("factory-right-%d.png", 0, 11, 0.05f, PlayMode.LOOP));
+			put(DIR_LEFT, Images.getAnimation("factory-left-%d.png", 0, 10, 0.05f, PlayMode.LOOP));
+			put(DIR_RIGHT, Images.getAnimation("factory-right-%d.png", 0, 10, 0.05f, PlayMode.LOOP));
 		}});
 		setDirection(direction);
 	}
