@@ -2,7 +2,6 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.hhsfbla.cgs.MovableActor;
 
 /**
  * An action that moves an Enemy to an Actor and attacks it

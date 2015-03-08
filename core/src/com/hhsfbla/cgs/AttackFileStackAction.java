@@ -51,7 +51,7 @@ public class AttackFileStackAction extends SequenceAction {
 			if(fs.getHealth() <= 0)
 				continue;
 			CellPath cp = enemy.getLevel().grid.getPathToObstacle((int) fs.getX(), (int) fs.getY(), enemy);
-			if (fs.enemiesTargettingMe != fs.maxEnemiesTargettingMe && cp != null && ((shortest == null) || (cp.array.size != 0 && cp.array.size < shortest.array.size))) {
+			if (fs.enemiesTargettingMe != fs.maxEnemiesTargettingMe && cp != null && cp.array.size != 0 && (shortest == null || cp.array.size < shortest.array.size)) {
 				closest = fs;
 				shortest = cp;
 			}
