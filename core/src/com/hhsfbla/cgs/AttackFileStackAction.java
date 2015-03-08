@@ -57,7 +57,6 @@ public class AttackFileStackAction extends SequenceAction {
 				closest = fs;
 			}
 		}
-		System.out.println(closest);
 		if(closest == null) {
 			addAction(new DelayAction(0.1f));
 			addAction(new AttackFileStackAction());
