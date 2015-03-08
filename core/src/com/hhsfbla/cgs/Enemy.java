@@ -19,9 +19,19 @@ public class Enemy extends MovableActor {
 		this(null);
 	}
 
-	@SuppressWarnings("serial")
+	public Enemy(int direction) {
+		this(direction, null);
+	}
+
 	public Enemy(Action action) {
-		//Spritesheet for different directions
+		this(DIR_RIGHT, action);
+	}
+
+	@SuppressWarnings("serial")
+	public Enemy(int direction, Action action) {
+		super(direction);
+
+		// Spritesheet for different directions
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("minion-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("minion-down.png")));
@@ -32,6 +42,8 @@ public class Enemy extends MovableActor {
 			put(DIR_DOWN_LEFT, new Animation(0, Images.get("minion-down-left.png")));
 			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("minion-down-right.png")));
 		}});
+
+		// moving animations
 		final Animation upMove = new Animation(0.1f,
 				Images.get("minion-up.png"),
 				Images.get("minion-up-move.png"));
@@ -48,7 +60,6 @@ public class Enemy extends MovableActor {
 			put(DIR_DOWN_LEFT, new Animation(0, Images.get("minion-down-left.png")));
 			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("minion-down-right.png")));
 		}});
-		setOrigin(Align.bottom); //alignment for drawing
 
 		// sprites for enemy being hit
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
@@ -100,6 +111,8 @@ public class Enemy extends MovableActor {
 		        put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 9, 0, 0.03f));
 		}});
 
+		setOrigin(Align.bottom); // alignment for drawing
+
 		health = 10;
 		setDamage(100);
 		if (action != null) addAction(action);
@@ -144,8 +157,8 @@ public class Enemy extends MovableActor {
 		return damage;
 	}
 
-	public void setDamage(int f) {
-		this.damage = f;
+	public void setDamage(int damage) {
+		this.damage = damage;
 	}
 
 	public class HurtAction extends AnimatedAction {

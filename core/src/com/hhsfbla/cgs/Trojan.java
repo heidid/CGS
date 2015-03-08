@@ -3,11 +3,17 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 
 public class Trojan extends Enemy {
+	public Trojan() {
+		this(DIR_RIGHT);
+	}
 
 	@SuppressWarnings("serial")
-	public Trojan() {
+	public Trojan(int direction) {
+		// TODO: Add Trojan action
+		super(direction, new AttackFileStackAction());
 
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("trojan-up.png")));
@@ -40,7 +46,6 @@ public class Trojan extends Enemy {
 			put(DIR_DOWN_LEFT, Images.getAnimation("trojan-down-left-die-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN_RIGHT, Images.getAnimation("trojan-down-right-die-%d.png", 9, 0, 0.03f));
 		}});
-
 		setHurtSprite(new TreeMap<Integer, Animation>() {{
             put(DIR_UP, new Animation(0.05f,
                     Images.get("trojan-up copy.png"),

@@ -12,7 +12,7 @@ public class Port extends Obstacle {
 
 	public Port(int direction) {
 		setSprite(new TreeMap<Integer, Animation>() {{
-//			put(DIR_UP, Images.get("port-exit-down.png"));
+//			put(DIR_UP, Images.get("port-exit-up.png"));
 			put(DIR_DOWN, new Animation(0, Images.get("port-exit-down.png")));
 			put(DIR_LEFT, new Animation(0, Images.get("port-exit-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("port-exit-right.png")));
@@ -23,6 +23,7 @@ public class Port extends Obstacle {
 			put(DIR_LEFT, new Vector2(1, 4/3f));
 			put(DIR_RIGHT, new Vector2(1, 4/3f));
 		}});
+		// TODO: Fix Port hitbox
 		setDirection(direction);
 		updateOrigin();
 	}

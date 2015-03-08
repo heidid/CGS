@@ -18,10 +18,15 @@ public class MovableActor extends AnimatedActor {
 	private Array<AnimatedActor> collisions;
 
 	public MovableActor() {
+		this(DIR_RIGHT);
+	}
+
+	public MovableActor(int direction) {
 		collisions = new Array<>();
 		canMove = true;
 		setSize(5/6f, 5/6f);
-		setSpeed(1.0f);
+		setSpeed(1);
+		setDirection(direction);
 	}
 
 	public float getSpeed() {

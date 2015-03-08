@@ -28,6 +28,7 @@ public class SpawnPort extends Port {
 		} else {
 			level.add(actor, spawnX, spawnY);
 		}
+		actor.setDirection(getDirection());
 		actor.addAction(actor.new AppearAction());
 	}
 }
