@@ -20,6 +20,7 @@ public class MovableActor extends AnimatedActor {
 	public MovableActor() {
 		collisions = new Array<>();
 		canMove = true;
+		setSize(5/6f, 5/6f);
 		setSpeed(1.0f);
 	}
 

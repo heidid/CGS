@@ -18,8 +18,8 @@ public class Level2 extends Level {
 		add(new Wall(Wall.DIR_DOWN_LEFT), 0, 2);
 		add(new Wall(Wall.DIR_UP_RIGHT), 1, 2);
 		add(new Wall(Wall.DIR_DOWN), 3, 2);
-		add(new Wall(Wall.DIR_DOWN, true), 1, 1);
-		add(new Wall(Wall.DIR_DOWN, true), 3, 1);
+		add(new Wall(Wall.DIR_DOWN_LEFT, true), 1, 1);
+		add(new Wall(Wall.DIR_DOWN_RIGHT, true), 3, 1);
 
 		final FloorSwitch[] switches = {
 				new FloorSwitch(),
