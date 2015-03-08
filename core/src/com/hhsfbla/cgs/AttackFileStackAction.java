@@ -1,6 +1,7 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 
@@ -46,6 +47,8 @@ public class AttackFileStackAction extends SequenceAction {
 		int shortest = Integer.MAX_VALUE;
 		FileStack closest = null;
 		for (FileStack fs : enemy.getLevel().getFileStacks()) {
+			if(fs.getHealth() <= 0)
+				continue;
 			CellPath cp = enemy.getLevel().grid.getPath(
 					(int) enemy.getX(), (int) enemy.getY(),
 					(int) fs.getX(), (int) fs.getY());
@@ -54,9 +57,16 @@ public class AttackFileStackAction extends SequenceAction {
 				closest = fs;
 			}
 		}
+		System.out.println(closest);
+		if(closest == null) {
+			addAction(new DelayAction(0.1f));
+			addAction(new AttackFileStackAction());
+			return;
+		}
 		addAction(new MoveToAttack(closest.getX(), closest.getY()));
 		this.fileStack = closest;
 		addAction(new ContinuallyKillFileStack());
+		addAction(new AttackFileStackAction());
 	}
 
 	@Override

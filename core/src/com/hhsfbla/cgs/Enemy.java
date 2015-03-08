@@ -101,7 +101,7 @@ public class Enemy extends MovableActor {
 		}});
 
 		health = 10;
-		setDamage(10);
+		setDamage(100);
 		if (action != null) addAction(action);
 	}
 
