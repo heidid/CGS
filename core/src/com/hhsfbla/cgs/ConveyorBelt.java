@@ -3,6 +3,7 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
@@ -37,8 +38,8 @@ public class ConveyorBelt extends Obstacle {
 		setSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("conveyor-belt-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("conveyor-belt-down.png")));
-			put(DIR_LEFT, new Animation(0, Images.get("conveyor-belt-left.png")));
-			put(DIR_RIGHT, new Animation(0, Images.get("conveyor-belt-right.png")));
+			put(DIR_LEFT, new Animation(0, Images.get("conveyor-belt-left.png")));s
+			put(DIR_RIGHT, Images.getAnimation("batch/conveyorbelt-%d.png", 24, 0, 0.05f, PlayMode.LOOP));
 			put(DIR_UP_LEFT, new Animation(0, Images.get("conveyor-belt-br.png")));
 			put(DIR_UP_RIGHT, new Animation(0, Images.get("conveyor-belt-bl.png")));
 			put(DIR_DOWN_LEFT, new Animation(0, Images.get("conveyor-belt-tr.png")));
