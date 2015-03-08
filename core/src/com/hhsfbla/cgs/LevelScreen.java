@@ -29,7 +29,7 @@ public class LevelScreen extends StageScreen {
 	@Override
 	public void show() {
 		super.show();
-		background.addActor(new Image(Images.get("background.png")));
+		background.addActor(new Image(Images.get("background-grid.png")));
 
 		stage.addActor(background);
 		stage.addActor(foreground);
