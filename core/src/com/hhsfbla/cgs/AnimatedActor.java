@@ -250,7 +250,8 @@ public class AnimatedActor extends Actor {
 			final float width = getWidth() * gridWidth;
 			final float height = image.getRegionHeight() * width
 					/ image.getRegionWidth();
-			//Draw with all the properties of this actor
+
+			// Draw with all the properties of this actor
 			batch.draw(image, x, y, getOriginX(), getOriginY(), width, height,
 					getScaleX(), getScaleY(), getRotation());
 
@@ -259,8 +260,8 @@ public class AnimatedActor extends Actor {
 	}
 
 	public int getDirectionFacing(float x, float y) {
-		return ((int) Math.round(Math.toDegrees(Math.atan2(
-			y - Math.round(this.getY()), Math.round(x - this.getX()))))
-			/ 45 * 45 + 360) % 360;
+		final double deg = (Math.toDegrees(Math.atan2(y - getY(), x - getX()))
+				+ 360) % 360;
+		return (int) Math.round(deg / 45) * 45;
 	}
 }
