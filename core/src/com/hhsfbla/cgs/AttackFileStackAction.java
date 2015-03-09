@@ -12,7 +12,7 @@ public class AttackFileStackAction extends SequenceAction {
 	FileStack fileStack;
 	boolean moving = true;
 	KillFileStack kfs = null;
-	
+
 	public void createRemove() {
 		for(Action a : this.getActions()) {
 			enemy.removeAction(a);
@@ -22,7 +22,7 @@ public class AttackFileStackAction extends SequenceAction {
 		enemy.act(0);
 		enemy.addAction(new AttackFileStackAction());
 	}
-	
+
 	class ContinuallyKillFileStack extends Action {
 		@Override
 		public boolean act(float delta) {
@@ -43,7 +43,7 @@ public class AttackFileStackAction extends SequenceAction {
 			return false;
 		}
 	}
-	
+
 	class AttackMoveInterrupt extends Action {
 		@Override
 		public boolean act(float delta) {
@@ -56,14 +56,12 @@ public class AttackFileStackAction extends SequenceAction {
 			return false;
 		}
 	}
-	
+
 	class KillFileStack extends IsFinishedSequenceAction {
 		public KillFileStack() {
 			float ox = enemy.getX(), oy = enemy.getY();
-			float x = fileStack.getX() - ox;
-			x /= 2.0f;
-			float y = fileStack.getY() - oy;
-			y /= 2.0f;
+			float x = (fileStack.getX() - ox) / 4;
+			float y = (fileStack.getY() - oy) / 4;
 			MoveByAction mba = new MoveByAction();
 			mba.setAmountX(x);
 			mba.setAmountY(y);
