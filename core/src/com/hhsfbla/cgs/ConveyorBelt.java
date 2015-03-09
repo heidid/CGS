@@ -40,10 +40,10 @@ public class ConveyorBelt extends Obstacle {
 			put(DIR_DOWN, Images.getAnimation("conveyorbelt-down-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
 			put(DIR_LEFT, Images.getAnimation("conveyorbelt-left-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
 			put(DIR_RIGHT, Images.getAnimation("conveyorbelt-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
-			put(DIR_UP_LEFT, new Animation(0, Images.get("conveyor-belt-br.png")));
+			put(DIR_UP_LEFT, Images.getAnimation("conveyorbelt-br-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
 			put(DIR_UP_RIGHT, Images.getAnimation("conveyorbelt-bl-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
-			put(DIR_DOWN_LEFT, new Animation(0, Images.get("conveyor-belt-tr.png")));
-			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("conveyor-belt-tl.png")));
+			put(DIR_DOWN_LEFT, Images.getAnimation("conveyorbelt-tr-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
+			put(DIR_DOWN_RIGHT, Images.getAnimation("conveyorbelt-tl-%d.png", 24, 0, 0.05f / BELT_SPEED, PlayMode.LOOP));
 		}});
 
 		setSize(new TreeMap<Integer, Vector2>() {{
