@@ -13,8 +13,8 @@ public class PathfindingAction extends SequenceAction {
 	}
 
 	public PathfindingAction(float x, float y, int endOffset) {
-		this.x = (int) x;
-		this.y = (int) y;
+		this.x = Math.round(x);
+		this.y = Math.round(y);
 		this.endOffset = endOffset;
 	}
 	
@@ -24,18 +24,18 @@ public class PathfindingAction extends SequenceAction {
 
 	private void init() {
 		final AnimatedActor a = (AnimatedActor) getActor();
+		int oldX = Math.round(a.getX());
+		int oldY = Math.round(a.getY());
+		
 		if(cp == null) {
 			cp = a.getLevel().grid.getPath(
-					(int) a.getX(), (int) a.getY(), x, y);
-			
+					Math.round(oldX), oldY, x, y);
 		}
 
 		if (cp.array.size == 0 || cp.array.size - endOffset == 1) return;
 
-		float oldX = a.getX();
-		float oldY = a.getY();
-
 		int i = 0;
+		//System.out.println("PATH from "+oldX+","+oldY);
 		while (true) {
 			i++;
 

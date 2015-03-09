@@ -34,7 +34,6 @@ public class AnimatedMoveToAction extends Action {
 
 		final boolean horizontal = direction % 180 == 0;
 		final boolean vertical = direction % 180 == 90;
-
 		final float distX = Math.abs(actor.getX() - x);
 		final float distY = Math.abs(actor.getY() - y);
 		final float epsilon = actor.getSpeed() * delta;

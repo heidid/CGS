@@ -4,7 +4,7 @@ public class Level1 extends Level {
 	public Level1() {
 		add(new PlayerSpawn(), 0, 6);
 
-		add(new Enemy(new AttackFileStackAction()), 2, 1);
+		add(new Enemy(new AttackFileStackAction()), 15, 1);
 		add(new EnemySpawn(), 13, 7);
 
 		final Factory factory = new Factory();

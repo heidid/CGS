@@ -26,8 +26,8 @@ public class Grid {
 		for (Cell c : cells)
 			c.blocked = false;
 		for (Obstacle o : l.getObstacles()){
-			for(int x = (int) o.getX(); x < (int) o.getX() + Math.ceil(o.getWidth()); x++){
-				for(int y = (int) o.getY(); y < (int) o.getY() + Math.ceil(o.getHeight()); y++){
+			for(int x = Math.round(o.getX()); x < Math.round(o.getX() + Math.ceil(o.getWidth())); x++){
+				for(int y = Math.round(o.getY()); y < Math.round(o.getY() + Math.ceil(o.getHeight())); y++){
 					if(y >= Level.GRID_ROWS || x >= Level.GRID_COLS || !o.isBlocked()) //bound check
 						continue;
 					getCell(x, y).blocked = true;
@@ -83,12 +83,12 @@ public class Grid {
 	public CellPath getPathToObstacle(int x, int y, AnimatedActor a) {
 		int len = Integer.MAX_VALUE;
 		CellPath shortest = null;
-		for(int i = (int) (x - 1); i <= (int) (x + 1); i++) {
-			for(int j = (int) (y - 1); j <= (y + 1); j++) {
+		for(int i = Math.round(x - 1); i <= Math.round(x + 1); i++) {
+			for(int j = Math.round(y - 1); j <= Math.round(y + 1); j++) {
 				if((i == x && j == y) || (i != x && j != y) || i < 0 || j < 0 || i >= Level.GRID_COLS || j >= Level.GRID_ROWS)
 					continue;
 				final CellPath cp = a.getLevel().grid.getPath(
-						(int) a.getX(), (int) a.getY(), i, j);
+						Math.round(a.getX()), Math.round(a.getY()), i, j);
 				if(cp.array.size == 0) continue;
 				if(cp.array.size < len) {
 					len = cp.array.size;

@@ -9,14 +9,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
  */
 public class MoveToAttack extends SequenceAction {
 	class FaceAction extends Action {
-
 		@Override
 		public boolean act(float delta) {
 			AnimatedActor aa = (AnimatedActor) (getActor());
-			aa.setDirection(aa.getDirectionFacing(x, y));
+			aa.setDirection(aa.getDirectionFacing(Math.round(x), Math.round(y)));
 			return true;
 		}
-		
 	}
 	float x, y;
 	CellPath cp;
@@ -29,7 +27,7 @@ public class MoveToAttack extends SequenceAction {
 		this.x = x;
 		this.y = y;
 		final AnimatedActor a = (AnimatedActor) getActor();
-		cp = a.getLevel().grid.getPathToObstacle((int)x, (int)y, a);
+		cp = a.getLevel().grid.getPathToObstacle(Math.round(x), Math.round(y), a);
 	}
 	public void init() {
 		addAction(new PathfindingAction(cp));

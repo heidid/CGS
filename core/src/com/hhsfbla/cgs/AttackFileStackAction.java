@@ -1,6 +1,7 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -59,7 +60,15 @@ public class AttackFileStackAction extends SequenceAction {
 		public KillFileStack() {
 			float ox = enemy.getX(), oy = enemy.getY();
 			enemy.setCanCollide(false);
-			this.addAction(new AnimatedMoveToAction(fileStack.getX(), fileStack.getY()));
+			float x = fileStack.getX() - ox;
+			x /= 2.0f;
+			float y = fileStack.getY() - oy;
+			y /= 2.0f;
+			MoveByAction mta = new MoveByAction();
+			mta.setAmountX(x);
+			mta.setAmountY(y);
+			mta.setDuration(0.5f);
+			addAction(mta);
 			this.addAction(new RunnableAction() {
 				@Override
 				public void run() {
@@ -67,7 +76,11 @@ public class AttackFileStackAction extends SequenceAction {
 						fileStack.damage(enemy.getDamage());
 				}
 			});
-			this.addAction(new AnimatedMoveToAction(ox, oy));
+			MoveByAction mta2 = new MoveByAction();
+			mta2.setAmountX(-x);
+			mta2.setAmountY(-y);
+			mta2.setDuration(0.5f);
+			addAction(mta2);
 			super.addFinishedAction(new RunnableAction() {
 				public void run() {
 					enemy.setCanCollide(true);
@@ -85,7 +98,7 @@ public class AttackFileStackAction extends SequenceAction {
 		for (FileStack fs : enemy.getLevel().getFileStacks()) {
 			if(fs.getHealth() <= 0)
 				continue;
-			CellPath cp = enemy.getLevel().grid.getPathToObstacle((int) fs.getX(), (int) fs.getY(), enemy);
+			CellPath cp = enemy.getLevel().grid.getPathToObstacle(Math.round(fs.getX()), Math.round(fs.getY()), enemy);
 			if (fs.enemiesTargettingMe != fs.maxEnemiesTargettingMe && cp != null && cp.array.size != 0 && (shortest == null || cp.array.size < shortest.array.size)) {
 				closest = fs;
 				shortest = cp;
