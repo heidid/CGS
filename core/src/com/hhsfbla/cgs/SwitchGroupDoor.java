@@ -17,7 +17,7 @@ public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListen
 	public SwitchGroupDoor(boolean blocked, Switch...switches) {
 		super(blocked);
 		// TODO: Add SwitchGroupDoor sprite
-		setBlockedSprite(Images.get("door.png"));
+		setBlockedSprite(Images.get("door-square.png"));
 		setUnblockedSprite(Images.get("doormat.png"));
 		setOriginY(5/12f);
 		for (Switch swtch : switches) {
