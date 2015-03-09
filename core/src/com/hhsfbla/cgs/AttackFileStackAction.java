@@ -81,11 +81,6 @@ public class AttackFileStackAction extends SequenceAction {
 			mta2.setAmountY(-y);
 			mta2.setDuration(0.5f);
 			addAction(mta2);
-			super.addFinishedAction(new RunnableAction() {
-				public void run() {
-					enemy.setCanCollide(true);
-				}
-			});
 		}
 	}
 
