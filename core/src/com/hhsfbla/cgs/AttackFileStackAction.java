@@ -36,7 +36,10 @@ public class AttackFileStackAction extends SequenceAction {
 			time += delta;
 			if(time > 0.1) {
 				if (fileStack == null || fileStack.getHealth() <= 0) {
-					enemy.clearActions();
+					for(Action a : getActions()) {
+						enemy.removeAction(a);
+					}
+					enemy.removeAction(AttackFileStackAction.this);
 					enemy.setIdle();
 					enemy.addAction(new AttackFileStackAction());
 					return true;
@@ -81,8 +84,7 @@ public class AttackFileStackAction extends SequenceAction {
 			}
 		}
 		if(closest == null) {
-			addAction(new DelayAction(0.1f));
-			addAction(new AttackFileStackAction());
+			actor.addAction(new SequenceAction(new DelayAction(1f), new AttackFileStackAction()));
 			return;
 		}
 		closest.enemiesTargettingMe++;
