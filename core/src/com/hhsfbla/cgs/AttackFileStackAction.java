@@ -3,6 +3,7 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
+import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 
@@ -10,7 +11,14 @@ public class AttackFileStackAction extends SequenceAction {
 	Enemy enemy;
 	FileStack fileStack;
 	boolean moving = true;
-
+	public void createRemove() {
+		for(Action a : this.getActions()) {
+			enemy.removeAction(a);
+		}
+		enemy.removeAction(this);
+		enemy.setIdle();
+		enemy.addAction(new AttackFileStackAction());
+	}
 	class ContinuallyKillFileStack extends Action {
 		KillFileStack kfs = null;
 		@Override
@@ -36,12 +44,7 @@ public class AttackFileStackAction extends SequenceAction {
 			time += delta;
 			if(time > 0.1) {
 				if (fileStack == null || fileStack.getHealth() <= 0) {
-					for(Action a : getActions()) {
-						enemy.removeAction(a);
-					}
-					enemy.removeAction(AttackFileStackAction.this);
-					enemy.setIdle();
-					enemy.addAction(new AttackFileStackAction());
+					createRemove();
 					return true;
 				}
 				time = 0;
@@ -84,13 +87,19 @@ public class AttackFileStackAction extends SequenceAction {
 			}
 		}
 		if(closest == null) {
-			actor.addAction(new SequenceAction(new DelayAction(1f), new AttackFileStackAction()));
+			createRemove();
 			return;
 		}
 		closest.enemiesTargettingMe++;
 		this.fileStack = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
-		addAction(new AttackFileStackAction());
+		addAction(new RunnableAction() {
+			
+			@Override
+			public void run() {
+				createRemove();
+			}
+		});
 	}
 
 	@Override
