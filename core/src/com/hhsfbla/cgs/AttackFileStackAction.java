@@ -1,74 +1,79 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
-import com.badlogic.gdx.scenes.scene2d.actions.DelayAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
-import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 
 public class AttackFileStackAction extends SequenceAction {
 	Enemy enemy;
 	FileStack fileStack;
 	boolean moving = true;
+	KillFileStack kfs = null;
+	
 	public void createRemove() {
 		for(Action a : this.getActions()) {
 			enemy.removeAction(a);
 		}
 		enemy.removeAction(this);
 		enemy.setIdle();
+		enemy.act(0);
 		enemy.addAction(new AttackFileStackAction());
 	}
+	
 	class ContinuallyKillFileStack extends Action {
-		KillFileStack kfs = null;
 		@Override
 		public boolean act(float delta) {
 			moving = false;
-			if (fileStack != null && fileStack.getHealth() > 0) {
-				if(kfs == null || (kfs.getTime() >= kfs.getDuration())) {
-					kfs = new KillFileStack();
-					enemy.addAction(kfs);
+			if (fileStack != null) {
+				if(fileStack.getHealth() > 0) {
+					if(kfs == null || kfs.isFinished()) {
+						kfs = new KillFileStack();
+						enemy.addAction(kfs);
+					}
+				} else {
+					fileStack.enemiesTargettingMe--;
+					fileStack = null;
 				}
-				return false;
 			}
-			fileStack.enemiesTargettingMe--;
-			return true;
+			if(kfs == null || kfs.isFinished())
+				return true;
+			return false;
 		}
 	}
+	
 	class AttackMoveInterrupt extends Action {
-		float time;
 		@Override
 		public boolean act(float delta) {
 			if(!moving)
 				return true;
-			time += delta;
-			if(time > 0.1) {
-				if (fileStack == null || fileStack.getHealth() <= 0) {
-					createRemove();
-					return true;
-				}
-				time = 0;
-				
+			if (fileStack == null || fileStack.getHealth() <= 0 && (kfs == null || kfs.isFinished())) {
+				createRemove();
+				return true;
 			}
-			// TODO Auto-generated method stub
 			return false;
 		}
-		
 	}
-	class KillFileStack extends TemporalAction {
+	
+	class KillFileStack extends IsFinishedSequenceAction {
 		public KillFileStack() {
-			setDuration(1.0f);
+			float ox = enemy.getX(), oy = enemy.getY();
+			enemy.setCanCollide(false);
+			this.addAction(new AnimatedMoveToAction(fileStack.getX(), fileStack.getY()));
+			this.addAction(new RunnableAction() {
+				@Override
+				public void run() {
+					if(fileStack != null)
+						fileStack.damage(enemy.getDamage());
+				}
+			});
+			this.addAction(new AnimatedMoveToAction(ox, oy));
+			super.addFinishedAction(new RunnableAction() {
+				public void run() {
+					enemy.setCanCollide(true);
+				}
+			});
 		}
-
-		@Override
-		public void end(){
-			if (fileStack != null && fileStack.getHealth() > 0) {
-				fileStack.damage(enemy.getDamage());
-			}
-		}
-
-		@Override
-		protected void update(float percent) {}
 	}
 
 	public void init() {
@@ -94,7 +99,6 @@ public class AttackFileStackAction extends SequenceAction {
 		this.fileStack = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
 		addAction(new RunnableAction() {
-			
 			@Override
 			public void run() {
 				createRemove();

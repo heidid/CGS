@@ -32,10 +32,9 @@ public class Cell implements IndexedNode<Cell> {
 		for (Connection<Cell> c : possibles) {
 			if (c.getToNode().blocked)
 				continue;
-			if (Math.abs(this.x - c.getToNode().x) + Math.abs(this.y - c.getToNode().y) == 2) { //Can't go diagonally through an obstacle
-				//if (g.getCell(this.x, c.getToNode().y).blocked || g.getCell(c.getToNode().x, this.y).blocked)
+			if (Math.abs(this.x - c.getToNode().x) + Math.abs(this.y - c.getToNode().y) == 2 //Can't go diagonally through an obstacle
+				&& (g.getCell(this.x, c.getToNode().y).blocked || g.getCell(c.getToNode().x, this.y).blocked))
 					continue;
-			}
 			temp.add(c);
 		}
 	}

@@ -16,6 +16,7 @@ public class MovableActor extends AnimatedActor {
 	private boolean moving;
 	private boolean canMove;
 	private Array<AnimatedActor> collisions;
+	private boolean canCollide = true;
 
 	public MovableActor() {
 		this(DIR_RIGHT);
@@ -118,7 +119,9 @@ public class MovableActor extends AnimatedActor {
 	}
 
 	protected boolean detectCollisions(float dx, float dy) {
-		if (getHitbox() == null) return false;
+		if (getHitbox() == null || !canCollide)
+			return false;
+
 		final Hitbox newBounds = new Hitbox(getHitbox()).translate(dx, dy);
 		collisions.clear();
 
@@ -149,6 +152,14 @@ public class MovableActor extends AnimatedActor {
 		}
 
 		super.act(delta);
+	}
+
+	public boolean isCanCollide() {
+		return canCollide;
+	}
+
+	public void setCanCollide(boolean canCollide) {
+		this.canCollide = canCollide;
 	}
 
 	public class AppearAction extends AnimatedAction {
