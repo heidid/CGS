@@ -89,8 +89,8 @@ public class Player extends MovableActor {
 		@Override
 		protected void begin() {
 			canShoot = false;
-			// TODO: Fix Disc shooting start point
-			getLevel().add(new Disc(getDirection()), getX(), getY());
+			getLevel().add(new Disc(getDirection()), getX() + (float) Math.cos(
+					Math.toRadians(getDirection())) * 1/2f, getY());
 		}
 
 		@Override
