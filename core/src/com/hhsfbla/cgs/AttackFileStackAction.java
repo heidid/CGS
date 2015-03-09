@@ -2,6 +2,7 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
+import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -59,16 +60,15 @@ public class AttackFileStackAction extends SequenceAction {
 	class KillFileStack extends IsFinishedSequenceAction {
 		public KillFileStack() {
 			float ox = enemy.getX(), oy = enemy.getY();
-			enemy.setCanCollide(false);
 			float x = fileStack.getX() - ox;
 			x /= 2.0f;
 			float y = fileStack.getY() - oy;
 			y /= 2.0f;
-			MoveByAction mta = new MoveByAction();
-			mta.setAmountX(x);
-			mta.setAmountY(y);
-			mta.setDuration(0.5f);
-			addAction(mta);
+			MoveByAction mba = new MoveByAction();
+			mba.setAmountX(x);
+			mba.setAmountY(y);
+			mba.setDuration(0.5f);
+			addAction(mba);
 			this.addAction(new RunnableAction() {
 				@Override
 				public void run() {
@@ -76,11 +76,12 @@ public class AttackFileStackAction extends SequenceAction {
 						fileStack.damage(enemy.getDamage());
 				}
 			});
-			MoveByAction mta2 = new MoveByAction();
-			mta2.setAmountX(-x);
-			mta2.setAmountY(-y);
-			mta2.setDuration(0.5f);
-			addAction(mta2);
+			MoveByAction mba2 = new MoveByAction();
+			mba2.setAmountX(-x);
+			mba2.setAmountY(-y);
+			mba2.setDuration(0.5f);
+			addAction(mba2);
+			addFinishedAction();
 		}
 	}
 
