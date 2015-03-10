@@ -35,6 +35,14 @@ public class FactoryFile extends MovableActor {
 	@Override
 	public void act(float delta) {
 		super.act(delta);
-		if (getActions().size == 0) getLevel().remove(this);
+		if (getActions().size == 0) addAction(new PoofAction());
+	}
+
+	public class PoofAction extends DisappearAction {
+		@Override
+		protected void end() {
+			super.end();
+			getLevel().remove(FactoryFile.this);
+		}
 	}
 }

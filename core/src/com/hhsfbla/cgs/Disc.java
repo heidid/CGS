@@ -15,7 +15,6 @@ public class Disc extends Projectile {
 	protected boolean detectCollisions(float dx, float dy) {
 		boolean blocked = super.detectCollisions(dx, dy);
 		if (blocked) getLevel().remove(this);
-		// TODO: Add Disc collision animation
 		return blocked;
 	}
 }
