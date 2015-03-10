@@ -14,7 +14,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 public class LevelScreen extends StageScreen {
 	private Level level;
 	private Group background;
-	private Group foreground;
 	private Group ui;
 
 	public LevelScreen(Game game, Stage stage, Level level) {
@@ -22,7 +21,6 @@ public class LevelScreen extends StageScreen {
 		this.level = level;
 		level.setScreen(this);
 		background = new Group();
-		foreground = level;
 		ui = new Group();
 	}
 
@@ -32,16 +30,27 @@ public class LevelScreen extends StageScreen {
 		background.addActor(new Image(Images.get("background-grid.png")));
 
 		stage.addActor(background);
-		stage.addActor(foreground);
+		stage.addActor(level);
 		stage.addActor(ui);
 
 		stage.setKeyboardFocus(level.getPlayer());
 	}
 
 	@Override
+	public void resize(int width, int height) {
+		super.resize(width, height);
+
+		final float gridWidth = stage.getWidth() / Level.GRID_COLS;
+		final float gridHeight = stage.getHeight() / Level.GRID_ROWS;
+
+		level.setScale(gridWidth, gridHeight);
+		level.setPosition(gridWidth / 2, gridHeight / 2);
+	}
+
+	@Override
 	public void render(float delta) {
 		// sort all actors based on their z-values
-		foreground.getChildren().sort(new Comparator<Actor>() {
+		level.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {
 				return Float.compare(((AnimatedActor) b).getZValue(),

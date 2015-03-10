@@ -243,16 +243,12 @@ public class AnimatedActor extends Actor {
 			final Stage stage = getStage();
 			final TextureRegion image = getCurrentSpriteFrame();
 
-			final float gridWidth = stage.getWidth() / Level.GRID_COLS;
-			final float gridHeight = stage.getHeight() / Level.GRID_ROWS;
-			final float x = (getX() - getOriginX() + 0.5f) * gridWidth;
-			final float y = (getY() - getOriginY() + 0.5f) * gridHeight;
-			final float width = getWidth() * gridWidth;
-			final float height = image.getRegionHeight() * width
+			final float height = image.getRegionHeight() * getWidth()
 					/ image.getRegionWidth();
 
 			// Draw with all the properties of this actor
-			batch.draw(image, x, y, getOriginX(), getOriginY(), width, height,
+			batch.draw(image, getX() - getOriginX(), getY() - getOriginY(),
+					getOriginX(), getOriginY(), getWidth(), height,
 					getScaleX(), getScaleY(), getRotation());
 
 			animationStateTime += Gdx.graphics.getDeltaTime();

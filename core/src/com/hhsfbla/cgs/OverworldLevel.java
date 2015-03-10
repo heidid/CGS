@@ -1,12 +1,14 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.utils.Array;
 
 /**
  * Represents a selectable level on the OverworldScreen
  */
-public class OverworldLevel {
-	Array<OverworldActor> actors = new Array<OverworldActor>();
+public class OverworldLevel extends Group {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	Array<OverworldActor> overworldActors = new Array<>();
 	StageScreen screen;
 	OverworldPlayer player;
 
@@ -14,35 +16,46 @@ public class OverworldLevel {
 
 	}
 
-	public Array<OverworldActor> getActors() {
-		return actors;
+	public Array<OverworldActor> getOverworldActors() {
+		return overworldActors;
+	}
+
+	public void addActor(OverworldActor actor) {
+		overworldActors.add(actor);
+		super.addActor(actor);
+	}
+
+	public boolean removeActor(OverworldActor actor) {
+		overworldActors.removeValue(actor, true);
+		return super.removeActor(actor);
 	}
 
 	public void setScreen(OverworldScreen screen){
 		this.screen = screen;
 		player = new OverworldPlayer();
 		//define locations and graphics
-		actors.add(new OverworldActor(2, 3, "server.png"));
-		actors.add(new OverworldActor(8, 3, "router.png"));
-		actors.add(new OverworldActor(8, 5, "computer.png"));
-		actors.add(new OverworldActor(11, 3, "computer.png"));
-		actors.add(new OverworldActor(8, 1, "computer.png"));
-		actors.add(new OverworldActor(5, 3, "switch.png"));
+		addActor(player);
+		addActor(new OverworldActor(2, 3, "server.png"));
+		addActor(new OverworldActor(8, 3, "router.png"));
+		addActor(new OverworldActor(8, 5, "computer.png"));
+		addActor(new OverworldActor(11, 3, "computer.png"));
+		addActor(new OverworldActor(8, 1, "computer.png"));
+		addActor(new OverworldActor(5, 3, "switch.png"));
 		//double the size
-		for(AnimatedActor a : actors)
+		for(AnimatedActor a : overworldActors)
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
-		actors.get(0).setLevel(new Level1());
-		actors.get(1).setLevel(new Level1());
-		actors.get(2).setLevel(new Level2());
-		actors.get(3).setLevel(new Level3());
-		actors.get(4).setLevel(new Level4());
+		overworldActors.get(0).setLevel(new Level1());
+		overworldActors.get(1).setLevel(new Level1());
+		overworldActors.get(2).setLevel(new Level2());
+		overworldActors.get(3).setLevel(new Level3());
+		overworldActors.get(4).setLevel(new Level4());
 		//set connections
-		OverworldActor.Connector.connectH(actors.get(0), actors.get(5));
-		OverworldActor.Connector.connectV(actors.get(1), actors.get(2));
-		OverworldActor.Connector.connectV(actors.get(4), actors.get(1));
-		OverworldActor.Connector.connectH(actors.get(1), actors.get(3));
-		OverworldActor.Connector.connectH(actors.get(5), actors.get(1));
-		player.setOverworldActor(actors.get(0));
+		OverworldActor.Connector.connectH(overworldActors.get(0), overworldActors.get(5));
+		OverworldActor.Connector.connectV(overworldActors.get(1), overworldActors.get(2));
+		OverworldActor.Connector.connectV(overworldActors.get(4), overworldActors.get(1));
+		OverworldActor.Connector.connectH(overworldActors.get(1), overworldActors.get(3));
+		OverworldActor.Connector.connectH(overworldActors.get(5), overworldActors.get(1));
+		player.setOverworldActor(overworldActors.get(0));
 		player.addListener(player.new OverworldLevelInputListener(screen));
 	}
 
