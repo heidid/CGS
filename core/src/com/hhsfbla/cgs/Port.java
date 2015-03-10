@@ -3,10 +3,10 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Port extends Obstacle {
-
 	private TreeMap<Integer, Animation> appearSprite;
 	private TreeMap<Integer, Animation> disappearSprite;
 
@@ -33,25 +33,33 @@ public class Port extends Obstacle {
 			//put(DIR_LEFT, new Animation(0, Images.get("port-exit-left.png")));
 			//put(DIR_RIGHT, new Animation(0, Images.get("port-exit-right.png")));
 		}});
-		setSize(new TreeMap<Integer, Vector2>(){{
+		setSize(new TreeMap<Integer, Vector2>() {{
 			put(DIR_UP, new Vector2(4/3f, 1));
 			put(DIR_DOWN, new Vector2(4/3f, 1));
-			put(DIR_LEFT, new Vector2(1, 4/3f));
-			put(DIR_RIGHT, new Vector2(1, 4/3f));
+			put(DIR_LEFT, new Vector2(2, 4/3f));
+			put(DIR_RIGHT, new Vector2(2, 4/3f));
 		}});
-		// TODO: Fix Port hitbox
+		setHitbox(new TreeMap<Integer, Hitbox>() {{
+			put(DIR_UP, new Hitbox(new Rectangle(0, 1/12f, 1, 11/12f)));
+			put(DIR_DOWN, new Hitbox(new Rectangle(0, 0, 1, 11/12f)));
+			put(DIR_LEFT,  new Hitbox(new Rectangle(11/24f, 0, 13/24f, 1)));
+			put(DIR_RIGHT,  new Hitbox(new Rectangle(0, 0, 13/24f, 1)));
+		}});
 		setDirection(direction);
 		updateOrigin();
 	}
 
 	protected void updateOrigin() {
 		switch (getDirection()) {
+		case DIR_UP:
+			setOrigin(1);
+			break;
 		case DIR_DOWN:
-			setOriginY(1/2f);
+			setOriginY(11/12f);
 			break;
 		case DIR_LEFT:
 		case DIR_RIGHT:
-			setOriginY(11/12f);
+			setOriginY(7/6f);
 			break;
 		}
 	}
