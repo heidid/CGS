@@ -30,6 +30,10 @@ public class Factory extends Obstacle {
 
 	public void setInfected(boolean infected) {
 		this.infected = infected;
+		setSprite(new TreeMap<Integer, Animation>() {{
+			put(DIR_LEFT, Images.getAnimation("factory-infected-left-%d.png", 1, 14, 0.05f, PlayMode.LOOP));
+			put(DIR_RIGHT, Images.getAnimation("factory-infected-right-%d.png", 1, 14, 0.05f, PlayMode.LOOP));
+		}});
 	}
 
 	private void spawnFile() {
