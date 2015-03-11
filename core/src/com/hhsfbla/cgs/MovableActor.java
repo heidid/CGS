@@ -94,14 +94,12 @@ public class MovableActor extends AnimatedActor {
 	}
 
 	public void setMoving(int direction) {
-		if (getAnimatedAction() != null) return;
 		moving = true;
 		setDirection(direction);
 		updateOrientedSprite();
 	}
 
 	public void setIdle() {
-		if (getAnimatedAction() != null) return;
 		moving = false;
 		updateOrientedSprite();
 	}
@@ -115,6 +113,7 @@ public class MovableActor extends AnimatedActor {
 	}
 
 	protected void updateOrientedSprite() {
+		if (getAnimatedAction() != null) return;
 		setSprite(moving ? getMoveSprite() : getIdleSprite());
 	}
 
