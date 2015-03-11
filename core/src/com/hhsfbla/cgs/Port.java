@@ -86,4 +86,17 @@ public class Port extends Obstacle {
 			TreeMap<Integer, Animation> disappearSprite) {
 		this.disappearSprite = disappearSprite;
 	}
+
+
+	public class AppearAction extends AnimatedAction {
+		public AppearAction() {
+			super(getAppearSprite());
+		}
+	}
+
+	public class DisappearAction extends AnimatedAction {
+		public DisappearAction() {
+			super(getDisappearSprite());
+		}
+	}
 }
