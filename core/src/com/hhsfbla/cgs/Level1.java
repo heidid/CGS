@@ -5,7 +5,7 @@ public class Level1 extends Level {
 		add(new PlayerSpawn(), 0.5f, 6);
 
 		add(new Enemy(new AttackFileStackAction()), 15, 1);
-		add(new EnemySpawn(), 13, 7.5f);
+		add(new EnemySpawn(), 13, 8);
 
 		final Factory factory = new Factory();
 //		factory.setInfected(true);
