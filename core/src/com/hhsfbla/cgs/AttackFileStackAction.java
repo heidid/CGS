@@ -2,7 +2,6 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
-import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
 import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
@@ -14,9 +13,6 @@ public class AttackFileStackAction extends SequenceAction {
 	KillFileStack kfs = null;
 
 	public void createRemove() {
-		for(Action a : this.getActions()) {
-			enemy.removeAction(a);
-		}
 		enemy.removeAction(this);
 		enemy.setIdle();
 		enemy.addAction(new AttackFileStackAction());
