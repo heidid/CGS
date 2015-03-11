@@ -1,5 +1,9 @@
 package com.hhsfbla.cgs;
 
+import java.util.TreeMap;
+
+import com.badlogic.gdx.graphics.g2d.Animation;
+
 public class PasswordDoor extends UnblockableObstacle {
 	private File key;
 
@@ -12,6 +16,12 @@ public class PasswordDoor extends UnblockableObstacle {
 		setBlockedSprite(Images.get("door.png"));
 		setUnblockedSprite(Images.get("doormat.png"));
 		setOriginY(5/12f);
+		setBlockingAnimation(new TreeMap<Integer, Animation>() {{
+			put(DIR_DOWN, Images.getAnimation("door-%d.png", 0, 10, 0.05f));
+		}});
+		setUnblockingAnimation(new TreeMap<Integer, Animation>() {{
+			put(DIR_DOWN, Images.getAnimation("door-%d.png", 10, 0, 0.05f));
+		}});
 	}
 
 	public File getKey() {
