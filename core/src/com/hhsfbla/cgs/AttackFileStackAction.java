@@ -19,7 +19,6 @@ public class AttackFileStackAction extends SequenceAction {
 		}
 		enemy.removeAction(this);
 		enemy.setIdle();
-		enemy.act(0);
 		enemy.addAction(new AttackFileStackAction());
 	}
 
