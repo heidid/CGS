@@ -28,9 +28,7 @@ public class SpawnPort extends Port {
 	public void spawn(MovableActor actor) {
 		final float spawnX = getX() + (float) Math.cos(Math.toRadians(getDirection()));
 		final float spawnY = getY() + (float) Math.sin(Math.toRadians(getDirection()));
-		System.out.println("SPAWN");
-		System.out.println(spawnX);
-		System.out.println(spawnY);
+
 		final Level level = getLevel();
 
 		for (Obstacle o : level.getObstacles()) {
@@ -47,9 +45,9 @@ public class SpawnPort extends Port {
 		} else {
 			level.add(actor, spawnX, spawnY);
 		}
-		//actor.setDirection(getDirection());
-		//actor.addAction(actor.new AppearAction());
-		//addAction(new AppearAction());
-		//addAction(new DisappearAction());
+		actor.setDirection(getDirection());
+		actor.addAction(actor.new AppearAction());
+		addAction(new AppearAction());
+		addAction(new DisappearAction());
 	}
 }
