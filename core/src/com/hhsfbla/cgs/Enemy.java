@@ -4,6 +4,7 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
@@ -11,9 +12,11 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  * Base class for Enemies
  */
 public class Enemy extends MovableActor {
-	private int health;
-	private int damage;
+	private int maxHealth = 20;
+	private int health = maxHealth;
+	private int damage = 5;
 	private TreeMap<Integer, Animation> hurtSprite;
+	private HealthBar healthBar = new HealthBar();
 
 	public Enemy() {
 		this(null);
@@ -113,9 +116,16 @@ public class Enemy extends MovableActor {
 
 		setOrigin(Align.bottom); // alignment for drawing
 
-		health = 10;
-		setDamage(50);
 		if (action != null) addAction(action);
+	}
+
+	public int getMaxHealth() {
+		return maxHealth;
+	}
+
+	public void setMaxHealth(int maxHealth) {
+		this.maxHealth = maxHealth;
+		health = maxHealth;
 	}
 
 	public int getHealth() {
@@ -159,6 +169,12 @@ public class Enemy extends MovableActor {
 
 	public void setDamage(int damage) {
 		this.damage = damage;
+	}
+
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		healthBar.draw(batch, parentAlpha, getX(), getY(), health, maxHealth);
 	}
 
 	public class HurtAction extends AnimatedAction {
