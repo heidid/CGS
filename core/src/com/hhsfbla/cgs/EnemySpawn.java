@@ -21,7 +21,7 @@ public class EnemySpawn extends SpawnPort {
 		super(direction);
 		random = new Random();
 		setSprite(new TreeMap<Integer, Animation>() {{
-	//		put(DIR_UP, new Animation(0, Images.get("port-enemy-up.png")));
+			put(DIR_UP, new Animation(0, Images.get("port-enemy-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("port-enemy-down.png")));
 			put(DIR_LEFT, new Animation(0, Images.get("port-enemy-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("port-enemy-right.png")));
