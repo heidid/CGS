@@ -1,5 +1,8 @@
 package com.hhsfbla.cgs;
 
+import java.util.TreeMap;
+
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListener {
@@ -19,6 +22,8 @@ public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListen
 		setBlockedSprite(Images.get("door-square.png"));
 		setUnblockedSprite(Images.get("doormat-square.png"));
 		setOriginY(5/12f);
+		setBlockingAnimation(Images.getAnimation("door-square-%d.png", 9, 0, 0.05f));
+		setUnblockingAnimation(Images.getAnimation("door-square-%d.png", 0, 9, 0.05f));
 		for (Switch swtch : switches) {
 			swtch.addSwitchListener(this);
 			switchCount++;
