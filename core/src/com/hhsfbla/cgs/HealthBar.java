@@ -12,7 +12,7 @@ public class HealthBar {
 	private int units;
 
 	public HealthBar() {
-		this(1, 1/12f);
+		this(2/3f, 1/12f);
 	}
 
 	public HealthBar(float width, float height) {
