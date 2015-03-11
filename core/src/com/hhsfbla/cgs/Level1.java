@@ -30,6 +30,9 @@ public class Level1 extends Level {
 		add(swtch, 13, 1);
 		add(new Firewall(false, swtch), 13, 6);
 		add(key, 13, 5);
+		final Wormhole wormhole = new Wormhole();
+		add(wormhole, 2, 6);
+		add(new Wormhole(wormhole), 2, 1);
 
 		add(new ExitPort(), 0.5f, 1);
 	}
