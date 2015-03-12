@@ -3,7 +3,7 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class FileStack extends Obstacle {
-	private static final int MAX_HEALTH = 300;
+	private static final int MAX_HEALTH = 100;
 
 	private int health = MAX_HEALTH;
 	public int enemiesTargettingMe = 0;
