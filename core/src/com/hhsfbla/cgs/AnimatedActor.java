@@ -184,12 +184,7 @@ public class AnimatedActor extends Actor {
 
 	public Action addActionOnce(Action action) {
 		for (Action a : getActions()) {
-			final Class<?> clazz = a.getClass();
-			if (clazz.isMemberClass()) {
-				if (action.toString().equals(a.toString())) return a;
-			} else {
-				if (clazz.isInstance(action)) return a;
-			}
+			if (action.toString().equals(a.toString())) return a;
 		}
 
 		addAction(action);
