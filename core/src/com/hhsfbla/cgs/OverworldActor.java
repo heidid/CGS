@@ -13,6 +13,11 @@ public class OverworldActor extends AnimatedActor {
 		setSprite(Images.get(img));
 	}
 
+	public OverworldActor(float x, float y, String img, float w, float h) {
+		this(x, y, img);
+		setSize(w, h);
+	}
+
 	public void setConnections(OverworldConnection l, OverworldConnection r,
 			OverworldConnection u, OverworldConnection d) {
 		this.r = r;
@@ -27,7 +32,7 @@ public class OverworldActor extends AnimatedActor {
 		ma.setPosition(other.getX(), other.getY());
 		return new OverworldConnection(other, new SequenceAction(ma));
 	}
-	
+
 	static class Connector {
 		static void connectH(OverworldActor a, OverworldActor b) { //horizontal
 			a.r = a.conTo(b);

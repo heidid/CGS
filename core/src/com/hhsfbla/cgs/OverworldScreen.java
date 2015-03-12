@@ -27,7 +27,7 @@ public class OverworldScreen extends StageScreen {
 	@Override
 	public void show() {
 		super.show();
-		background.addActor(new Image(Images.get("background-overworld.png")));
+		background.addActor(new Image(Images.get("background-overworld-grid.png")));
 
 		stage.addActor(background);
 		stage.addActor(level);

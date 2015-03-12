@@ -35,27 +35,28 @@ public class OverworldLevel extends Group {
 		player = new OverworldPlayer();
 		//define locations and graphics
 		addActor(player);
-		addActor(new OverworldActor(2, 3, "server.png"));
-		addActor(new OverworldActor(8, 3, "router.png"));
-		addActor(new OverworldActor(8, 5, "computer.png"));
-		addActor(new OverworldActor(11, 3, "computer.png"));
-		addActor(new OverworldActor(8, 1, "computer.png"));
-		addActor(new OverworldActor(5, 3, "switch.png"));
+		addActor(new OverworldActor(2, 4, "computer.png")); //0
+		addActor(new OverworldCircle(4, 4, 1)); //1
+		addActor(new OverworldCircle(6, 4, 2)); //2
+		addActor(new OverworldActor(7, 4, "router.png", 0.8f, 0.5f)); //3
+		addActor(new OverworldCircle(6, 6, 1)); //4
+		addActor(new OverworldActor(6, 8, "computer.png")); //5
+		addActor(new OverworldCircle(6, 2, 0)); //6
+		addActor(new OverworldActor(6, 1, "computer.png")); //7
 		//double the size
-		for(AnimatedActor a : overworldActors)
+		for(AnimatedActor a : overworldActors){
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
-		overworldActors.get(0).setLevel(new Level1());
+		}
 		overworldActors.get(1).setLevel(new Level1());
-		overworldActors.get(2).setLevel(new Level2());
-		overworldActors.get(3).setLevel(new Level3());
-		overworldActors.get(4).setLevel(new Level4());
+		overworldActors.get(4).setLevel(new Level2());
+		overworldActors.get(6).setLevel(new Level3());
+		overworldActors.get(2).setLevel(new Level4()); //router
 		//set connections
-		OverworldActor.Connector.connectH(overworldActors.get(0), overworldActors.get(5));
-		OverworldActor.Connector.connectV(overworldActors.get(1), overworldActors.get(2));
-		OverworldActor.Connector.connectV(overworldActors.get(4), overworldActors.get(1));
-		OverworldActor.Connector.connectH(overworldActors.get(1), overworldActors.get(3));
-		OverworldActor.Connector.connectH(overworldActors.get(5), overworldActors.get(1));
-		player.setOverworldActor(overworldActors.get(0));
+		OverworldActor.Connector.connectH(overworldActors.get(1), overworldActors.get(2));
+		OverworldActor.Connector.connectV(overworldActors.get(2), overworldActors.get(6));
+		OverworldActor.Connector.connectV(overworldActors.get(2), overworldActors.get(4));
+//		OverworldActor.Connector.connectV(overworldActors.get(2), overworldActors.get(6));
+		player.setOverworldActor(overworldActors.get(1));
 		player.addListener(player.new OverworldLevelInputListener(screen));
 	}
 
