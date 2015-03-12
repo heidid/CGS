@@ -4,7 +4,6 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class Virus extends Enemy {
 	private Factory factory;
@@ -16,7 +15,18 @@ public class Virus extends Enemy {
 	@SuppressWarnings("serial")
 	public Virus(int direction) {
 		// TODO: Add Virus action
-		super(direction, new AttackFileStackAction());
+		super(direction, null);
+		addAction(Actions.sequence(Actions.run(new Runnable() {
+			@Override
+			public void run() {
+				for (Obstacle o : getLevel().getObstacles()) {
+					if (o instanceof Factory) {
+						Factory factory = (Factory) o;
+						if (!factory.isInfected()) infect(factory);
+					}
+				}
+			}
+		}), new AttackFileStackAction()));
 
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("virus-up.png")));

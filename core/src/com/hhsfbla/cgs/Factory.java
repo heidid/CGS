@@ -76,6 +76,15 @@ public class Factory extends Obstacle {
 	}
 
 	@Override
+	protected void resolveCollision(AnimatedActor actor) {
+		if (infected && actor instanceof Disc) {
+			final Disc disc = (Disc) actor;
+			infector.damage(disc.getDamage());
+			getLevel().remove(disc);
+		}
+	}
+
+	@Override
 	public void act(float delta) {
 		super.act(delta);
 

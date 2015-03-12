@@ -13,9 +13,7 @@ public class Level1 extends Level {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
 		add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT, ConveyorBelt.DIR_DOWN), 12, 6);
-		final Virus virus = new Virus();
-		add(virus, 3, 1);
-		factory.addAction(factory.new InfectAction(virus));
+		add(new Virus(), 3, 1);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);
