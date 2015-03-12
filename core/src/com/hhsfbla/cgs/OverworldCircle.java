@@ -7,4 +7,8 @@ public class OverworldCircle extends OverworldActor {
 		setSize(0.5f, 0.3f);
 	}
 
+	@Override
+	public float getZValue() {
+		return Float.MAX_VALUE;
+	}
 }

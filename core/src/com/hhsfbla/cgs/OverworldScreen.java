@@ -52,7 +52,8 @@ public class OverworldScreen extends StageScreen {
 		level.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {
-				return Float.compare(b.getY(), a.getY());
+				return Float.compare(((AnimatedActor) b).getZValue(),
+						((AnimatedActor) a).getZValue());
 			}
 		});
 
