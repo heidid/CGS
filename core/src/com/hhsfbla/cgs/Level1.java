@@ -8,11 +8,14 @@ public class Level1 extends Level {
 		add(new EnemySpawn(), 13, 8);
 
 		final Factory factory = new Factory();
-		factory.setInfected(true);
 		add(factory, 5, 6);
-		for (int i = 6; i <= 10; i++) {
+		for (int i = 6; i <= 11; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
+		add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT, ConveyorBelt.DIR_DOWN), 12, 6);
+		final Virus virus = new Virus();
+		add(virus, 3, 1);
+		factory.addAction(factory.new InfectAction(virus));
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);

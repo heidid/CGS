@@ -171,6 +171,10 @@ public class Enemy extends MovableActor {
 		this.damage = damage;
 	}
 
+	public HealthBar getHealthBar() {
+		return healthBar;
+	}
+
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);

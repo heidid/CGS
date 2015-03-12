@@ -3,8 +3,12 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class Virus extends Enemy {
+	private Factory factory;
+
 	public Virus() {
 		this(DIR_RIGHT);
 	}
@@ -72,5 +76,20 @@ public class Virus extends Enemy {
 					Images.get("virus-down-right copy.png"),
 					Images.get("virus-down-right.png")));
 		}});
+	}
+
+	public void infect(Factory factory) {
+		this.factory = factory;
+		factory.addAction(factory.new InfectAction(this));
+	}
+
+	@Override
+	public void setHealth(int health) {
+		super.setHealth(health);
+		if (health <= 0 && factory != null) {
+			factory.clearActions();
+			factory.setInfected(false);
+			factory.setInfector(null);
+		}
 	}
 }
