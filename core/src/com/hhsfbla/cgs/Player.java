@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 public class Player extends MovableActor {
-	private static final float SHOOT_DELAY = 0.4f; // number of seconds between firing CDs
+	private static final float SHOOT_DELAY = 0.3f; // number of seconds between firing CDs
 
 	private Array<Item> inventory;
 	private boolean canShoot;
