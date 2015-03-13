@@ -2,7 +2,7 @@ package com.hhsfbla.cgs;
 
 public class Level2 extends Level {
 	public Level2() {
-		add(new PlayerSpawn(PlayerSpawn.DIR_DOWN), 2, 7);
+		add(new PlayerSpawn(PlayerSpawn.DIR_DOWN), 2, 7.5f);
 
 		add(new Wall(Wall.DIR_UP), 1, 6);
 		add(new Wall(Wall.DIR_DOWN_LEFT), 3, 6);
@@ -41,6 +41,6 @@ public class Level2 extends Level {
 
 		add(new SwitchGroupDoor(switches), 2, 1);
 
-		add(new ExitPort(ExitPort.DIR_LEFT), 15, 0);
+		add(new ExitPort(ExitPort.DIR_LEFT), 14.5f, 0);
 	}
 }
