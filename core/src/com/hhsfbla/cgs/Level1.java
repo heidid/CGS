@@ -40,7 +40,8 @@ public class Level1 extends Level {
 
 	@Override
 	public void init() {
+		screen.getUi().addActor(new DialogBox(this, 100, 600,
+				"yayy\n\nPress Enter to continue..."));
 		super.init();
-		screen.getUi().addActor(new DialogBox(100, 600, "yayy"));
 	}
 }
