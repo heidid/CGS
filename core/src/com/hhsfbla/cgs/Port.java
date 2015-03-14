@@ -37,7 +37,7 @@ public class Port extends Obstacle {
 			setOrigin(1);
 			break;
 		case DIR_DOWN:
-			setOriginY(11/12f);
+			setOriginY(3/4f);
 			break;
 		case DIR_LEFT:
 		case DIR_RIGHT:
@@ -68,7 +68,6 @@ public class Port extends Obstacle {
 			TreeMap<Integer, Animation> disappearSprite) {
 		this.disappearSprite = disappearSprite;
 	}
-
 
 	public class AppearAction extends AnimatedAction {
 		public AppearAction() {
