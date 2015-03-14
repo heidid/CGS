@@ -159,8 +159,7 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.ENTER:
-				if(space == 0)
-					space = 1;
+				if (space == 0) space = 1;
 				break;
 			}
 			handleInput();
