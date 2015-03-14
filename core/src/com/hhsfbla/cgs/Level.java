@@ -1,5 +1,6 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Level extends AnimatedActorGroup {
@@ -15,6 +16,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<FileStack> fileStacks;
 	protected LevelScreen screen;
 	Grid grid;
+	private boolean paused;
 
 	public Level() {
 		player = new Player();
@@ -121,6 +123,20 @@ public abstract class Level extends AnimatedActorGroup {
 	public void remove(Projectile projectile) {
 		projectiles.removeValue(projectile, true);
 		remove((AnimatedActor) projectile);
+	}
+
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+		for (AnimatedActor actor : getActors()) actor.setPaused(paused);
+	}
+
+	@Override
+	public void act(float delta) {
+		if (!paused) super.act(delta);
 	}
 
 	public void end() {

@@ -37,6 +37,7 @@ public class AnimatedActor extends Actor {
 	private Hitbox hitbox;
 	private float animationStateTime;
 	private AnimatedAction animatedAction;
+	private boolean paused;
 
 	/**
 	 * Creates a new AnimatedActor
@@ -171,6 +172,14 @@ public class AnimatedActor extends Actor {
 		animatedAction = null;
 	}
 
+	public boolean isPaused() {
+		return paused;
+	}
+
+	public void setPaused(boolean paused) {
+		this.paused = paused;
+	}
+
 	public float getZValue() {
 		if (this instanceof Obstacle) {
 			final Obstacle obstacle = (Obstacle) this;
@@ -246,7 +255,7 @@ public class AnimatedActor extends Actor {
 					getOriginX(), getOriginY(), getWidth(), height,
 					getScaleX(), getScaleY(), getRotation());
 
-			animationStateTime += Gdx.graphics.getDeltaTime();
+			if (!paused) animationStateTime += Gdx.graphics.getDeltaTime();
 		}
 	}
 
