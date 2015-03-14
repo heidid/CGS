@@ -1,8 +1,11 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
@@ -13,7 +16,7 @@ public class DialogBox extends Label {
 
 	public DialogBox(float x, float y, String text) {
 		super(text, new LabelStyle() {{
-			font = new BitmapFont();
+			font = Fonts.getFont("fonts/Laconic_Regular.otf");
 			fontColor = Color.WHITE;
 			background = DialogBox.background;
 		}});
