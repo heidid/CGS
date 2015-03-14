@@ -37,4 +37,10 @@ public class Level1 extends Level {
 
 		add(new ExitPort(), 0.5f, 1);
 	}
+
+	@Override
+	public void init() {
+		super.init();
+		screen.getUi().addActor(new DialogBox(100, 600, "yayy"));
+	}
 }

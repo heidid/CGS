@@ -24,6 +24,14 @@ public class LevelScreen extends StageScreen {
 		ui = new Group();
 	}
 
+	public Level getLevel() {
+		return level;
+	}
+
+	public Group getUi() {
+		return ui;
+	}
+
 	@Override
 	public void show() {
 		super.show();

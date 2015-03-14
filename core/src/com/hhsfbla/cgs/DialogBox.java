@@ -1,29 +1,32 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
-import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
-public class Box extends AnimatedActor {
+public class DialogBox extends Label {
+	private static Drawable background = new NinePatchDrawable(new NinePatch(
+			Images.get("box.png"), 14, 14, 14, 14));
 
-	private NinePatch patch = new NinePatch(Images.get("box.png"), 4, 4, 4, 4);
-	private float borderWidth = 0.05f;
-	private float width;
-	private float height;
-
-	public Box(float w, float h) {
-		width = w;
-		height = h;
-		patch.setLeftWidth(borderWidth);
-		patch.setRightWidth(borderWidth);
-		patch.setTopHeight(borderWidth);
-		patch.setBottomHeight(borderWidth);
-	}
-	@Override
-	public void draw(Batch batch, float parentAlpha) {
-		super.draw(batch, parentAlpha);
-		patch.draw(batch, getX(), getY(), width, height);
+	public DialogBox(float x, float y, String text) {
+		super(text, new LabelStyle() {{
+			font = new BitmapFont();
+			fontColor = Color.WHITE;
+			background = DialogBox.background;
+		}});
+		setPosition(x, y);
 	}
 
+	public DialogBox(float x, float y, float w, float h, String text) {
+		super(text, new LabelStyle() {{
+			font = new BitmapFont();
+			fontColor = Color.WHITE;
+			background = DialogBox.background;
+		}});
+		setBounds(x, y, w, h);
+		setWrap(true);
+	}
 }

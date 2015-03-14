@@ -3,7 +3,7 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Level extends AnimatedActorGroup {
-	//constants for level size
+	// constants for level size
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
@@ -13,7 +13,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<Item> items;
 	protected Array<Projectile> projectiles;
 	protected Array<FileStack> fileStacks;
-	protected StageScreen screen;
+	protected LevelScreen screen;
 	Grid grid;
 
 	public Level() {
@@ -39,7 +39,7 @@ public abstract class Level extends AnimatedActorGroup {
 		}
 	}
 
-	public void setScreen(StageScreen screen) {
+	public void setScreen(LevelScreen screen) {
 		this.screen = screen;
 	}
 
