@@ -11,6 +11,7 @@ public class ExitPort extends Port {
 
 	public ExitPort(int direction) {
 		super(direction);
+		setOpen(false);
 		setOpenSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("port-exit-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("port-exit-down.png")));

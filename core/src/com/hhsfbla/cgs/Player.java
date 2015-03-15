@@ -140,6 +140,16 @@ public class Player extends MovableActor {
 			if (space == 1 && canShoot) {
 				space = 2;
 				addAction(new ShootAction());
+
+				// TODO: Add actual exit unlocking code
+				for (Obstacle o : getLevel().getObstacles()) {
+					if (o instanceof ExitPort) {
+						final ExitPort exit = (ExitPort) o;
+						if (!exit.isOpen()) {
+							exit.addAction(exit.new AppearAction());
+						}
+					}
+				}
 			}
 		}
 
