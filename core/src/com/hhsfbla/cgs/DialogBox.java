@@ -7,21 +7,20 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 public class DialogBox extends Label {
-	private static Drawable background = new NinePatchDrawable(new NinePatch(
-			Images.get("box.png"), 14, 14, 14, 14));
+	private static LabelStyle style = new LabelStyle() {{
+		font = Fonts.getFont("fonts/Laconic_Regular.otf");
+		fontColor = Color.WHITE;
+		background = new NinePatchDrawable(new NinePatch(
+				Images.get("box.png"), 14, 14, 14, 14));
+	}};
 
 	private Level level;
 
 	public DialogBox(Level level, float x, float y, String text) {
-		super(text, new LabelStyle() {{
-			font = Fonts.getFont("fonts/Laconic_Regular.otf");
-			fontColor = Color.WHITE;
-			background = DialogBox.background;
-		}});
+		super(text, style);
 		this.level = level;
 		level.setPaused(true);
 		setPosition(x, y);
@@ -29,11 +28,7 @@ public class DialogBox extends Label {
 	}
 
 	public DialogBox(Level level, float x, float y, float w, float h, String text) {
-		super(text, new LabelStyle() {{
-			font = Fonts.getFont("fonts/Laconic_Regular.otf");
-			fontColor = Color.WHITE;
-			background = DialogBox.background;
-		}});
+		super(text, style);
 		this.level = level;
 		level.setPaused(true);
 		setBounds(x, y, w, h);
