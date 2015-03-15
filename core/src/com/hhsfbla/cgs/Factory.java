@@ -17,8 +17,14 @@ public class Factory extends Obstacle {
 		put(DIR_LEFT, Images.getAnimation("factory-infected-left-%d.png", 1, 14, 0.05f, PlayMode.LOOP));
 		put(DIR_RIGHT, Images.getAnimation("factory-infected-right-%d.png", 1, 14, 0.05f, PlayMode.LOOP));
 	}};
-	private static final TreeMap<Integer, Animation> INFECT_ANIMATION = null;
-	private static final TreeMap<Integer, Animation> DISINFECT_ANIMATION = null;
+	private static final TreeMap<Integer, Animation> INFECT_ANIMATION = new TreeMap<Integer, Animation>() {{
+		put(DIR_LEFT, Images.getAnimation("factory-left-infect-%d.png", 0, 15, 0.05f));
+		put(DIR_RIGHT, Images.getAnimation("factory-right-infect-%d.png", 0, 15, 0.05f));
+	}};;
+	private static final TreeMap<Integer, Animation> DISINFECT_ANIMATION = new TreeMap<Integer, Animation>() {{
+		put(DIR_LEFT, Images.getAnimation("factory-left-infect-%d.png", 15, 0, 0.05f));
+		put(DIR_RIGHT, Images.getAnimation("factory-right-infect-%d.png", 15, 0, 0.05f));
+	}};;;
 
 	private boolean infected;
 	private Virus infector;
