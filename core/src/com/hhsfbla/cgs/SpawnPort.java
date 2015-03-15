@@ -1,9 +1,5 @@
 package com.hhsfbla.cgs;
 
-import java.util.TreeMap;
-
-import com.badlogic.gdx.graphics.g2d.Animation;
-
 public class SpawnPort extends Port {
 
 	public SpawnPort() {
@@ -12,18 +8,6 @@ public class SpawnPort extends Port {
 
 	public SpawnPort(int direction) {
 		super(direction);
-		setAppearAnimation(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("port-enemy-up-%d.png", 17, 0, 0.05f));
-			put(DIR_DOWN, Images.getAnimation("port-enemy-down%d.png", 8, 0, 0.05f));
-			put(DIR_LEFT, Images.getAnimation("port-enemy-left-%d.png", 14, 0, 0.05f));
-			put(DIR_RIGHT, Images.getAnimation("port-enemy-right-%d.png", 14, 0, 0.05f));
-		}});
-		setDisappearAnimation(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("port-enemy-up-%d.png", 0, 17, 0.05f));
-			put(DIR_DOWN, Images.getAnimation("port-enemy-down%d.png", 0, 8, 0.05f));
-			put(DIR_LEFT, Images.getAnimation("port-enemy-left-%d.png", 0, 14, 0.05f));
-			put(DIR_RIGHT, Images.getAnimation("port-enemy-right-%d.png", 0, 14, 0.05f));
-		}});
 	}
 
 	public void spawn(MovableActor actor) {

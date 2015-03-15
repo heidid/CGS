@@ -39,7 +39,6 @@ public class Virus extends Enemy {
 			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("virus-down-right.png")));
 		}});
 		setMoveSprite(getIdleSprite());
-		// TODO: Add Virus appear/disappear sprites
 		setAppearSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, Images.getAnimation("virus-up-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN, Images.getAnimation("virus-down-%d.png", 0, 9, 0.03f));
