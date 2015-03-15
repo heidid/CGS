@@ -2,6 +2,10 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.InputMultiplexer;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -25,7 +29,7 @@ public class StageScreen extends ScreenAdapter {
 
 	@Override
 	public void show() {
-		Gdx.input.setInputProcessor(stage);
+		Gdx.input.setInputProcessor(new ExitWrapper(stage));
 	}
 
 	@Override
@@ -38,5 +42,25 @@ public class StageScreen extends ScreenAdapter {
 	@Override
 	public void resize(int width, int height) {
 		stage.getViewport().update(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+	}
+
+	public static class ExitWrapper extends InputMultiplexer {
+		public ExitWrapper() {
+			addProcessor(new InputAdapter() {
+				@Override
+				public boolean keyDown(int keycode) {
+					if (keycode == Input.Keys.ESCAPE) {
+						Gdx.app.exit();
+						return true;
+					}
+					return false;
+				}
+			});
+		}
+
+		public ExitWrapper(InputProcessor processor) {
+			this();
+			addProcessor(processor);
+		}
 	}
 }
