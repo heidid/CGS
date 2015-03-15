@@ -3,7 +3,6 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.scenes.scene2d.Action;
 
 public class Trojan extends Enemy {
 	public Trojan() {

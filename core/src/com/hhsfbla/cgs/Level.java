@@ -1,6 +1,5 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Level extends AnimatedActorGroup {

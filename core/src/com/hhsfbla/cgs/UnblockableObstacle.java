@@ -4,7 +4,6 @@ import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
 
 public class UnblockableObstacle extends Obstacle {
 	private TreeMap<Integer, Animation> blockedSprite;

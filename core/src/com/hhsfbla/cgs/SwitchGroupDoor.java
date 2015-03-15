@@ -1,10 +1,5 @@
 package com.hhsfbla.cgs;
 
-import java.util.TreeMap;
-
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
-
 public class SwitchGroupDoor extends UnblockableObstacle implements SwitchListener {
 	private int switchCount;
 	private int onCount;

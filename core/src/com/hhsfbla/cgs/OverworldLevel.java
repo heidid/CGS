@@ -7,7 +7,6 @@ import com.badlogic.gdx.utils.Array;
  * Represents a selectable level on the OverworldScreen
  */
 public class OverworldLevel extends Group {
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	Array<OverworldActor> overworldActors = new Array<>();
 	StageScreen screen;
 	OverworldPlayer player;

@@ -138,8 +138,7 @@ public class ConveyorBelt extends Obstacle {
 		}
 
 		public ConveyorBeltAction(int direction1, int direction2) {
-			final double ang1 = Math.toRadians(direction1);
-			final double ang2 = Math.toRadians(direction2);
+			final double ang = Math.toRadians(direction2);
 
 			addAction(Actions.run(new Runnable() {
 				@Override
@@ -149,8 +148,8 @@ public class ConveyorBelt extends Obstacle {
 			}));
 			addAction(new ConveyorBeltMoveToAction(getX(), getY(), direction1));
 			addAction(new ConveyorBeltMoveToAction(
-					getX() + (float) Math.cos(ang2),
-					getY() + (float) Math.sin(ang2), direction2));
+					getX() + (float) Math.cos(ang),
+					getY() + (float) Math.sin(ang), direction2));
 			addAction(Actions.run(new Runnable() {
 				@Override
 				public void run() {

@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.Align;
 
 /**
@@ -244,9 +243,7 @@ public class AnimatedActor extends Actor {
 	@Override
 	public void draw(Batch batch, float parentAlpha) {
 		if (sprite != null) {
-			final Stage stage = getStage();
 			final TextureRegion image = getCurrentSpriteFrame();
-
 			final float height = image.getRegionHeight() * getWidth()
 					/ image.getRegionWidth();
 
