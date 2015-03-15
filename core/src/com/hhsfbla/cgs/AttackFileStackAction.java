@@ -84,20 +84,21 @@ public class AttackFileStackAction extends SequenceAction {
 
 		FileStack closest = null;
 		CellPath shortest = null;
+		int slot = 0;
 		for (FileStack fs : enemy.getLevel().getFileStacks()) {
 			if(fs.getHealth() <= 0)
 				continue;
-			CellPath cp = enemy.getLevel().grid.getPathToObstacle(Math.round(fs.getX()), Math.round(fs.getY()), enemy);
-			if (fs.enemiesTargettingMe != fs.maxEnemiesTargettingMe && cp != null && cp.array.size != 0 && (shortest == null || cp.array.size < shortest.array.size)) {
+			SlottedCellPathContainer scpc = fs.getPathToObstacle(Math.round(fs.getX()), Math.round(fs.getY()), enemy);
+			CellPath cp = scpc.cp;
+			if (cp != null && cp.array.size != 0 && (shortest == null || cp.array.size < shortest.array.size)) {
 				closest = fs;
 				shortest = cp;
+				slot = scpc.slot;
 			}
 		}
-		if(closest == null) {
-			createRemove();
+		if(closest == null)
 			return;
-		}
-		closest.enemiesTargettingMe++;
+		closest.slots[slot]++;
 		this.fileStack = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
 		addAction(new RunnableAction() {

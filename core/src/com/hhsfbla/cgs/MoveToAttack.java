@@ -23,12 +23,12 @@ public class MoveToAttack extends SequenceAction {
 		this.y = y;
 		this.cp = cp;
 	}
-	public MoveToAttack(float x, float y) {
+	/*public MoveToAttack(float x, float y) {
 		this.x = x;
 		this.y = y;
 		final AnimatedActor a = (AnimatedActor) getActor();
 		cp = a.getLevel().grid.getPathToObstacle(Math.round(x), Math.round(y), a);
-	}
+	}*/
 	public void init() {
 		addAction(new PathfindingAction(cp));
 		addAction(new FaceAction());
