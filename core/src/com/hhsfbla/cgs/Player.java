@@ -34,20 +34,20 @@ public class Player extends MovableActor {
 		setMoveSprite(getIdleSprite());
 		// TODO: Add actual player appear/disappear sprites
 		setAppearSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 0, 9, 0.03f));
-			put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 0, 9, 0.03f));
-			put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 7, 1, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 7, 1, 0.03f));
+			put(DIR_UP, Images.getAnimation("player-up-%d.png", 9, 0, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("player-down-%d.png", 9, 0, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("player-left-%d.png", 9, 0, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("player-right-%d.png", 9, 0, 0.03f));
 			put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 0, 9, 0.03f));
 			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN_RIGHT, Images.getAnimation("minion-down-right-%d.png", 0, 9, 0.03f));
 		}});
 		setDisappearSprite(new TreeMap<Integer, Animation>() {{
-			put(DIR_UP, Images.getAnimation("minion-up-die-%d.png", 9, 0, 0.03f));
-			put(DIR_DOWN, Images.getAnimation("minion-down-die-%d.png", 9, 0, 0.03f));
-			put(DIR_LEFT, Images.getAnimation("minion-left-die-%d.png", 1, 7, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("minion-right-die-%d.png", 1, 7, 0.03f));
+			put(DIR_UP, Images.getAnimation("player-up-%d.png", 0, 9, 0.03f));
+			put(DIR_DOWN, Images.getAnimation("player-down-%d.png", 0, 9, 0.03f));
+			put(DIR_LEFT, Images.getAnimation("player-left-%d.png", 0, 9, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("player-right-%d.png", 0, 9, 0.03f));
 			put(DIR_UP_LEFT, Images.getAnimation("minion-up-left-die-%d.png", 9, 0, 0.03f));
 			put(DIR_UP_RIGHT, Images.getAnimation("minion-up-right-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("minion-down-left-%d.png", 9, 0, 0.03f));
