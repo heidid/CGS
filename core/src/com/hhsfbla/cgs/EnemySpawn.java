@@ -26,6 +26,7 @@ public class EnemySpawn extends SpawnPort {
 			put(DIR_LEFT, new Animation(0, Images.get("port-enemy-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("port-enemy-right.png")));
 		}});
+
 		generateDelay();
 	}
 
@@ -38,11 +39,13 @@ public class EnemySpawn extends SpawnPort {
 	public void act(float delta) {
 		super.act(delta);
 
-		time += delta;
-		if (time >= delay) {
-			spawn(new Enemy(new AttackFileStackAction()));
-			generateDelay();
-			time = 0;
+		if (isOpen()) {
+			time += delta;
+			if (time >= delay) {
+				spawn(new Enemy(new AttackFileStackAction()));
+				generateDelay();
+				time = 0;
+			}
 		}
 	}
 }

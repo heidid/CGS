@@ -6,10 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 
-public class Port extends Obstacle {
-	private TreeMap<Integer, Animation> appearSprite;
-	private TreeMap<Integer, Animation> disappearSprite;
-
+public class Port extends UnblockableObstacle {
 	public Port() {
 		this(DIR_RIGHT);
 	}
@@ -27,8 +24,41 @@ public class Port extends Obstacle {
 			put(DIR_LEFT,  new Hitbox(new Rectangle(11/24f, 0, 13/24f, 1)));
 			put(DIR_RIGHT,  new Hitbox(new Rectangle(0, 0, 13/24f, 1)));
 		}});
+		setUnblockedSprite(new Animation(0, Images.get("blank.png")));
 		setDirection(direction);
 		updateOrigin();
+	}
+
+	public boolean isOpen() {
+		return isBlocked();
+	}
+
+	public void setOpen(boolean open) {
+		setBlocked(open);
+	}
+
+	public TreeMap<Integer, Animation> getOpenSprite() {
+		return getBlockedSprite();
+	}
+
+	public void setOpenSprite(TreeMap<Integer, Animation> sprite) {
+		setBlockedSprite(sprite);
+	}
+
+	public TreeMap<Integer, Animation> getAppearAnimation() {
+		return getBlockingAnimation();
+	}
+
+	public void setAppearAnimation(TreeMap<Integer, Animation> animation) {
+		setBlockingAnimation(animation);
+	}
+
+	public TreeMap<Integer, Animation> getDisappearAnimation() {
+		return getBlockingAnimation();
+	}
+
+	public void setDisappearAnimation(TreeMap<Integer, Animation> animation) {
+		setBlockingAnimation(animation);
 	}
 
 	protected void updateOrigin() {
@@ -52,32 +82,7 @@ public class Port extends Obstacle {
 		updateOrigin();
 	}
 
-	public TreeMap<Integer, Animation> getAppearSprite() {
-		return appearSprite;
-	}
+	public class AppearAction extends BlockAction {}
 
-	public void setAppearSprite(TreeMap<Integer, Animation> appearSprite) {
-		this.appearSprite = appearSprite;
-	}
-
-	public TreeMap<Integer, Animation> getDisappearSprite() {
-		return disappearSprite;
-	}
-
-	public void setDisappearSprite(
-			TreeMap<Integer, Animation> disappearSprite) {
-		this.disappearSprite = disappearSprite;
-	}
-
-	public class AppearAction extends AnimatedAction {
-		public AppearAction() {
-			super(getAppearSprite());
-		}
-	}
-
-	public class DisappearAction extends AnimatedAction {
-		public DisappearAction() {
-			super(getDisappearSprite());
-		}
-	}
+	public class DisappearAction extends UnblockAction {}
 }
