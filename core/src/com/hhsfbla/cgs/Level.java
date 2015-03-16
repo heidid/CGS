@@ -183,6 +183,14 @@ public abstract class Level extends AnimatedActorGroup {
 					}
 				}
 
+				for (int i = 0; i < items.size; i++) {
+					final Item item = items.get(i);
+					if (item instanceof ImportantFile) {
+						setComplete(false);
+						return;
+					}
+				}
+
 				setComplete(true);
 			}
 		}

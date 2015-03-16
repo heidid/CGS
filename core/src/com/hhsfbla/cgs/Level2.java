@@ -40,6 +40,7 @@ public class Level2 extends Level {
 		add(switches[6], 2, 3);
 
 		add(new SwitchGroupDoor(switches), 2, 1);
+		add(new ImportantFile(), 2, 0);
 
 		add(new ExitPort(ExitPort.DIR_LEFT), 14.5f, 0);
 	}
