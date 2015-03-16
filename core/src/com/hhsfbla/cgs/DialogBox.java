@@ -14,7 +14,7 @@ public class DialogBox extends Label {
 		font = Fonts.getFont("fonts/Laconic_Regular.otf");
 		fontColor = Color.WHITE;
 		background = new NinePatchDrawable(new NinePatch(
-				Images.get("box.png"), 14, 14, 14, 14));
+				Images.get("box-enter.png"), 14, 59, 14, 32));
 	}};
 
 	private Level level;
