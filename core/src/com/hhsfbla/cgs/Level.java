@@ -16,6 +16,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected LevelScreen screen;
 	Grid grid;
 	private boolean paused;
+	private boolean complete;
 
 	public Level() {
 		player = new Player();
@@ -133,9 +134,58 @@ public abstract class Level extends AnimatedActorGroup {
 		for (AnimatedActor actor : getActors()) actor.setPaused(paused);
 	}
 
+	public boolean isComplete() {
+		return complete;
+	}
+
+	public void setComplete(boolean complete) {
+		if (this.complete != complete) {
+			for (Obstacle o : getObstacles()) {
+				if (o instanceof ExitPort) {
+					final ExitPort exit = (ExitPort) o;
+					if (complete) {
+						exit.addAction(exit.new AppearAction());
+					} else {
+						exit.addAction(exit.new DisappearAction());
+					}
+				}
+			}
+		}
+		this.complete = complete;
+	}
+
 	@Override
 	public void act(float delta) {
-		if (!paused) super.act(delta);
+		if (!paused) {
+			super.act(delta);
+
+			// Level completion checking
+			if (getEnemies().size > 0) {
+				setComplete(false);
+				return;
+			} else {
+				// LibGDX throws an exception if I use a foreach loop again
+				for (int i = 0; i < obstacles.size; i++) {
+					final Obstacle o = obstacles.get(i);
+
+					if (o instanceof Factory) {
+						final Factory factory = (Factory) o;
+						if (factory.isInfected()) {
+							setComplete(false);
+							return;
+						}
+					} else if (o instanceof EnemySpawn) {
+						final EnemySpawn spawn = (EnemySpawn) o;
+						if (spawn.canSpawn()) {
+							setComplete(false);
+							return;
+						}
+					}
+				}
+
+				setComplete(true);
+			}
+		}
 	}
 
 	public void end() {

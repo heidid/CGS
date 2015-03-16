@@ -64,7 +64,7 @@ public class OverworldLevel extends Group {
 		c1.setLevel(new Level1()); // first computer circle
 		c3.setLevel(new Level2()); // third computer circle
 		c2.setLevel(new Level3()); // second computer circle
-		router.setLevel(new MainMenuLevel()); //router circle
+//		router.setLevel(new MainMenuLevel()); //router circle
 		//set connections
 		OverworldActor.Connector.connectV(c1, router);
 		OverworldActor.Connector.connectV(c3, router);

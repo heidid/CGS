@@ -8,7 +8,7 @@ public class Level1 extends Level {
 		add(new EnemySpawn(), 13, 8);
 
 		final Factory factory = new Factory();
-		//add(factory, 5, 6);
+		add(factory, 5, 6);
 		for (int i = 6; i <= 11; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}

@@ -54,7 +54,7 @@ public class EnemySpawn extends SpawnPort {
 		if (isOpen()) {
 			time += delta;
 			if (time >= delay) {
-				spawn(new Enemy(new AttackFileStackAction()));
+				if (canSpawn()) spawn(new Enemy(new AttackFileStackAction()));
 				generateDelay();
 				time = 0;
 			}
