@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.actions.SequenceAction;
 
 public class OverworldActor extends AnimatedActor {
 	OverworldConnection l, r, u, d; //left right up and down connections
-	boolean unlocked = true;
 	private OverworldLine[] lines = new OverworldLine[8];
 	private int numLines = 0;
 
@@ -33,7 +32,9 @@ public class OverworldActor extends AnimatedActor {
 		MoveToAction ma = new MoveToAction();
 		ma.setDuration((float) 1.0);
 		ma.setPosition(other.getX(), other.getY());
-		lines[numLines] = new OverworldLine(getX(), getY(), other.getX(), other.getY());
+		int type = ((OverworldCircle)this).getType() < ((OverworldCircle)other).getType() ?
+				((OverworldCircle)this).getType() : ((OverworldCircle)other).getType();
+		lines[numLines] = new OverworldLine(getX(), getY(), other.getX(), other.getY(), type);
 		numLines++;
 		return new OverworldConnection(other, new SequenceAction(ma));
 	}

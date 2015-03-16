@@ -37,10 +37,10 @@ public class OverworldLevel extends Group {
 		this.screen = screen;
 		player = new OverworldPlayer();
 		//define locations and graphics
-		OverworldCircle c1 = new OverworldCircle(2, 2, 2);
-		OverworldCircle c2 = new OverworldCircle(5, 2, 0);
-		OverworldCircle c3 = new OverworldCircle(8, 2, 0);
-		OverworldCircle router = new OverworldCircle(5, 4, 0);
+		OverworldCircle c1 = new OverworldCircle(2, 2, 1);
+		OverworldCircle c2 = new OverworldCircle(5, 2, 1);
+		OverworldCircle c3 = new OverworldCircle(8, 2, 2);
+		OverworldCircle router = new OverworldCircle(5, 4, 1);
 		OverworldCircle swtch = new OverworldCircle(8, 6, 0); // swtch not switch
 		OverworldCircle s = new OverworldCircle(12, 6, 0);
 		addActor(player);

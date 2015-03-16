@@ -69,7 +69,8 @@ public class OverworldPlayer extends MovableActor {
 					setDirection(DIR_RIGHT);
 				return true;
 			} else if (keycode == Input.Keys.ENTER) {
-				if (current.unlocked && current.getLevel() != null) {
+				if (((OverworldCircle)current).getType()>0
+						&& current.getLevel() != null) {
 					os.game.setScreen(new LevelScreen(os.game, os.stage,
 							current.getLevel()));
 					//initialize the level
