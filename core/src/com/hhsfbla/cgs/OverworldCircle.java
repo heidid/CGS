@@ -7,6 +7,10 @@ public class OverworldCircle extends OverworldActor {
 		setSize(0.5f, 0.3f);
 	}
 
+	public void setType(int type) {
+		setSprite(Images.get("overworld-level-"+type+".png"));
+	}
+
 	@Override
 	public float getZValue() {
 		return Float.MAX_VALUE;

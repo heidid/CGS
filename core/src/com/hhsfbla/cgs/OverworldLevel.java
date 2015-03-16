@@ -1,6 +1,10 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Group;
+import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -33,35 +37,44 @@ public class OverworldLevel extends Group {
 		this.screen = screen;
 		player = new OverworldPlayer();
 		//define locations and graphics
+		OverworldCircle c1 = new OverworldCircle(2, 2, 2);
+		OverworldCircle c2 = new OverworldCircle(5, 2, 0);
+		OverworldCircle c3 = new OverworldCircle(8, 2, 0);
+		OverworldCircle router = new OverworldCircle(5, 4, 0);
+		OverworldCircle swtch = new OverworldCircle(8, 6, 0); // swtch not switch
+		OverworldCircle s = new OverworldCircle(12, 6, 0);
 		addActor(player);
-		addActor(new OverworldActor(2, 4, "computer.png")); 			//0, first computer
-		addActor(new OverworldCircle(4, 4, 1)); 						//1, first computer
-		addActor(new OverworldCircle(6, 4, 2)); 						//2, router
-		addActor(new OverworldActor(7, 4, "router.png", 0.8f, 0.5f)); 	//3, router
-		addActor(new OverworldCircle(6, 6, 1)); 						//4, computer on top
-		addActor(new OverworldActor(6, 8, "computer.png")); 			//5, computer on top
-		addActor(new OverworldCircle(6, 2, 0)); 						//6, computer on bottom
-		addActor(new OverworldActor(6, 1, "computer.png")); 			//7, computer on bottom
-		addActor(new OverworldActor(10, 4, "switch.png", 0.8f, 0.5f)); 	//8, switch
-		addActor(new OverworldCircle(9, 4, 0)); 						//9, switch
-		addActor(new OverworldActor(14, 4, "server.png", 0.8f, 0.5f)); 	//10, server
-		addActor(new OverworldCircle(13, 4, 0)); 						//11, server
+		addActor(new OverworldActor(2, 1, "computer.png")); 			// 0, first computer
+		addActor(c1); 													// 1, first computer circle
+		addActor(router); 												// 2, router circle
+		addActor(new OverworldActor(5, 5, "router.png", 0.8f, 0.5f)); 	// 3, router
+		addActor(c3); 													// 4, third computer circle
+		addActor(new OverworldActor(8, 1, "computer.png")); 			// 5, third computer
+		addActor(c2); 													// 6, second computer circle
+		addActor(new OverworldActor(5, 1, "computer.png")); 			// 7, second computer
+		addActor(new OverworldActor(8, 7, "switch.png", 0.8f, 0.5f));	// 8, switch
+		addActor(swtch); 												// 9, switch circle
+		addActor(new OverworldActor(13.7f, 6, "server.png", 0.8f, 0.5f));//10, server
+		addActor(s); 													// 11, server circle
 
 		//double the size
 		for(AnimatedActor a : overworldActors){
 			a.setSize(a.getWidth()*2, a.getHeight()*2);
 		}
-		overworldActors.get(1).setLevel(new Level1());
-		overworldActors.get(4).setLevel(new Level2());
-		overworldActors.get(6).setLevel(new Level3());
-		overworldActors.get(2).setLevel(new Level4()); //router
+		c1.setLevel(new Level1()); // first computer circle
+		c3.setLevel(new Level2()); // third computer circle
+		c2.setLevel(new Level3()); // second computer circle
+		router.setLevel(new MainMenuLevel()); //router circle
 		//set connections
-		OverworldActor.Connector.connectH(overworldActors.get(1), overworldActors.get(2));
-		OverworldActor.Connector.connectV(overworldActors.get(6), overworldActors.get(2));
-		OverworldActor.Connector.connectV(overworldActors.get(2), overworldActors.get(4));
-		OverworldActor.Connector.connectH(overworldActors.get(2), overworldActors.get(9));
-		OverworldActor.Connector.connectH(overworldActors.get(9), overworldActors.get(11));
-		player.setOverworldActor(overworldActors.get(1));
+		OverworldActor.Connector.connectV(c1, router);
+		OverworldActor.Connector.connectV(c3, router);
+		OverworldActor.Connector.connectV(c2, router);
+		OverworldActor.Connector.connectH(swtch, s);
+		OverworldActor.Connector.connectH(c1, router);
+		OverworldActor.Connector.connectH(router, c2);
+		OverworldActor.Connector.connectH(router, c3);
+		OverworldActor.Connector.connectV(router, swtch);
+		player.setOverworldActor(c1);
 		player.addListener(player.new OverworldLevelInputListener(screen));
 	}
 
