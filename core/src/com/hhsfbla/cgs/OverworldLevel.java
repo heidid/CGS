@@ -71,7 +71,6 @@ public class OverworldLevel extends Group {
 		OverworldActor.Connector.connectV(c2, router);
 		OverworldActor.Connector.connectH(swtch, s);
 		OverworldActor.Connector.connectH(c1, router);
-		OverworldActor.Connector.connectH(router, c2);
 		OverworldActor.Connector.connectH(router, c3);
 		OverworldActor.Connector.connectV(router, swtch);
 		player.setOverworldActor(c1);
