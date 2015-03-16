@@ -41,7 +41,7 @@ public class Level1 extends Level {
 	@Override
 	public void init() {
 		screen.getUi().addActor(new DialogBox(this, 100, 600,
-				"Use the WASD keys to move and press Enter to shoot.\n\nPress Enter to continue..."));
+				"Use the WASD keys to move and press Enter to shoot."));
 		super.init();
 	}
 }
