@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 public class DialogBox extends Label {
 	private static LabelStyle style = new LabelStyle() {{
-		font = Fonts.getFont("fonts/Laconic_Regular.otf");
+		font = Fonts.getFont("fonts/Laconic_Regular.otf", 16);
 		fontColor = Color.WHITE;
 		background = new NinePatchDrawable(new NinePatch(
 				Images.get("box-enter.png"), 14, 59, 14, 32));
@@ -22,17 +22,22 @@ public class DialogBox extends Label {
 	public DialogBox(Level level, float x, float y, String text) {
 		super(text, style);
 		this.level = level;
-		level.setPaused(true);
+
 		setPosition(x, y);
+		setSize(getPrefWidth(), getPrefHeight());
+
+		level.setPaused(true);
 		addListener(new LevelInputListener());
 	}
 
 	public DialogBox(Level level, float x, float y, float w, float h, String text) {
 		super(text, style);
 		this.level = level;
-		level.setPaused(true);
+
 		setBounds(x, y, w, h);
 		setWrap(true);
+
+		level.setPaused(true);
 		addListener(new LevelInputListener());
 	}
 

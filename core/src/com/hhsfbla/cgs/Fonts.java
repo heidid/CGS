@@ -10,9 +10,9 @@ public class Fonts {
 	private static FreeTypeFontGenerator generator;
 	private static FreeTypeFontParameter parameter = new FreeTypeFontParameter();
 
-	public static BitmapFont getFont(String file) {
+	public static BitmapFont getFont(String file, int size) {
 		generator = new FreeTypeFontGenerator(Gdx.files.internal(file));
-		parameter.size = 16;
+		parameter.size = size;
 		BitmapFont font = generator.generateFont(parameter);
 		generator.dispose();
 		return font;

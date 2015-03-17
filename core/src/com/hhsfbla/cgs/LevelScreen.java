@@ -22,6 +22,7 @@ public class LevelScreen extends StageScreen {
 		level.setScreen(this);
 		background = new Group();
 		ui = new Group();
+		ui.addActor(new InventoryPanel(level.getPlayer()));
 	}
 
 	public Level getLevel() {
