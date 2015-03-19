@@ -20,7 +20,6 @@ public abstract class Level extends AnimatedActorGroup {
 
 	public Level() {
 		player = new Player();
-		player.addListener(player.new LevelInputListener());
 		enemies = new Array<>();
 		obstacles = new Array<>();
 		items = new Array<>();

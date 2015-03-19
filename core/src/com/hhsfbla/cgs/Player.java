@@ -13,13 +13,13 @@ import com.badlogic.gdx.utils.Array;
 public class Player extends MovableActor {
 	private static final float SHOOT_DELAY = 0.3f; // number of seconds between firing CDs
 
-	private Array<Item> inventory;
-	private boolean canShoot;
+	private Array<Item> inventory = new Array<>();
+	private boolean canShoot = true;
+	private PlayerInputListener inputListener = new PlayerInputListener();
 
 	@SuppressWarnings("serial")
 	public Player() {
-		inventory = new Array<>();
-		canShoot = true;
+		addListener(inputListener);
 
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("player-up.png")));
@@ -80,6 +80,12 @@ public class Player extends MovableActor {
 		return super.detectCollisions(dx, dy);
 	}
 
+	@Override
+	public void act(float delta) {
+		inputListener.handleInput();
+		super.act(delta);
+	}
+
 	public class ShootAction extends TemporalAction {
 		public ShootAction() {
 			super(SHOOT_DELAY);
@@ -109,14 +115,14 @@ public class Player extends MovableActor {
 		}
 	}
 
-	public class LevelInputListener extends InputListener {
+	private class PlayerInputListener extends InputListener {
 		private boolean up;
 		private boolean down;
 		private boolean left;
 		private boolean right;
-		private byte space;
+		private byte shoot;
 
-		private void handleInput() {
+		public void handleInput() {
 			if (up && left) {
 				setMoving(DIR_UP_LEFT);
 			} else if (up && right) {
@@ -136,8 +142,8 @@ public class Player extends MovableActor {
 			} else {
 				setIdle();
 			}
-			if (space == 1 && canShoot) {
-				space = 2;
+			if (shoot == 1 && canShoot) {
+				shoot = 2;
 				addAction(new ShootAction());
 			}
 		}
@@ -158,10 +164,9 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.ENTER:
-				if (space == 0) space = 1;
+				if (shoot == 0) shoot = 1;
 				break;
 			}
-			handleInput();
 			return true;
 		}
 
@@ -181,10 +186,9 @@ public class Player extends MovableActor {
 				right = false;
 				break;
 			case Input.Keys.ENTER:
-				space = 0;
+				shoot = 0;
 				break;
 			}
-			handleInput();
 			return true;
 		}
 	}
