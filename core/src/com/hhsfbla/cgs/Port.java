@@ -54,11 +54,11 @@ public class Port extends UnblockableObstacle {
 	}
 
 	public TreeMap<Integer, Animation> getDisappearAnimation() {
-		return getBlockingAnimation();
+		return getUnblockingAnimation();
 	}
 
 	public void setDisappearAnimation(TreeMap<Integer, Animation> animation) {
-		setBlockingAnimation(animation);
+		setUnblockingAnimation(animation);
 	}
 
 	protected void updateOrigin() {
