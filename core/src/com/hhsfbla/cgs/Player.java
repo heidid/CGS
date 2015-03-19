@@ -26,10 +26,10 @@ public class Player extends MovableActor {
 			put(DIR_DOWN, new Animation(0, Images.get("player-down.png")));
 			put(DIR_LEFT, new Animation(0, Images.get("player-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("player-right.png")));
-			put(DIR_UP_LEFT, new Animation(0, Images.get("player-left.png")));
-			put(DIR_UP_RIGHT, new Animation(0, Images.get("player-right.png")));
-			put(DIR_DOWN_LEFT, new Animation(0, Images.get("player-left.png")));
-			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("player-right.png")));
+			put(DIR_UP_LEFT, new Animation(0, Images.get("player-up-left.png")));
+			put(DIR_UP_RIGHT, new Animation(0, Images.get("player-up-right.png")));
+			put(DIR_DOWN_LEFT, new Animation(0, Images.get("player-down-left.png")));
+			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("player-down-right.png")));
 		}});
 		setMoveSprite(getIdleSprite());
 		// TODO: Add actual player appear/disappear sprites
