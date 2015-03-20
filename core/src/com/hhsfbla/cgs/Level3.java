@@ -2,6 +2,7 @@ package com.hhsfbla.cgs;
 
 public class Level3 extends Level {
 	public Level3() {
+		id = 2;
 
 		add(new PlayerSpawn(), 0.5f, 6);
 

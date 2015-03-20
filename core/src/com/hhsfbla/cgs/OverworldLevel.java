@@ -1,10 +1,6 @@
 package com.hhsfbla.cgs;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.Group;
-import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import com.badlogic.gdx.utils.Array;
 
 /**
@@ -12,15 +8,32 @@ import com.badlogic.gdx.utils.Array;
  */
 public class OverworldLevel extends Group {
 	Array<OverworldActor> overworldActors = new Array<>();
+	Array<OverworldCircle> levels = new Array<>();
+	OverworldPlayer player = new OverworldPlayer();
 	StageScreen screen;
-	OverworldPlayer player;
 
-	public OverworldLevel() {
+	// TODO: Add OverworldLevel state saving
+	private int state;
+	private int current;
 
+	public OverworldLevel(int state, int current) {
+		this.state = state;
+		this.current = current;
+		addActor(player);
 	}
 
 	public Array<OverworldActor> getOverworldActors() {
 		return overworldActors;
+	}
+
+	public void addActor(OverworldCircle actor) {
+		levels.add(actor);
+		addActor((OverworldActor) actor);
+	}
+
+	public boolean removeActor(OverworldCircle actor) {
+		levels.removeValue(actor, true);
+		return removeActor((OverworldActor) actor);
 	}
 
 	public void addActor(OverworldActor actor) {
@@ -33,48 +46,73 @@ public class OverworldLevel extends Group {
 		return super.removeActor(actor);
 	}
 
-	public void setScreen(OverworldScreen screen){
+	public void setScreen(OverworldScreen screen) {
 		this.screen = screen;
-		player = new OverworldPlayer();
-		//define locations and graphics
-		OverworldCircle c1 = new OverworldCircle(2, 2, 1);
-		OverworldCircle c2 = new OverworldCircle(5, 2, 1);
-		OverworldCircle c3 = new OverworldCircle(8, 2, 2);
-		OverworldCircle router = new OverworldCircle(5, 4, 1);
-		OverworldCircle swtch = new OverworldCircle(8, 6, 0); // swtch not switch
-		OverworldCircle s = new OverworldCircle(12, 6, 0);
-		addActor(player);
-		addActor(new OverworldActor(2, 1, "computer.png")); 			// 0, first computer
-		addActor(c1); 													// 1, first computer circle
-		addActor(router); 												// 2, router circle
-		addActor(new OverworldActor(5, 5, "router.png", 0.8f, 0.5f)); 	// 3, router
-		addActor(c3); 													// 4, third computer circle
-		addActor(new OverworldActor(8, 1, "computer.png")); 			// 5, third computer
-		addActor(c2); 													// 6, second computer circle
-		addActor(new OverworldActor(5, 1, "computer.png")); 			// 7, second computer
-		addActor(new OverworldActor(8, 7, "switch.png", 0.8f, 0.5f));	// 8, switch
-		addActor(swtch); 												// 9, switch circle
-		addActor(new OverworldActor(13.7f, 6, "server.png", 0.8f, 0.5f));//10, server
-		addActor(s); 													// 11, server circle
 
-		//double the size
-		for(AnimatedActor a : overworldActors){
-			a.setSize(a.getWidth()*2, a.getHeight()*2);
+		createMap();
+
+		// double the size
+		for(AnimatedActor a : overworldActors) {
+			a.setSize(a.getWidth() * 2, a.getHeight() * 2);
 		}
-		c1.setLevel(new Level1()); // first computer circle
-		c3.setLevel(new Level2()); // third computer circle
-		c2.setLevel(new Level3()); // second computer circle
-//		router.setLevel(new MainMenuLevel()); //router circle
-		//set connections
-		OverworldActor.Connector.connectV(c1, router);
-		OverworldActor.Connector.connectV(c3, router);
-		OverworldActor.Connector.connectV(c2, router);
-		OverworldActor.Connector.connectH(swtch, s);
-		OverworldActor.Connector.connectH(c1, router);
-		OverworldActor.Connector.connectH(router, c3);
-		OverworldActor.Connector.connectV(router, swtch);
-		player.setOverworldActor(c1);
+
+//		router.setLevel(new MainMenuLevel()); // router circle
+
+		player.setOverworldActor(levels.get(current));
 		player.addListener(player.new OverworldLevelInputListener(screen));
+	}
+
+	private void createMap() {
+		// state 0
+		addActor(new OverworldCircle(2, 2, 2, new Level1())); 			// first computer circle
+		addActor(new OverworldActor(2, 1, "computer.png")); 			// first computer
+		if (state == 0) return;
+
+		// state 1
+		final OverworldCircle swtch = new OverworldCircle(5, 4, 0, new Level4()); // swtch not switch
+
+		levels.get(0).setType(1);
+		OverworldActor.Connector.connectV(levels.get(0), swtch);
+		OverworldActor.Connector.connectH(levels.get(0), swtch);
+
+		addActor(new OverworldCircle(5, 2, 2, new Level2())); 		    // second computer circle
+		addActor(new OverworldActor(5, 1, "computer.png")); 			// second computer
+		OverworldActor.Connector.connectV(levels.get(1), swtch);
+
+		addActor(new OverworldCircle(8, 2, 0, new Level3())); 			// third computer circle
+		addActor(new OverworldActor(8, 1, "computer.png")); 			// third computer
+		OverworldActor.Connector.connectH(swtch, levels.get(2));
+//		OverworldActor.Connector.connectV(levels.get(2), swtch);
+
+		addActor(swtch); 												// switch circle
+		addActor(new OverworldActor(5, 5, "switch.png", 0.8f, 0.5f)); 	// switch
+
+		if (state == 1) return;
+
+		// state 2
+		levels.get(1).setType(1);
+		levels.get(2).setType(2);
+		if (state == 2) return;
+
+		// state 3
+		levels.get(2).setType(1);
+		levels.get(3).setType(2);
+		if (state == 3) return;
+
+		// state 4
+		levels.get(3).setType(1);
+		OverworldCircle router = new OverworldCircle(8, 6, 2, null);
+		addActor(router); 												// router circle
+		addActor(new OverworldActor(8, 7, "router.png", 0.8f, 0.5f));	// router
+		OverworldActor.Connector.connectV(swtch, router);
+		if (state == 4) return;
+
+		// state 5
+		levels.get(4).setType(1);
+		OverworldCircle s = new OverworldCircle(12, 6, 2, null);
+		addActor(s); 													// server circle
+		addActor(new OverworldActor(13.7f, 6, "server.png", 0.8f, 0.5f));//server
+		OverworldActor.Connector.connectH(router, s);
 	}
 
 	public OverworldPlayer getPlayer() {

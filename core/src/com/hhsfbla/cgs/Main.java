@@ -10,7 +10,7 @@ public class Main extends Game {
 	@Override
 	public void create() {
 		stage = new Stage(new FitViewport(1280, 720)); //set resolution
-		setScreen(new OverworldScreen(this, stage)); //start at overworld
+		setScreen(new OverworldScreen(this, stage, 5, 0)); //start at overworld
 	}
 
 }

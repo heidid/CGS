@@ -9,6 +9,8 @@ public class Level4 extends Level {
 	}
 
 	public Level4() {
+		id = 3;
+
 		setPlayerPosition(1, 7);
 		add(enemy, 1, 1);
 

@@ -13,15 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public class OverworldScreen extends StageScreen {
 	private OverworldLevel level;
-	private Group background;
-	private Group ui;
+	private Group background = new Group();
+	private Group ui = new Group();
 
-	public OverworldScreen(Game game, Stage stage) {
+	public OverworldScreen(Game game, Stage stage, int state, int current) {
 		super(game, stage);
-		this.level = new OverworldLevel();
+		this.level = new OverworldLevel(state, current);
 		level.setScreen(this);
-		background = new Group();
-		ui = new Group();
 	}
 
 	@Override

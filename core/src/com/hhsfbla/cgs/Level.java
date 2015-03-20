@@ -7,6 +7,7 @@ public abstract class Level extends AnimatedActorGroup {
 	public static final int GRID_COLS = 16;
 	public static final int GRID_ROWS = 9;
 
+	protected int id;
 	protected Player player;
 	protected Array<Enemy> enemies;
 	protected Array<Obstacle> obstacles;
@@ -196,6 +197,6 @@ public abstract class Level extends AnimatedActorGroup {
 	}
 
 	public void end() {
-		screen.game.setScreen(new OverworldScreen(screen.game, screen.stage));
+		screen.game.setScreen(new OverworldScreen(screen.game, screen.stage, 5, id));
 	}
 }

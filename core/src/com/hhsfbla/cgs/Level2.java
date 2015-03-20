@@ -2,6 +2,8 @@ package com.hhsfbla.cgs;
 
 public class Level2 extends Level {
 	public Level2() {
+		id = 1;
+
 		add(new PlayerSpawn(PlayerSpawn.DIR_DOWN), 2, 7.5f);
 
 		add(new Wall(Wall.DIR_UP), 1, 6);

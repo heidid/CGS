@@ -2,6 +2,8 @@ package com.hhsfbla.cgs;
 
 public class Level1 extends Level {
 	public Level1() {
+		id = 0;
+
 		add(new PlayerSpawn(), 0.5f, 6);
 
 		add(new Enemy(new AttackFileStackAction()), 15, 1);

@@ -1,12 +1,12 @@
 package com.hhsfbla.cgs;
 
 public class OverworldCircle extends OverworldActor {
-
 	private int type;
 
-	public OverworldCircle(float x, float y, int type) {
+	public OverworldCircle(float x, float y, int type, Level level) {
 		super(x, y, "overworld-level-"+type+".png");
 		this.type = type;
+		setLevel(level);
 		setSize(0.5f, 0.3f);
 	}
 
