@@ -4,7 +4,7 @@ public class Level3 extends Level {
 	public Level3() {
 		id = 2;
 
-		add(new PlayerSpawn(), 0.5f, 6);
+		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
 		add(new PasswordDoor(3), 11, 1);
 		add(new PasswordFile(1), 2, 4);
@@ -25,6 +25,6 @@ public class Level3 extends Level {
 		add(new FileStack(), 1, 0);
 		add(new Enemy(new AttackFileStackAction()), 14, 7);
 
-		add(new ExitPort(ExitPort.DIR_LEFT), 14.5f, 0);
+		setExitPosition(14, 1, ExitPort.DIR_LEFT);
 	}
 }

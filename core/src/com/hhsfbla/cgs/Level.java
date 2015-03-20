@@ -8,37 +8,32 @@ public abstract class Level extends AnimatedActorGroup {
 	public static final int GRID_ROWS = 9;
 
 	protected int id;
-	protected Player player;
-	protected Array<Enemy> enemies;
-	protected Array<Obstacle> obstacles;
-	protected Array<Item> items;
-	protected Array<Projectile> projectiles;
-	protected Array<FileStack> fileStacks;
+	protected Player player = new Player();
+	protected Array<Enemy> enemies = new Array<>();
+	protected Array<Obstacle> obstacles = new Array<>();
+	protected Array<Item> items = new Array<>();
+	protected Array<Projectile> projectiles = new Array<>();
+	protected Array<FileStack> fileStacks = new Array<>();
+	protected PlayerSpawn spawn = new PlayerSpawn();
+	protected ExitPort exit = new ExitPort();
 	protected LevelScreen screen;
-	Grid grid;
+	Grid grid = new Grid(this);
 	private boolean paused;
 	private boolean complete;
 
 	public Level() {
-		player = new Player();
-		enemies = new Array<>();
-		obstacles = new Array<>();
-		items = new Array<>();
-		projectiles = new Array<>();
-		fileStacks = new Array<>();
-		grid = new Grid(this);
-		grid.generate();
-
 		add(player, 0, 0);
+		add(spawn, 0, 0);
+		add(exit, 0, 0);
+		grid.generate();
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public void init() {
-		// LibGDX won't let me use a foreach loop
-		// something about "#iterator() cannot be used nested"
-		for (int i = 0; i < obstacles.size; i++) {
-			final Obstacle o = obstacles.get(i);
-			if (o instanceof PlayerSpawn) ((PlayerSpawn) o).spawn(getPlayer());
-		}
+		spawn.spawn(getPlayer());
 	}
 
 	public void setScreen(LevelScreen screen) {
@@ -49,16 +44,38 @@ public abstract class Level extends AnimatedActorGroup {
 		return player;
 	}
 
+	public void setPlayerPosition(float x, float y) {
+		player.setPosition(x, y);
+	}
+
+	public PlayerSpawn getSpawn() {
+		return spawn;
+	}
+
+	public void setSpawnPosition(float x, float y, int direction) {
+		final double ang = Math.toRadians(direction);
+		spawn.setDirection(direction);
+		spawn.setPosition(x - (float) Math.cos(ang) / 2,
+				y - (float) Math.sin(ang) / 2);
+	}
+
+	public ExitPort getExit() {
+		return exit;
+	}
+
+	public void setExitPosition(float x, float y, int direction) {
+		final double ang = Math.toRadians(direction);
+		exit.setDirection(direction);
+		exit.setPosition(x - (float) Math.cos(ang) / 2,
+				y - (float) Math.sin(ang) / 2);
+	}
+
 	public Array<Obstacle> getObstacles() {
 		return obstacles;
 	}
 
 	public Array<FileStack> getFileStacks() {
 		return fileStacks;
-	}
-
-	public void setPlayerPosition(float x, float y) {
-		player.setPosition(x, y);
 	}
 
 	public Array<Enemy> getEnemies() {
@@ -102,7 +119,7 @@ public abstract class Level extends AnimatedActorGroup {
 
 	public void remove(FileStack fs) {
 		fileStacks.removeValue(fs, true);
-		remove((AnimatedActor) fs);
+		remove((Obstacle) fs);
 	}
 
 	public void remove(Enemy enemy) {
@@ -164,7 +181,8 @@ public abstract class Level extends AnimatedActorGroup {
 				setComplete(false);
 				return;
 			} else {
-				// LibGDX throws an exception if I use a foreach loop again
+				// LibGDX won't let me use a foreach loop
+				// something about "#iterator() cannot be used nested"
 				for (int i = 0; i < obstacles.size; i++) {
 					final Obstacle o = obstacles.get(i);
 

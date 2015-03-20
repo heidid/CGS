@@ -11,7 +11,7 @@ public class Level4 extends Level {
 	public Level4() {
 		id = 3;
 
-		setPlayerPosition(1, 7);
+		setSpawnPosition(1, 7, PlayerSpawn.DIR_DOWN);
 		add(enemy, 1, 1);
 
 		for (int i = 0; i < 5; i++) {
@@ -28,5 +28,7 @@ public class Level4 extends Level {
 			add(new Wall(i == 0 ? Wall.DIR_DOWN : Wall.DIR_UP,
 					i % 6 == 0), 12, 1 + i);
 		}
+
+		setExitPosition(14, 1, ExitPort.DIR_LEFT);
 	}
 }

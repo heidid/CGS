@@ -4,7 +4,7 @@ public class Level1 extends Level {
 	public Level1() {
 		id = 0;
 
-		add(new PlayerSpawn(), 0.5f, 6);
+		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
 		add(new Enemy(new AttackFileStackAction()), 15, 1);
 		add(new EnemySpawn(), 13, 7.5f);
@@ -37,7 +37,7 @@ public class Level1 extends Level {
 		add(wormhole, 2, 6);
 		add(new Wormhole(wormhole), 2, 1);
 
-		add(new ExitPort(), 0.5f, 1);
+		setExitPosition(1, 1, ExitPort.DIR_RIGHT);
 	}
 
 	@Override

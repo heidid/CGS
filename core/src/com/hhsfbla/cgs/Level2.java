@@ -4,7 +4,7 @@ public class Level2 extends Level {
 	public Level2() {
 		id = 1;
 
-		add(new PlayerSpawn(PlayerSpawn.DIR_DOWN), 2, 7.5f);
+		setSpawnPosition(2, 7, PlayerSpawn.DIR_DOWN);
 
 		add(new Wall(Wall.DIR_UP), 1, 6);
 		add(new Wall(Wall.DIR_DOWN_LEFT), 3, 6);
@@ -44,6 +44,6 @@ public class Level2 extends Level {
 		add(new SwitchGroupDoor(switches), 2, 1);
 		add(new ImportantFile(), 2, 0);
 
-		add(new ExitPort(ExitPort.DIR_LEFT), 14.5f, 0);
+		setExitPosition(14, 1, ExitPort.DIR_LEFT);
 	}
 }
