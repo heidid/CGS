@@ -15,6 +15,7 @@ public class OverworldCircle extends OverworldActor {
 	}
 
 	public void setType(int type) {
+		this.type = type;
 		setSprite(Images.get("overworld-level-"+type+".png"));
 	}
 
