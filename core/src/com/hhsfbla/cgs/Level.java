@@ -157,15 +157,10 @@ public abstract class Level extends AnimatedActorGroup {
 
 	public void setComplete(boolean complete) {
 		if (this.complete != complete) {
-			for (Obstacle o : getObstacles()) {
-				if (o instanceof ExitPort) {
-					final ExitPort exit = (ExitPort) o;
-					if (complete) {
-						exit.addAction(exit.new AppearAction());
-					} else {
-						exit.addAction(exit.new DisappearAction());
-					}
-				}
+			if (complete) {
+				exit.addAction(exit.new AppearAction());
+			} else {
+				exit.addAction(exit.new DisappearAction());
 			}
 		}
 		this.complete = complete;

@@ -42,8 +42,9 @@ public class Level1 extends Level {
 
 	@Override
 	public void init() {
-		screen.getUi().addActor(new DialogBox(this, 100, 600,
+		screen.addDialog(new DialogBox(100, 600,
 				"Use the WASD keys to move and press Enter to shoot."));
+		screen.addDialog(new DialogBox(1000, 300, "Hey look it's a filestack."));
 		super.init();
 	}
 }

@@ -1,6 +1,8 @@
 package com.hhsfbla.cgs;
 
+import java.util.ArrayDeque;
 import java.util.Comparator;
+import java.util.Queue;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -13,15 +15,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
  */
 public class LevelScreen extends StageScreen {
 	private Level level;
-	private Group background;
-	private Group ui;
+	private Group background = new Group();
+	private Group ui = new Group();
+	private Queue<DialogBox> dialogs = new ArrayDeque<>();
 
 	public LevelScreen(Game game, Stage stage, Level level) {
 		super(game, stage);
 		this.level = level;
 		level.setScreen(this);
-		background = new Group();
-		ui = new Group();
+
 		ui.addActor(new InventoryPanel(level.getPlayer()));
 	}
 
@@ -31,6 +33,29 @@ public class LevelScreen extends StageScreen {
 
 	public Group getUi() {
 		return ui;
+	}
+
+	public void addDialog(DialogBox dialog) {
+		dialogs.add(dialog);
+		if (dialogs.size() == 1) showDialog(dialog);
+	}
+
+	public void dismissDialog() {
+		dialogs.remove();
+		final DialogBox dialog = dialogs.peek();
+
+		if (dialog != null) {
+			showDialog(dialog);
+		} else {
+			stage.setKeyboardFocus(level.getPlayer());
+			level.setPaused(false);
+		}
+	}
+
+	private void showDialog(DialogBox dialog) {
+		dialog.setScreen(this);
+		ui.addActor(dialog);
+		level.setPaused(true);
 	}
 
 	@Override

@@ -17,28 +17,27 @@ public class DialogBox extends Label {
 				Images.get("box-enter.png"), 14, 59, 14, 32));
 	}};
 
-	private Level level;
+	private LevelScreen screen;
 
-	public DialogBox(Level level, float x, float y, String text) {
+	public DialogBox(float x, float y, String text) {
 		super(text, style);
-		this.level = level;
-
 		setPosition(x, y);
-		setSize(getPrefWidth(), getPrefHeight());
-
-		level.setPaused(true);
 		addListener(new LevelInputListener());
 	}
 
-	public DialogBox(Level level, float x, float y, float w, float h, String text) {
+	public DialogBox(float x, float y, float w, float h, String text) {
 		super(text, style);
-		this.level = level;
-
 		setBounds(x, y, w, h);
 		setWrap(true);
-
-		level.setPaused(true);
 		addListener(new LevelInputListener());
+	}
+
+	public LevelScreen getScreen() {
+		return screen;
+	}
+
+	public void setScreen(LevelScreen screen) {
+		this.screen = screen;
 	}
 
 	@Override
@@ -48,9 +47,8 @@ public class DialogBox extends Label {
 	}
 
 	public void dismiss() {
-		getStage().setKeyboardFocus(level.getPlayer());
 		remove();
-		level.setPaused(false);
+		screen.dismissDialog();
 	}
 
 	private class LevelInputListener extends InputListener {
