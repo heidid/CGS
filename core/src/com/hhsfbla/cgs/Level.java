@@ -1,5 +1,6 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.utils.Array;
 
 public abstract class Level extends AnimatedActorGroup {
@@ -158,13 +159,21 @@ public abstract class Level extends AnimatedActorGroup {
 	public void setComplete(boolean complete) {
 		if (this.complete != complete) {
 			if (complete) {
-				exit.addAction(exit.new AppearAction());
+				exit.addAction(Actions.sequence(exit.new AppearAction(), Actions.run(new Runnable() {
+					@Override
+					public void run() {
+						onComplete();
+					}
+				})));
 			} else {
 				exit.addAction(exit.new DisappearAction());
 			}
 		}
 		this.complete = complete;
 	}
+
+	public void onSpawn() {}
+	public void onComplete() {}
 
 	@Override
 	public void act(float delta) {

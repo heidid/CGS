@@ -1,5 +1,7 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
+
 public class SpawnPort extends Port {
 
 	public SpawnPort() {
@@ -38,8 +40,19 @@ public class SpawnPort extends Port {
 		} else {
 			level.add(actor, spawnX, spawnY);
 		}
+
+		if (actor instanceof Player) {
+			actor.addAction(Actions.sequence(actor.new AppearAction(), Actions.run(new Runnable() {
+				@Override
+				public void run() {
+					level.onSpawn();
+				}
+			})));
+		} else {
+			actor.addAction(actor.new AppearAction());
+		}
+
 		actor.setDirection(getDirection());
-		actor.addAction(actor.new AppearAction());
 	}
 
 }

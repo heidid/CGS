@@ -44,8 +44,12 @@ public class AnimatedAction extends TemporalAction {
 	@Override
 	public void restart() {
 		final AnimatedActor actor = (AnimatedActor) getActor();
-		actor.setSprite(previousSprite);
-		actor.endAnimatedAction();
+
+		if (actor != null) {
+			actor.setSprite(previousSprite);
+			actor.endAnimatedAction();
+		}
+
 		super.restart();
 	}
 }

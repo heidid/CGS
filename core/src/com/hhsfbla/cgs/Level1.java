@@ -1,6 +1,8 @@
 package com.hhsfbla.cgs;
 
 public class Level1 extends Level {
+	private boolean completeDialog;
+
 	public Level1() {
 		id = 0;
 
@@ -41,10 +43,17 @@ public class Level1 extends Level {
 	}
 
 	@Override
-	public void init() {
+	public void onSpawn() {
 		screen.addDialog(new DialogBox(100, 600,
 				"Use the WASD keys to move and press Enter to shoot."));
-		screen.addDialog(new DialogBox(1000, 300, "Hey look it's a filestack."));
-		super.init();
+		screen.addDialog(new DialogBox(500, 100, "Hey look it's a filestack."));
+	}
+
+	@Override
+	public void onComplete() {
+		if (!completeDialog) {
+			screen.addDialog(new DialogBox(100, 100, "Yay you've beaten the level.\nExit through this port."));
+			completeDialog = false;
+		}
 	}
 }

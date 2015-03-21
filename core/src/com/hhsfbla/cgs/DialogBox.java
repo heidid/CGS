@@ -51,6 +51,7 @@ public class DialogBox extends Label {
 		screen.dismissDialog();
 	}
 
+	// TODO: Fix Player move getting stuck after dismissing DialogBox
 	private class LevelInputListener extends InputListener {
 		@Override
 		public boolean keyDown(InputEvent event, int keycode) {
