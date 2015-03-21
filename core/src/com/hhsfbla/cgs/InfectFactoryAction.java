@@ -11,7 +11,7 @@ public class InfectFactoryAction extends SequenceAction {
 	boolean moving = true;
 
 	public void createRemove() {
-		virus.removeAction(this);
+		virus.clearActions();
 		virus.setIdle();
 		virus.infect(factory);
 	}
@@ -47,8 +47,9 @@ public class InfectFactoryAction extends SequenceAction {
 				slot = scpc.slot;
 			}
 		}
-		if(closest == null)
+		if(closest == null) {
 			return;
+		}
 		closest.slots[slot]++;
 		this.factory = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), 

@@ -1,6 +1,7 @@
 package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.scenes.scene2d.Action;
+import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ParallelAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RunnableAction;
@@ -12,11 +13,13 @@ public class AttackFileStackAction extends SequenceAction {
 	boolean moving = true;
 	KillFileStack kfs = null;
 
-	public void createRemove() {
-		for(Action a : getActions())
-			enemy.removeAction(a);
-		enemy.removeAction(this);
+	void remove() {
+		enemy.clearActions();
 		enemy.setIdle();
+	}
+	
+	public void createRemove() {
+		remove();
 		enemy.addAction(new AttackFileStackAction());
 	}
 
@@ -38,6 +41,24 @@ public class AttackFileStackAction extends SequenceAction {
 				return true;
 			return false;
 		}
+	}
+	
+	class VirusInterrupt extends Action {
+
+		@Override
+		public boolean act(float delta) {
+			if (!(enemy instanceof Virus))
+				return true;
+			for (Factory f : enemy.getLevel().factories) {
+				if(!f.isInfected()) {
+					remove();
+					enemy.addAction(Actions.sequence(new InfectFactoryAction(), new AttackFileStackAction()));
+					return true;
+				}
+			}
+			return false;
+		}
+		
 	}
 
 	class AttackMoveInterrupt extends Action {
@@ -105,7 +126,7 @@ public class AttackFileStackAction extends SequenceAction {
 		}
 		closest.slots[slot]++;
 		this.fileStack = closest;
-		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
+		addAction(new ParallelAction(new VirusInterrupt(), new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
 		addAction(new RunnableAction() {
 			@Override
 			public void run() {
