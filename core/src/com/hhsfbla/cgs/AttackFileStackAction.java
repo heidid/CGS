@@ -13,6 +13,8 @@ public class AttackFileStackAction extends SequenceAction {
 	KillFileStack kfs = null;
 
 	public void createRemove() {
+		for(Action a : getActions())
+			enemy.removeAction(a);
 		enemy.removeAction(this);
 		enemy.setIdle();
 		enemy.addAction(new AttackFileStackAction());
@@ -80,7 +82,9 @@ public class AttackFileStackAction extends SequenceAction {
 	public void init() {
 		enemy = (Enemy) getActor();
 		enemy.setCanCollide(false);
-		if (enemy.getLevel().getFileStacks().size == 0) return;
+		if (enemy.getLevel().getFileStacks().size == 0) {
+			return;
+		}
 
 		FileStack closest = null;
 		CellPath shortest = null;
