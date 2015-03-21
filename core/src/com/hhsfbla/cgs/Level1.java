@@ -9,7 +9,7 @@ public class Level1 extends Level {
 		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
 		add(new Enemy(new AttackFileStackAction()), 15, 1);
-		add(new EnemySpawn(), 13, 7.5f);
+		add(new EnemySpawn(), 13, 8f);
 
 		final Factory factory = new Factory();
 		add(factory, 5, 6);
@@ -33,7 +33,7 @@ public class Level1 extends Level {
 		add(new FileStack(), 7, 0);
 		add(new FileStack(), 9, 1);
 		add(swtch, 13, 1);
-		add(new Firewall(false, swtch), 13, 7);
+		add(new Firewall(false, swtch), 13, 7.5f);
 		add(key, 13, 5);
 		final Wormhole wormhole = new Wormhole();
 		add(wormhole, 2, 6);

@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode;
 
-public class Factory extends Obstacle {
+public class Factory extends SlottedObstacle {
 	private static final float FILE_SPAWN_DELAY = 1;
 	private static final float VIRUS_SPAWN_DELAY = 2;
 	private static final TreeMap<Integer, Animation> NORMAL_SPRITE = new TreeMap<Integer, Animation>() {{
@@ -35,6 +35,7 @@ public class Factory extends Obstacle {
 	}
 
 	public Factory(int direction) {
+		super(1);
 		setDirection(direction);
 		updateOrientedSprite();
 	}

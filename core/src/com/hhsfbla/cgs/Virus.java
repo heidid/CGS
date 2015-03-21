@@ -3,6 +3,7 @@ package com.hhsfbla.cgs;
 import java.util.TreeMap;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 
 public class Virus extends Enemy {
@@ -11,23 +12,26 @@ public class Virus extends Enemy {
 	public Virus() {
 		this(DIR_RIGHT);
 	}
+	
+	class BlockAction extends Action {
+		@Override
+		public boolean act(float delta) {
+			for (Obstacle o : getLevel().getObstacles()) {
+				if(o instanceof ConveyorBelt) {
+					if (getHitbox().overlaps(o.getHitbox())) {
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+	}
 
 	@SuppressWarnings("serial")
 	public Virus(int direction) {
 		// TODO: Add Virus action
 		super(direction, null);
-		addAction(Actions.sequence(Actions.run(new Runnable() {
-			@Override
-			public void run() {
-				for (Obstacle o : getLevel().getObstacles()) {
-					if (o instanceof Factory) {
-						Factory factory = (Factory) o;
-						if (!factory.isInfected()) infect(factory);
-					}
-				}
-			}
-		}), new AttackFileStackAction()));
-
+		addAction(Actions.sequence(new BlockAction(), new InfectFactoryAction(), new AttackFileStackAction()));
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("virus-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("virus-down.png")));

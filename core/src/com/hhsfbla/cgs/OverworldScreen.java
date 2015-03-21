@@ -3,6 +3,7 @@ package com.hhsfbla.cgs;
 import java.util.Comparator;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -15,10 +16,16 @@ public class OverworldScreen extends StageScreen {
 	private OverworldLevel level;
 	private Group background = new Group();
 	private Group ui = new Group();
+	private OrthographicCamera cam;
 
 	public OverworldScreen(Game game, Stage stage, int state, int current) {
 		super(game, stage);
 		this.level = new OverworldLevel(state, current);
+        cam = new OrthographicCamera(16, 9);
+        cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
+        cam.update();
+		//stage.getViewport().setCamera(cam);
+		cam.zoom = 1f/2f;
 		level.setScreen(this);
 	}
 
@@ -47,6 +54,8 @@ public class OverworldScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
+		cam.position.set(level.getPlayer().getX(), level.getPlayer().getY(), 0);
+		cam.update();
 		level.getChildren().sort(new Comparator<Actor>() {
 			@Override
 			public int compare(Actor a, Actor b) {

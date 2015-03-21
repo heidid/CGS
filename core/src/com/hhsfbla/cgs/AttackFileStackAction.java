@@ -29,7 +29,6 @@ public class AttackFileStackAction extends SequenceAction {
 						enemy.addAction(kfs);
 					}
 				} else {
-					fileStack.enemiesTargettingMe--;
 					fileStack = null;
 				}
 			}
@@ -80,6 +79,7 @@ public class AttackFileStackAction extends SequenceAction {
 
 	public void init() {
 		enemy = (Enemy) getActor();
+		enemy.setCanCollide(false);
 		if (enemy.getLevel().getFileStacks().size == 0) return;
 
 		FileStack closest = null;
@@ -96,8 +96,9 @@ public class AttackFileStackAction extends SequenceAction {
 				slot = scpc.slot;
 			}
 		}
-		if(closest == null)
+		if(closest == null) {
 			return;
+		}
 		closest.slots[slot]++;
 		this.fileStack = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));

@@ -17,6 +17,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<FileStack> fileStacks = new Array<>();
 	protected PlayerSpawn spawn = new PlayerSpawn();
 	protected ExitPort exit = new ExitPort();
+	protected Array<Factory> factories =  new Array<>();
 	protected LevelScreen screen;
 	Grid grid = new Grid(this);
 	private boolean paused;
@@ -26,6 +27,7 @@ public abstract class Level extends AnimatedActorGroup {
 		add(player, 0, 0);
 		add(spawn, 0, 0);
 		add(exit, 0, 0);
+		grid = new Grid(this);
 		grid.generate();
 	}
 
@@ -78,6 +80,10 @@ public abstract class Level extends AnimatedActorGroup {
 	public Array<FileStack> getFileStacks() {
 		return fileStacks;
 	}
+	
+	public Array<Factory> getFactories() {
+		return factories;
+	}
 
 	public Array<Enemy> getEnemies() {
 		return enemies;
@@ -112,6 +118,11 @@ public abstract class Level extends AnimatedActorGroup {
 	public void add(Projectile projectile, float x, float y) {
 		projectiles.add(projectile);
 		add((AnimatedActor) projectile, x, y);
+	}
+	
+	public void add(Factory factory, float x, float y) {
+		factories.add(factory);
+		add((Obstacle)factory, x, y);
 	}
 
 	public void remove(AnimatedActor actor) {
