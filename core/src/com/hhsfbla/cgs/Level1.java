@@ -9,14 +9,16 @@ public class Level1 extends Level {
 		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
 		add(new Enemy(new AttackFileStackAction()), 15, 1);
-		add(new EnemySpawn(), 13, 8f);
+		add(new EnemySpawn(), 13, 7.5f);
+		final Switch swtch = new FirewallSwitch();
+		add(swtch, 13, 1);
+		add(new Firewall(false, swtch), 13, 7);
 
 		final Factory factory = new Factory();
 		add(factory, 5, 6);
-		for (int i = 6; i <= 11; i++) {
+		for (int i = 6; i <= 10; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
-		add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT, ConveyorBelt.DIR_DOWN), 12, 6);
 		add(new Virus(), 3, 1);
 
 		for (int i = 0; i < 11; i++) {
@@ -29,11 +31,8 @@ public class Level1 extends Level {
 		add(new Wall(Wall.DIR_DOWN_RIGHT), 11, 2);
 
 		final File key = new File();
-		final Switch swtch = new FirewallSwitch();
 		add(new FileStack(), 7, 0);
 		add(new FileStack(), 9, 1);
-		add(swtch, 13, 1);
-		add(new Firewall(false, swtch), 13, 7.5f);
 		add(key, 13, 5);
 		final Wormhole wormhole = new Wormhole();
 		add(wormhole, 2, 6);
