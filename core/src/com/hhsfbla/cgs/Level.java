@@ -80,7 +80,7 @@ public abstract class Level extends AnimatedActorGroup {
 	public Array<FileStack> getFileStacks() {
 		return fileStacks;
 	}
-	
+
 	public Array<Factory> getFactories() {
 		return factories;
 	}
@@ -119,7 +119,7 @@ public abstract class Level extends AnimatedActorGroup {
 		projectiles.add(projectile);
 		add((AnimatedActor) projectile, x, y);
 	}
-	
+
 	public void add(Factory factory, float x, float y) {
 		factories.add(factory);
 		add((Obstacle)factory, x, y);
@@ -190,6 +190,17 @@ public abstract class Level extends AnimatedActorGroup {
 	public void act(float delta) {
 		if (!paused) {
 			super.act(delta);
+
+			boolean gameOver = true;
+			for (int i=0;i<fileStacks.size;i++) {
+				final FileStack fs = fileStacks.get(i);
+				if (fs.getHealth()>0) {
+					gameOver = false;
+				}
+			}
+			if (gameOver) {
+				screen.addDialog(new GameOverBox(this));
+			}
 
 			// Level completion checking
 			if (getEnemies().size > 0) {

@@ -17,7 +17,7 @@ public class DialogBox extends Label {
 				Images.get("box-enter.png"), 14, 59, 14, 32));
 	}};
 
-	private LevelScreen screen;
+	protected LevelScreen screen;
 
 	public DialogBox(float x, float y, String text) {
 		super(text, style);
