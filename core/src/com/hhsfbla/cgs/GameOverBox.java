@@ -1,7 +1,9 @@
 package com.hhsfbla.cgs;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 public class GameOverBox extends DialogBox {
@@ -16,10 +18,18 @@ public class GameOverBox extends DialogBox {
 	}};
 
 	public GameOverBox(Level level) {
-		super(500, 500, "gg your files kinda all died");
+		super(0, 0, "gg your files kinda all died");
 		this.level = level;
 		setStyle(style);
 		setSize(getPrefWidth(), getPrefHeight());
+	}
+
+	@Override
+	protected void setStage(Stage stage) {
+		// TODO Auto-generated method stub
+		super.setStage(stage);
+		if (stage == null) return;
+		setPosition(getStage().getWidth()/2-getWidth()/2, getStage().getHeight()/2-getHeight()/2);
 	}
 
 	public void dismiss() {
