@@ -198,7 +198,7 @@ public abstract class Level extends AnimatedActorGroup {
 					gameOver = false;
 				}
 			}
-			if (gameOver) {
+			if (gameOver && fileStacks.size>0) {
 				screen.addDialog(new GameOverBox(this));
 			}
 
