@@ -257,8 +257,7 @@ public class AnimatedActor extends Actor {
 	}
 
 	public int getDirectionFacing(float x, float y) {
-		final double deg = (Math.toDegrees(Math.atan2(y - getY(), x - getX()))
-				+ 360) % 360;
-		return (int) Math.round(deg / 45) * 45;
+		final double deg = Math.toDegrees(Math.atan2(y - getY(), x - getX()));
+		return ((int) Math.round(deg / 45) * 45 + 360) % 360;
 	}
 }
