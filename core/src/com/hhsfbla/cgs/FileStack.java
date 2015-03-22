@@ -10,7 +10,7 @@ public class FileStack extends SlottedObstacle {
 	private HealthBar healthBar = new HealthBar();
 
 	public FileStack() {
-		super(1);
+		super(1, 9);
 		setOriginY(1/3f);
 		updateOrientedSprite();
 	}

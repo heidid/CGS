@@ -17,6 +17,8 @@ public class Enemy extends MovableActor {
 	private int damage = 5;
 	private TreeMap<Integer, Animation> hurtSprite;
 	private HealthBar healthBar = new HealthBar();
+	public SlottedObstacle targetting = null;
+	public int slot;
 
 	public Enemy() {
 		this(null);
@@ -190,6 +192,8 @@ public class Enemy extends MovableActor {
 	public class DyingAction extends DisappearAction {
 		@Override
 		protected void end() {
+			if(targetting != null)
+				targetting.slots[slot]--; 
 			super.end();
 			getLevel().remove(Enemy.this);
 		}

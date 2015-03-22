@@ -51,6 +51,8 @@ public class InfectFactoryAction extends SequenceAction {
 			return;
 		}
 		closest.slots[slot]++;
+		virus.slot = slot;
+		virus.targetting = closest;
 		this.factory = closest;
 		addAction(new ParallelAction(new AttackMoveInterrupt(), 
 				new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new RunnableAction() {

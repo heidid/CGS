@@ -50,7 +50,7 @@ public class AttackFileStackAction extends SequenceAction {
 			if (!(enemy instanceof Virus))
 				return true;
 			for (Factory f : enemy.getLevel().factories) {
-				if(!f.isInfected()) {
+				if(!f.isInfected() && f.slots[0] == 0) {
 					remove();
 					enemy.addAction(Actions.sequence(new InfectFactoryAction(), new AttackFileStackAction()));
 					return true;
@@ -125,6 +125,8 @@ public class AttackFileStackAction extends SequenceAction {
 			return;
 		}
 		closest.slots[slot]++;
+		enemy.slot = slot;
+		enemy.targetting = closest;
 		this.fileStack = closest;
 		addAction(new ParallelAction(new VirusInterrupt(), new AttackMoveInterrupt(), new SequenceAction(new MoveToAttack(closest.getX(), closest.getY(), shortest), new ContinuallyKillFileStack())));
 		addAction(new RunnableAction() {

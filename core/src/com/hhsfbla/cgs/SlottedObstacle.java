@@ -2,11 +2,14 @@ package com.hhsfbla.cgs;
 
 public class SlottedObstacle extends Obstacle {
 
-	public int[] slots = {0,0,0,0,0,0,0,0};
+	public int[] slots;
 	private int maxPerSlot;
+	private int maxSlots;
 
-	public SlottedObstacle(int maxPerSlot) {
+	public SlottedObstacle(int maxPerSlot, int maxSlots) {
 		super();
+		this.maxSlots = maxSlots;
+		this.slots = new int[maxSlots];
 		this.maxPerSlot = maxPerSlot;
 	}
 
@@ -22,17 +25,17 @@ public class SlottedObstacle extends Obstacle {
 					continue;
 				if(slots[ind] == maxPerSlot) {
 					//System.out.println("TAKEN: "+i+","+j+"|"+slots[ind]+"|"+ind);
-					ind++;
+					ind = Math.min(ind+1, maxSlots-1);
 					continue;
 				}
 				if(i < 0 || j < 0 || i >= Level.GRID_COLS || j >= Level.GRID_ROWS) {
-					ind++;
+					ind = Math.min(ind+1, maxSlots-1);
 					continue;
 				}
 				final CellPath cp = a.getLevel().grid.getPath(
 						Math.round(a.getX()), Math.round(a.getY()), i, j);
 				if(cp.array.size == 0) {
-					ind++;
+					ind = Math.min(ind+1, maxSlots-1);
 					continue;
 				}
 				if(cp.array.size < len) {
@@ -40,7 +43,7 @@ public class SlottedObstacle extends Obstacle {
 					shortest = cp;
 					uind = ind;
 				}
-				ind++;
+				ind = Math.min(ind+1, maxSlots-1);
 			}
 		}
 		return new SlottedCellPathContainer(shortest, uind);

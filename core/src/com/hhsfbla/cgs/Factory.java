@@ -35,7 +35,7 @@ public class Factory extends SlottedObstacle {
 	}
 
 	public Factory(int direction) {
-		super(1);
+		super(1, 1);
 		setDirection(direction);
 		updateOrientedSprite();
 	}
@@ -126,6 +126,7 @@ public class Factory extends SlottedObstacle {
 		protected void end() {
 			super.end();
 			setInfected(true);
+			getInfector().targetting.slots[getInfector().slot]--;
 			getLevel().remove(getInfector());
 		}
 	}
