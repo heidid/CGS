@@ -19,7 +19,7 @@ public class Level1 extends Level {
 		for (int i = 6; i <= 10; i++) {
 			add(new ConveyorBelt(ConveyorBelt.DIR_RIGHT), i, 6);
 		}
-		add(new Virus(), 3, 1);
+		add(new Virus(), 3, 6);
 
 		for (int i = 0; i < 11; i++) {
 			add(new Wall(), i, 5);

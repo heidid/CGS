@@ -11,8 +11,9 @@ public class Virus extends Enemy {
 
 	public Virus() {
 		this(DIR_RIGHT);
+		setMaxHealth(30);
 	}
-	
+
 	class BlockAction extends Action {
 		@Override
 		public boolean act(float delta) {
@@ -29,7 +30,6 @@ public class Virus extends Enemy {
 
 	@SuppressWarnings("serial")
 	public Virus(int direction) {
-		// TODO: Add Virus action
 		super(direction, null);
 		addAction(Actions.sequence(new BlockAction(), new InfectFactoryAction(), new AttackFileStackAction()));
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
