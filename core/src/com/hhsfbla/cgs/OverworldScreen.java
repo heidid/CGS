@@ -29,6 +29,10 @@ public class OverworldScreen extends StageScreen {
 		level.setScreen(this);
 	}
 
+	public Group getUi() {
+		return ui;
+	}
+
 	@Override
 	public void show() {
 		super.show();

@@ -10,7 +10,7 @@ public class OverworldLevel extends Group {
 	Array<OverworldActor> overworldActors = new Array<>();
 	Array<OverworldCircle> levels = new Array<>();
 	OverworldPlayer player = new OverworldPlayer();
-	StageScreen screen;
+	OverworldScreen screen;
 
 	// TODO: Add OverworldLevel state saving
 	private int state;
@@ -66,7 +66,11 @@ public class OverworldLevel extends Group {
 		// state 0
 		addActor(new OverworldCircle(2, 2, 2, new Level1())); 			// first computer circle
 		addActor(new OverworldActor(2, 1, "computer.png")); 			// first computer
-		if (state == 0) return;
+		if (state == 0) {
+			screen.getUi().addActor(new OverworldDialogBox(100, 300,
+					"Press Enter to start the level."));
+			return;
+		}
 
 		// state 1
 		final OverworldCircle swtch = new OverworldCircle(5, 4, 0, new Level4()); // swtch not switch
@@ -87,17 +91,25 @@ public class OverworldLevel extends Group {
 		addActor(swtch); 												// switch circle
 		addActor(new OverworldActor(5, 5, "switch.png", 0.8f, 0.5f)); 	// switch
 
-		if (state == 1) return;
+		if (state == 1) {
+			screen.getUi().addActor(new OverworldDialogBox(200, 500,
+					"Use WASD to navigate the network to the infected computer"));
+			return;
+		}
 
 		// state 2
 		levels.get(1).setType(1);
 		levels.get(2).setType(2);
-		if (state == 2) return;
+		if (state == 2) {
+			return;
+		}
 
 		// state 3
 		levels.get(2).setType(1);
 		levels.get(3).setType(2);
-		if (state == 3) return;
+		if (state == 3) {
+			return;
+		}
 
 		// state 4
 		levels.get(3).setType(1);
@@ -105,7 +117,9 @@ public class OverworldLevel extends Group {
 		addActor(router); 												// router circle
 		addActor(new OverworldActor(8, 7, "router.png", 0.8f, 0.5f));	// router
 		OverworldActor.Connector.connectV(swtch, router);
-		if (state == 4) return;
+		if (state == 4) {
+			return;
+		}
 
 		// state 5
 		levels.get(4).setType(1);
@@ -113,6 +127,11 @@ public class OverworldLevel extends Group {
 		addActor(s); 													// server circle
 		addActor(new OverworldActor(13.7f, 6, "server.png", 0.8f, 0.5f));//server
 		OverworldActor.Connector.connectH(router, s);
+		if (state == 5) {
+			screen.getUi().addActor(new OverworldDialogBox(100, 500,
+					"Use WASD to navigate the network to the infected computer."));
+			return;
+		}
 	}
 
 	public OverworldPlayer getPlayer() {
