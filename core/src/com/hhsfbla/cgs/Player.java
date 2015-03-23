@@ -111,7 +111,7 @@ public class Player extends MovableActor {
 		@Override
 		protected void end() {
 			super.end();
-			getLevel().end();
+			getLevel().win();
 		}
 	}
 

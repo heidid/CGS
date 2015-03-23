@@ -240,7 +240,12 @@ public abstract class Level extends AnimatedActorGroup {
 		}
 	}
 
+	public void win() {
+		screen.game.setState(Math.max(screen.game.getState(), id + 1));
+		end();
+	}
+
 	public void end() {
-		screen.game.setScreen(new OverworldScreen(screen.game, screen.stage, 5, id));
+		screen.game.setScreen(new OverworldScreen(screen.game, screen.stage, id));
 	}
 }

@@ -4,7 +4,6 @@ import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.Queue;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -19,7 +18,7 @@ public class LevelScreen extends StageScreen {
 	private Group ui = new Group();
 	private Queue<DialogBox> dialogs = new ArrayDeque<>();
 
-	public LevelScreen(Game game, Stage stage, Level level) {
+	public LevelScreen(Main game, Stage stage, Level level) {
 		super(game, stage);
 		this.level = level;
 		level.setScreen(this);

@@ -14,10 +14,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
  * A Screen that uses a Stage
  */
 public class StageScreen extends ScreenAdapter {
-	protected Game game;
+	protected Main game;
 	protected Stage stage;
 
-	public StageScreen(Game game, Stage stage) {
+	public StageScreen(Main game, Stage stage) {
 		this.game = game;
 		setStage(stage);
 	}
