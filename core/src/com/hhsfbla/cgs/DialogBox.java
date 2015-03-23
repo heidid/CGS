@@ -2,11 +2,13 @@ package com.hhsfbla.cgs;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 
 public class DialogBox extends Label {
@@ -14,10 +16,12 @@ public class DialogBox extends Label {
 		font = Fonts.getFont("fonts/Laconic_Regular.otf", 16);
 		fontColor = Color.WHITE;
 		background = new NinePatchDrawable(new NinePatch(
-				Images.get("box-enter.png"), 14, 59, 14, 32));
+				Images.get("box.png"), 14, 14, 14, 32));
 	}};
 
-	protected LevelScreen screen;
+	private LevelScreen screen;
+	private Drawable overlay = new NinePatchDrawable(new NinePatch(
+			Images.get("enter.png"), 0, 58, 0, 30));
 
 	public DialogBox(float x, float y, String text) {
 		super(text, style);
@@ -40,6 +44,14 @@ public class DialogBox extends Label {
 		this.screen = screen;
 	}
 
+	public Drawable getOverlay() {
+		return overlay;
+	}
+
+	public void setOverlay(Drawable overlay) {
+		this.overlay = overlay;
+	}
+
 	@Override
 	protected void setStage(Stage stage) {
 		super.setStage(stage);
@@ -49,6 +61,12 @@ public class DialogBox extends Label {
 	public void dismiss() {
 		remove();
 		screen.dismissDialog();
+	}
+
+	@Override
+	public void draw(Batch batch, float parentAlpha) {
+		super.draw(batch, parentAlpha);
+		overlay.draw(batch, getX(), getY(), getWidth(), getHeight());
 	}
 
 	// TODO: Fix Player move getting stuck after dismissing DialogBox
