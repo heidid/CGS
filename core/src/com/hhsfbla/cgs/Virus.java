@@ -11,27 +11,13 @@ public class Virus extends Enemy {
 
 	public Virus() {
 		this(DIR_RIGHT);
-		setMaxHealth(30);
-	}
-
-	class BlockAction extends Action {
-		@Override
-		public boolean act(float delta) {
-			for (Obstacle o : getLevel().getObstacles()) {
-				if(o instanceof ConveyorBelt) {
-					if (getHitbox().overlaps(o.getHitbox())) {
-						return false;
-					}
-				}
-			}
-			return true;
-		}
 	}
 
 	@SuppressWarnings("serial")
 	public Virus(int direction) {
 		super(direction, null);
 		addAction(Actions.sequence(new BlockAction(), new InfectFactoryAction(), new AttackFileStackAction()));
+		setMaxHealth(30);
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("virus-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("virus-down.png")));
@@ -103,6 +89,20 @@ public class Virus extends Enemy {
 			factory.clearActions();
 			factory.setInfected(false);
 			factory.setInfector(null);
+		}
+	}
+
+	class BlockAction extends Action {
+		@Override
+		public boolean act(float delta) {
+			for (Obstacle o : getLevel().getObstacles()) {
+				if(o instanceof ConveyorBelt) {
+					if (getHitbox().overlaps(o.getHitbox())) {
+						return false;
+					}
+				}
+			}
+			return true;
 		}
 	}
 }
