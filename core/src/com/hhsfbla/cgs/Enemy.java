@@ -21,11 +21,11 @@ public class Enemy extends MovableActor {
 	public int slot;
 
 	public Enemy() {
-		this(null);
+		this(DIR_RIGHT);
 	}
 
 	public Enemy(int direction) {
-		this(direction, null);
+		this(direction, new AttackFileStackAction());
 	}
 
 	public Enemy(Action action) {
@@ -193,7 +193,7 @@ public class Enemy extends MovableActor {
 		@Override
 		protected void end() {
 			if(targetting != null)
-				targetting.slots[slot]--; 
+				targetting.slots[slot]--;
 			super.end();
 			getLevel().remove(Enemy.this);
 		}
