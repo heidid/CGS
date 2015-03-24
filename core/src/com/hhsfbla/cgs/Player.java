@@ -16,6 +16,7 @@ public class Player extends MovableActor {
 	private Array<Item> inventory = new Array<>();
 	private boolean canShoot = true;
 	private PlayerInputListener inputListener = new PlayerInputListener();
+	private DialogBox dialog;
 
 	@SuppressWarnings("serial")
 	public Player() {
@@ -67,6 +68,14 @@ public class Player extends MovableActor {
 
 	public void removeItem(Item item) {
 		inventory.removeValue(item, true);
+	}
+
+	public DialogBox getDialog() {
+		return dialog;
+	}
+
+	public void setDialog(DialogBox dialog) {
+		this.dialog = dialog;
 	}
 
 	@Override
@@ -164,7 +173,8 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.ENTER:
-				if (shoot == 0) shoot = 1;
+				if (dialog != null) dialog.dismiss();
+				else if (shoot == 0) shoot = 1;
 				break;
 			}
 			return true;

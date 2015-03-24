@@ -46,7 +46,7 @@ public class LevelScreen extends StageScreen {
 		if (dialog != null) {
 			showDialog(dialog);
 		} else {
-			stage.setKeyboardFocus(level.getPlayer());
+			level.getPlayer().setDialog(null);
 			level.setPaused(false);
 		}
 	}
@@ -54,6 +54,7 @@ public class LevelScreen extends StageScreen {
 	private void showDialog(DialogBox dialog) {
 		dialog.setScreen(this);
 		ui.addActor(dialog);
+		level.getPlayer().setDialog(dialog);
 		level.setPaused(true);
 	}
 

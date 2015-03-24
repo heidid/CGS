@@ -26,14 +26,12 @@ public class DialogBox extends Label {
 	public DialogBox(float x, float y, String text) {
 		super(text, style);
 		setPosition(x, y);
-		addListener(new LevelInputListener());
 	}
 
 	public DialogBox(float x, float y, float w, float h, String text) {
 		super(text, style);
 		setBounds(x, y, w, h);
 		setWrap(true);
-		addListener(new LevelInputListener());
 	}
 
 	public LevelScreen getScreen() {
@@ -52,12 +50,6 @@ public class DialogBox extends Label {
 		this.overlay = overlay;
 	}
 
-	@Override
-	protected void setStage(Stage stage) {
-		super.setStage(stage);
-		if (stage != null) stage.setKeyboardFocus(this);
-	}
-
 	public void dismiss() {
 		remove();
 		screen.dismissDialog();
@@ -67,14 +59,5 @@ public class DialogBox extends Label {
 	public void draw(Batch batch, float parentAlpha) {
 		super.draw(batch, parentAlpha);
 		overlay.draw(batch, getX(), getY(), getWidth(), getHeight());
-	}
-
-	// TODO: Fix Player move getting stuck after dismissing DialogBox
-	private class LevelInputListener extends InputListener {
-		@Override
-		public boolean keyDown(InputEvent event, int keycode) {
-			if (keycode == Input.Keys.ENTER) dismiss();
-			return true;
-		}
 	}
 }
