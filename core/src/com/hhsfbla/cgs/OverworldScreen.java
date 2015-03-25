@@ -20,11 +20,11 @@ public class OverworldScreen extends StageScreen {
 	public OverworldScreen(Main game, Stage stage, int current) {
 		super(game, stage);
 		level = new OverworldLevel(game.getState(), current);
-        cam = new OrthographicCamera(16, 9);
-        cam.position.set(cam.viewportWidth / 2f, cam.viewportHeight / 2f, 0);
+        cam = new OrthographicCamera(Level.GRID_COLS, Level.GRID_ROWS);
+        cam.position.set(stage.getWidth()/2,stage.getHeight()/2,0);
         cam.update();
 		//stage.getViewport().setCamera(cam);
-		cam.zoom = 1f/2f;
+		cam.zoom = 0.5f;
 		level.setScreen(this);
 	}
 
@@ -57,7 +57,8 @@ public class OverworldScreen extends StageScreen {
 
 	@Override
 	public void render(float delta) {
-		cam.position.set(level.getPlayer().getX(), level.getPlayer().getY(), 0);
+		cam.position.set(level.getPlayer().getX() * stage.getWidth() / Level.GRID_COLS,
+			level.getPlayer().getY() * stage.getHeight() / Level.GRID_ROWS, 0);
 		cam.update();
 		level.getChildren().sort(new Comparator<Actor>() {
 			@Override
