@@ -173,8 +173,10 @@ public class Player extends MovableActor {
 				right = true;
 				break;
 			case Input.Keys.ENTER:
+				shoot = 1;
+				break;
+			case Input.Keys.SPACE:
 				if (dialog != null) dialog.dismiss();
-				else if (shoot == 0) shoot = 1;
 				break;
 			}
 			return true;

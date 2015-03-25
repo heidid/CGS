@@ -68,7 +68,7 @@ public class OverworldLevel extends Group {
 		addActor(new OverworldActor(2, 1, "computer.png")); 			// first computer
 		if (state == 0) {
 			screen.getUi().addActor(new OverworldDialogBox(100, 300,
-					"Press Enter to start the level."));
+					"Press space to start the level."));
 			return;
 		}
 

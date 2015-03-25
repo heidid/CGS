@@ -15,7 +15,7 @@ public class GameOverBox extends DialogBox {
 				Images.get("box.png"), 36, 36, 40, 85));
 	}};
 	private static Drawable overlay = new NinePatchDrawable(new NinePatch(
-			Images.get("enter-network.png"), 245, 108, 0, 85));
+			Images.get("space-network.png"), 245, 108, 0, 85));
 
 	private Level level;
 
