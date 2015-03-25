@@ -80,9 +80,9 @@ public class Wall extends Obstacle {
 	protected void updateOrigin() {
 		final int dir = getDirection();
 		if (dir == DIR_UP || !edge && dir == DIR_DOWN) {
-			setOriginY(-1/2f);
+			setOriginY(-1/3f);
 		} else {
-			setOriginY(5/12f);
+			setOriginY(7/12f);
 		}
 	}
 
