@@ -123,7 +123,7 @@ public class OverworldLevel extends Group {
 
 		// state 5
 		levels.get(4).setType(1);
-		OverworldCircle s = new OverworldCircle(12, 6, 2, null);
+		OverworldCircle s = new OverworldCircle(12, 6, 2, new Level6());
 		addActor(s); 													// server circle
 		addActor(new OverworldActor(13.7f, 6, "server.png", 0.8f, 0.5f));//server
 		OverworldActor.Connector.connectH(router, s);
