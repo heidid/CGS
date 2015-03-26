@@ -13,7 +13,7 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 		setUnblockingAnimation(Images.getAnimation("firewall-appear-%d.png", 4, 1, 0.03f));
 		swtch.addSwitchListener(this);
 		setSize(1, 1/6f);
-		setOriginY(5/12f);
+		setOriginY(7/12f);
 	}
 
 	@Override

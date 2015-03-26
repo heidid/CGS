@@ -14,7 +14,7 @@ public class PasswordDoor extends UnblockableObstacle {
 	public PasswordDoor(int type, boolean blocked) {
 		setDirection(DIR_DOWN);
 		setSize(1, 1/6f);
-		setOriginY(5/12f);
+		setOriginY(7/12f);
 		setType(type);
 		setBlocked(blocked);
 	}
