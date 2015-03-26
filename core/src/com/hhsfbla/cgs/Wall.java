@@ -12,6 +12,11 @@ import com.badlogic.gdx.math.Vector2;
 public class Wall extends Obstacle {
 	private boolean edge;
 
+	public static final int DIR_LEFT_UP_RIGHT = 1;
+	public static final int DIR_LEFT_DOWN_RIGHT = 2;
+	public static final int DIR_UP_RIGHT_DOWN = 3;
+	public static final int DIR_UP_LEFT_DOWN = 4;
+
 	public Wall() {
 		this(DIR_RIGHT);
 	}
@@ -38,6 +43,10 @@ public class Wall extends Obstacle {
 			put(DIR_UP_RIGHT, new Animation(0, Images.get("wall-corner-tr.png")));
 			put(DIR_DOWN_LEFT, new Animation(0, Images.get("wall-corner-bl.png")));
 			put(DIR_DOWN_RIGHT, new Animation(0, Images.get("wall-corner-br.png")));
+			put(DIR_LEFT_UP_RIGHT, new Animation(0, Images.get("wall-t-up.png")));
+			put(DIR_LEFT_DOWN_RIGHT, new Animation(0, Images.get("wall-t-down.png")));
+			put(DIR_UP_RIGHT_DOWN, new Animation(0, Images.get("wall-t-right.png")));
+			put(DIR_UP_LEFT_DOWN, new Animation(0, Images.get("wall-t-left.png")));
 		}});
 
 		setSize(new TreeMap<Integer, Vector2>() {{
@@ -53,6 +62,10 @@ public class Wall extends Obstacle {
 			put(DIR_UP_RIGHT, diagonal);
 			put(DIR_DOWN_LEFT, diagonal);
 			put(DIR_DOWN_RIGHT, diagonal);
+			put(DIR_LEFT_UP_RIGHT, diagonal);
+			put(DIR_LEFT_DOWN_RIGHT, diagonal);
+			put(DIR_UP_RIGHT_DOWN, diagonal);
+			put(DIR_UP_LEFT_DOWN, diagonal);
 		}});
 
 		setHitbox(new TreeMap<Integer, Hitbox>() {{
@@ -69,6 +82,14 @@ public class Wall extends Obstacle {
 			put(DIR_DOWN_LEFT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
 					new Rectangle(5/12f, 5/12f, 7/12f, 1/6f)));
 			put(DIR_DOWN_RIGHT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
+					new Rectangle(0, 5/12f, 7/12f, 1/6f)));
+			put(DIR_LEFT_UP_RIGHT, new Hitbox(new Rectangle(5/12f, 5/12f, 1/6f, 7/12f),
+					new Rectangle(0, 5/12f, 1, 1/6f)));
+			put(DIR_LEFT_DOWN_RIGHT, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 7/12f),
+					new Rectangle(0, 5/12f, 1, 1/6f)));
+			put(DIR_UP_RIGHT_DOWN, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 1),
+					new Rectangle(5/12f, 5/12f, 7/12f, 1/6f)));
+			put(DIR_UP_LEFT_DOWN, new Hitbox(new Rectangle(5/12f, 0, 1/6f, 1),
 					new Rectangle(0, 5/12f, 7/12f, 1/6f)));
 		}});
 
