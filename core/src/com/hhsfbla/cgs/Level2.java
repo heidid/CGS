@@ -4,46 +4,30 @@ public class Level2 extends Level {
 	public Level2() {
 		id = 1;
 
-		setSpawnPosition(2, 7, PlayerSpawn.DIR_DOWN);
+		setSpawnPosition(14, 7, PlayerSpawn.DIR_DOWN);
 
-		add(new Wall(Wall.DIR_UP), 1, 6);
-		add(new Wall(Wall.DIR_DOWN_LEFT), 3, 6);
-		add(new Wall(Wall.DIR_UP_RIGHT), 4, 6);
-		add(new Wall(Wall.DIR_DOWN_RIGHT), 1, 5);
-		add(new Wall(Wall.DIR_UP_LEFT), 0, 5);
-		add(new Wall(Wall.DIR_UP), 4, 5);
-		add(new Wall(Wall.DIR_UP), 0, 4);
-		add(new Wall(Wall.DIR_UP), 4, 4);
-		add(new Wall(Wall.DIR_UP), 0, 3);
-		add(new Wall(Wall.DIR_DOWN_RIGHT), 4, 3);
-		add(new Wall(Wall.DIR_UP_LEFT), 3, 3);
-		add(new Wall(Wall.DIR_DOWN_LEFT), 0, 2);
-		add(new Wall(Wall.DIR_UP_RIGHT), 1, 2);
-		add(new Wall(Wall.DIR_DOWN), 3, 2);
-		add(new Wall(Wall.DIR_DOWN_LEFT, true), 1, 1);
-		add(new Wall(Wall.DIR_DOWN_RIGHT, true), 3, 1);
+		add(new FileStack(), 12, 5);
+		add(new FileStack(), 8, 7);
+		add(new FileStack(), 4, 5);
 
-		final FloorSwitch[] switches = {
-				new FloorSwitch(),
-				new FloorSwitch(),
-				new FloorSwitch(),
-				new FloorSwitch(),
-				new FloorSwitch(),
-				new FloorSwitch(),
-				new FloorSwitch()
-		};
+		add(new Enemy(), 11, 7);
+		add(new Enemy(), 4, 6);
 
-		add(switches[0], 2, 5);
-		add(switches[1], 3, 5);
-		add(switches[2], 1, 4);
-		add(switches[3], 2, 4);
-		add(switches[4], 3, 4);
-		add(switches[5], 1, 3);
-		add(switches[6], 2, 3);
+		for (int i = 3; i <= 15; i++) add(new Wall(Wall.DIR_RIGHT), i, 4);
 
-		add(new SwitchGroupDoor(switches), 2, 1);
-		add(new ImportantFile(), 2, 0);
+		add(new FileStack(), 3, 0);
+		add(new FileStack(), 12, 3);
 
-		setExitPosition(14, 1, ExitPort.DIR_LEFT);
+		add(new Enemy(), 3, 3);
+		add(new Enemy(), 10, 0);
+
+		setExitPosition(14, 0, PlayerSpawn.DIR_UP);
+	}
+
+	@Override
+	public void onSpawn() {
+		screen.addDialog(new DialogBox(100, 600,
+				"Oh no! It looks like there are even more malware minions here.\n"
+				+ "Elimate all the malware minions before they corrupt all your files."));
 	}
 }
