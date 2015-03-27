@@ -13,6 +13,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<Enemy> enemies = new Array<>();
 	protected Array<Obstacle> obstacles = new Array<>();
 	protected Array<Item> items = new Array<>();
+
 	protected Array<Projectile> projectiles = new Array<>();
 	protected Array<FileStack> fileStacks = new Array<>();
 	protected PlayerSpawn spawn = new PlayerSpawn();
@@ -242,10 +243,18 @@ public abstract class Level extends AnimatedActorGroup {
 
 	public void win() {
 		int filesLeft = 0;
+		int filesTotal = fileStacks.size * 4;
+
 		for (int i=0;i<fileStacks.size;i++) {
-			filesLeft += Math.round(fileStacks.get(i).getHealth()*4.0/FileStack.MAX_HEALTH);
+			filesLeft += Math.ceil(fileStacks.get(i).getHealth()*4.0/FileStack.MAX_HEALTH);
 		}
-		screen.addDialog(new LevelCompleteBox(this, filesLeft, fileStacks.size*4));
+
+		for (Item i : player.getInventory()) if (i instanceof ImportantFile) {
+			filesLeft++;
+			filesTotal++;
+		}
+
+		screen.addDialog(new LevelCompleteBox(this, filesLeft, filesTotal));
 
 		screen.game.setState(Math.max(screen.game.getState(), id + 1));
 	}

@@ -15,7 +15,7 @@ public class Level2 extends Level {
 
 		for (int i = 3; i <= 15; i++) add(new Wall(Wall.DIR_RIGHT), i, 4);
 
-		add(new FileStack(), 3, 0);
+		add(new FileStack(), 4, 0);
 		add(new FileStack(), 12, 3);
 
 		add(new Enemy(), 3, 3);
