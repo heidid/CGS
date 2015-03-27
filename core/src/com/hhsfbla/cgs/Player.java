@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.actions.TemporalAction;
-import com.badlogic.gdx.scenes.scene2d.utils.Align;
 import com.badlogic.gdx.utils.Array;
 
 public class Player extends MovableActor {
@@ -54,7 +53,6 @@ public class Player extends MovableActor {
 			put(DIR_DOWN_RIGHT, Images.getAnimation("player-down-right-%d.png", 0, 9, 0.03f));
 		}});
 
-		setOrigin(Align.bottom);
 		setSpeed(2);
 	}
 
@@ -103,8 +101,9 @@ public class Player extends MovableActor {
 		@Override
 		protected void begin() {
 			canShoot = false;
-			getLevel().add(new Disc(getDirection()), getX() + (float) Math.cos(
-					Math.toRadians(getDirection())) * 1/2f, getY());
+			getLevel().add(new Disc(getDirection()),
+					getX() + (float) Math.cos(Math.toRadians(getDirection())) * 1/2f,
+					getY() + (float) Math.sin(Math.toRadians(getDirection())) * 1/4f);
 		}
 
 		@Override

@@ -9,6 +9,7 @@ public class Disc extends Projectile {
 		setSprite(Images.get("disc.png"));
 		setSpeed(5);
 		setDamage(10);
+		setOriginY(2/3f);
 	}
 
 	@Override
