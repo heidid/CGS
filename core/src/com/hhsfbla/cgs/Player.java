@@ -54,6 +54,21 @@ public class Player extends MovableActor {
 		}});
 
 		setSpeed(2);
+		updateOrigin();
+	}
+
+	protected void updateOrigin() {
+		if (getDirection() == DIR_LEFT || getDirection() == DIR_RIGHT) {
+			setOriginY(1/4f);
+		} else {
+			setOriginY(5/12f);
+		}
+	}
+
+	@Override
+	protected void directionChanged() {
+		super.directionChanged();
+		updateOrigin();
 	}
 
 	public Array<Item> getInventory() {
