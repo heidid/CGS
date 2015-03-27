@@ -2,6 +2,8 @@ package com.hhsfbla.cgs;
 
 import java.util.Comparator;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -16,6 +18,7 @@ public class OverworldScreen extends StageScreen {
 	private Group background = new Group();
 	private Group ui = new Group();
 	private OrthographicCamera cam;
+	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/ika.mp3"));
 
 	public OverworldScreen(Main game, Stage stage, int current) {
 		super(game, stage);
@@ -42,6 +45,14 @@ public class OverworldScreen extends StageScreen {
 		stage.addActor(ui);
 
 		stage.setKeyboardFocus(level.getPlayer());
+
+		music.setLooping(true);
+		music.play();
+	}
+
+	@Override
+	public void hide() {
+		music.dispose();
 	}
 
 	@Override
@@ -58,7 +69,7 @@ public class OverworldScreen extends StageScreen {
 	@Override
 	public void render(float delta) {
 		cam.position.set(level.getPlayer().getX() * stage.getWidth() / Level.GRID_COLS,
-			level.getPlayer().getY() * stage.getHeight() / Level.GRID_ROWS, 0);
+				level.getPlayer().getY() * stage.getHeight() / Level.GRID_ROWS, 0);
 		cam.update();
 		level.getChildren().sort(new Comparator<Actor>() {
 			@Override

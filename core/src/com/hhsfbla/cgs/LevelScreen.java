@@ -4,6 +4,9 @@ import java.util.ArrayDeque;
 import java.util.Comparator;
 import java.util.Queue;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -19,6 +22,7 @@ public class LevelScreen extends StageScreen {
 	private Group ui = new Group();
 	private Queue<DialogBox> dialogs = new ArrayDeque<>();
 	private OrthographicCamera cam;
+	private Music music = Gdx.audio.newMusic(Gdx.files.internal("sounds/gravity.mp3"));
 
 	public LevelScreen(Main game, Stage stage, Level level) {
 		super(game, stage);
@@ -74,6 +78,14 @@ public class LevelScreen extends StageScreen {
 		stage.addActor(ui);
 
 		stage.setKeyboardFocus(level.getPlayer());
+
+		music.setLooping(true);
+		music.play();
+	}
+
+	@Override
+	public void hide() {
+		music.dispose();
 	}
 
 	@Override
