@@ -24,9 +24,21 @@ public class DialogBox extends Label {
 		setPosition(x, y);
 	}
 
+	public DialogBox(float x, float y, int align, String text) {
+		super(text, style);
+		setPosition(x, y, align);
+	}
+
 	public DialogBox(float x, float y, float w, float h, String text) {
 		super(text, style);
 		setBounds(x, y, w, h);
+		setWrap(true);
+	}
+
+	public DialogBox(float x, float y, int align, float w, float h, String text) {
+		super(text, style);
+		setPosition(x, y, align);
+		setSize(w, h);
 		setWrap(true);
 	}
 
