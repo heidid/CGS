@@ -3,8 +3,8 @@ package com.hhsfbla.cgs;
 import com.badlogic.gdx.graphics.g2d.Batch;
 
 public class FileStack extends SlottedObstacle {
-	
-	private static final int MAX_HEALTH = 200;
+
+	public static final int MAX_HEALTH = 200;
 
 	private int health = MAX_HEALTH;
 	private HealthBar healthBar = new HealthBar();
@@ -47,5 +47,5 @@ public class FileStack extends SlottedObstacle {
 		super.draw(batch, parentAlpha);
 		healthBar.draw(batch, parentAlpha, getX(), getY(), health, MAX_HEALTH);
 	}
-	
+
 }

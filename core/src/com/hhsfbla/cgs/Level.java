@@ -241,8 +241,13 @@ public abstract class Level extends AnimatedActorGroup {
 	}
 
 	public void win() {
+		int filesLeft = 0;
+		for (int i=0;i<fileStacks.size;i++) {
+			filesLeft += Math.round(fileStacks.get(i).getHealth()*4.0/FileStack.MAX_HEALTH);
+		}
+		screen.addDialog(new LevelCompleteBox(this, filesLeft, fileStacks.size*4));
+
 		screen.game.setState(Math.max(screen.game.getState(), id + 1));
-		end();
 	}
 
 	public void end() {
