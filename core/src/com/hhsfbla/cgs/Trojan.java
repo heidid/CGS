@@ -29,7 +29,7 @@ public class Trojan extends Enemy {
 			put(DIR_UP, Images.getAnimation("trojan-up-die-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN, Images.getAnimation("trojan-down-die-%d.png", 0, 9, 0.03f));
 			put(DIR_LEFT, Images.getAnimation("trojan-left-die-%d.png", 0, 9, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("trojan-right-die-%d.png", 0, 9, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("trojan-right-%d.png", 0, 9, 0.03f));
 			put(DIR_UP_LEFT, Images.getAnimation("trojan-up-left-die-%d.png", 0, 9, 0.03f));
 			put(DIR_UP_RIGHT, Images.getAnimation("trojan-up-right-die-%d.png", 0, 9, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("trojan-down-left-die-%d.png", 0, 9, 0.03f));
@@ -39,7 +39,7 @@ public class Trojan extends Enemy {
 			put(DIR_UP, Images.getAnimation("trojan-up-die-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN, Images.getAnimation("trojan-down-die-%d.png", 9, 0, 0.03f));
 			put(DIR_LEFT, Images.getAnimation("trojan-left-die-%d.png", 9, 0, 0.03f));
-			put(DIR_RIGHT, Images.getAnimation("trojan-right-die-%d.png", 9, 0, 0.03f));
+			put(DIR_RIGHT, Images.getAnimation("trojan-right-%d.png", 9, 0, 0.03f));
 			put(DIR_UP_LEFT, Images.getAnimation("trojan-up-left-die-%d.png", 9, 0, 0.03f));
 			put(DIR_UP_RIGHT, Images.getAnimation("trojan-up-right-die-%d.png", 9, 0, 0.03f));
 			put(DIR_DOWN_LEFT, Images.getAnimation("trojan-down-left-die-%d.png", 9, 0, 0.03f));
