@@ -18,7 +18,7 @@ public abstract class Level extends AnimatedActorGroup {
 	protected Array<FileStack> fileStacks = new Array<>();
 	protected PlayerSpawn spawn = new PlayerSpawn();
 	protected ExitPort exit = new ExitPort();
-	protected Array<Factory> factories =  new Array<>();
+	protected Array<Factory> factories = new Array<>();
 	protected LevelScreen screen;
 	Grid grid = new Grid(this);
 	private boolean paused;
@@ -245,8 +245,8 @@ public abstract class Level extends AnimatedActorGroup {
 		int filesLeft = 0;
 		int filesTotal = fileStacks.size * 4;
 
-		for (int i=0;i<fileStacks.size;i++) {
-			filesLeft += Math.ceil(fileStacks.get(i).getHealth()*4.0/FileStack.MAX_HEALTH);
+		for (int i = 0; i < fileStacks.size; i++) {
+			filesLeft += Math.ceil(fileStacks.get(i).getHealth() * 4.0 / FileStack.MAX_HEALTH);
 		}
 
 		for (Item i : player.getInventory()) if (i instanceof ImportantFile) {

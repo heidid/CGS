@@ -29,11 +29,11 @@ public class FileStack extends SlottedObstacle {
 	}
 
 	protected void updateOrientedSprite() {
-		if (health >= MAX_HEALTH * 3 / 4) {
+		if (health > MAX_HEALTH * 3 / 4) {
 			setSprite(Images.get("filestack-4.png"));
-		} else if (health >= MAX_HEALTH / 2) {
+		} else if (health > MAX_HEALTH / 2) {
 			setSprite(Images.get("filestack-3.png"));
-		} else if (health >= MAX_HEALTH / 4) {
+		} else if (health > MAX_HEALTH / 4) {
 			setSprite(Images.get("filestack-2.png"));
 		} else if (health > 0) {
 			setSprite(Images.get("filestack-1.png"));
