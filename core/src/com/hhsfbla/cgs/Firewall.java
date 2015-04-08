@@ -28,7 +28,7 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 	public Firewall(boolean blocked, Switch swtch, String color) {
 		super(blocked);
 		setBlockedSprite(Images.get("firewall-"+color+".png"));
-		setUnblockedSprite(Images.get("firewall-disabled.png"));
+		setUnblockedSprite(Images.get("firewall-disabled-"+color+".png"));
 		setBlockingAnimation(Images.getAnimation("firewall-"+color+"-%d.png", 9, 0, 0.03f));
 		setUnblockingAnimation(Images.getAnimation("firewall-"+color+"-%d.png", 0, 9, 0.03f));
 		swtch.addSwitchListener(this);

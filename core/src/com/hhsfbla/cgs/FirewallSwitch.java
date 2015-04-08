@@ -19,6 +19,15 @@ public class FirewallSwitch extends Switch {
 		updateOrientedHitbox();
 	}
 
+	public FirewallSwitch(boolean on, String color) {
+		super(on);
+		setSize(1, 1/3f);
+		setBlocked(true);
+		setOffSprite(Images.get("switch-firewall-off.png"));
+		setOnSprite(Images.get("switch-firewall-on-"+color+".png"));
+		updateOrientedHitbox();
+	}
+
 	@Override
 	public void setOn(boolean on) {
 		super.setOn(on);
