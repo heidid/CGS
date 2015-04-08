@@ -10,6 +10,10 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 		this(true, swtch);
 	}
 
+	public Firewall(Switch swtch, String color) {
+		this(true, swtch, color);
+	}
+
 	public Firewall(boolean blocked, Switch swtch) {
 		super(blocked);
 		setBlockedSprite(Images.get("firewall.png"));
@@ -29,7 +33,7 @@ public class Firewall extends UnblockableObstacle implements SwitchListener {
 		setUnblockingAnimation(Images.getAnimation("firewall-"+color+"-%d.png", 0, 9, 0.03f));
 		swtch.addSwitchListener(this);
 		setSize(1, 1/6f);
-		setOriginY(7/12f);
+		setOriginY(5/12f);
 	}
 
 	@Override
