@@ -8,7 +8,10 @@ public class Level3 extends Level {
 
 		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
-//		add(new EnemySpawn(), 13, 7.5f);
+		add(new EnemySpawn(), 13, 7.5f);
+		final Switch swtch = new FirewallSwitch();
+		add(swtch, 13, 1);
+		add(new Firewall(false, swtch), 13, 7);
 
 		final Factory factory = new Factory();
 		add(factory, 7, 6);
