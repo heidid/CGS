@@ -7,7 +7,7 @@ public class Level4 extends Level {
 		setSpawnPosition(1, 0, PlayerSpawn.DIR_RIGHT);
 
 		final FirewallSwitch switch1 = new FirewallSwitch();
-		final FirewallSwitch switch2 = new FirewallSwitch();
+		final FirewallSwitch switch2 = new FirewallSwitch(false, "blue");
 
 		add(new EnemySpawn(), 2, 7.5f);
 		add(new Firewall(false, switch1), 2, 7);
