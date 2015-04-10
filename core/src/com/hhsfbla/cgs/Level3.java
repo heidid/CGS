@@ -8,7 +8,7 @@ public class Level3 extends Level {
 
 		setSpawnPosition(1, 6, PlayerSpawn.DIR_RIGHT);
 
-		add(new EnemySpawn(), 13, 7.5f);
+//		add(new EnemySpawn(), 13, 7.5f);
 
 		final Factory factory = new Factory();
 		add(factory, 7, 6);
