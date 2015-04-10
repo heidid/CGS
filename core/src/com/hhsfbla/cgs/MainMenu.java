@@ -71,7 +71,7 @@ public class MainMenu extends StageScreen {
 		public boolean keyDown(InputEvent event, int keycode) {
 			switch (keycode) {
 			case Input.Keys.ENTER:
-				game.setScreen(new OverworldScreen(game, stage, 0));
+				game.setScreen(new OverworldScreen(game, stage, game.getState()));
 				break;
 			case Input.Keys.SPACE:
 				break;

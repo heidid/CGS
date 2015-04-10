@@ -28,7 +28,7 @@ public class Grid {
 		for (Obstacle o : l.getObstacles()){
 			for(int x = Math.round(o.getX()); x < Math.round(o.getX() + Math.ceil(o.getWidth())); x++){
 				for(int y = Math.round(o.getY()); y < Math.round(o.getY() + Math.ceil(o.getHeight())); y++){
-					if(y >= Level.GRID_ROWS || x >= Level.GRID_COLS || (!(o instanceof ConveyorBelt) && !o.isBlocked())) //bound check
+					if(y < 0 || y >= Level.GRID_ROWS || x < 0 || x >= Level.GRID_COLS || (!(o instanceof ConveyorBelt) && !o.isBlocked())) //bound check
 						continue;
 					getCell(x, y).blocked = true;
 				}

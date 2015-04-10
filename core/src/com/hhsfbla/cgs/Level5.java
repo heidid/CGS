@@ -2,7 +2,7 @@ package com.hhsfbla.cgs;
 
 public class Level5 extends Level {
 	public Level5() {
-		id = 1;
+		id = 4;
 
 		setSpawnPosition(2, 7, PlayerSpawn.DIR_DOWN);
 

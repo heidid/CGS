@@ -16,12 +16,23 @@ public class Level3 extends Level {
 		add(new Wall(Wall.DIR_DOWN), 0, 2);
 		add(new Wall(Wall.DIR_DOWN), 0, 1);
 
+		add(new Wall(Wall.DIR_UP_LEFT), 2, 8);
 		add(new Wall(Wall.DIR_DOWN), 2, 7);
 		add(new Wall(Wall.DIR_DOWN, true), 2, 6);
 		add(new Wall(Wall.DIR_UP_LEFT), 2, 4);
 		add(new Wall(Wall.DIR_DOWN), 2, 3);
 		add(new Wall(Wall.DIR_DOWN), 2, 2);
 		add(new Wall(Wall.DIR_DOWN), 2, 1);
+
+		add(new Wall(Wall.DIR_RIGHT), 3, 8);
+		add(new Wall(Wall.DIR_RIGHT), 4, 8);
+		add(new Wall(Wall.DIR_RIGHT), 5, 8);
+		add(new Wall(Wall.DIR_RIGHT), 6, 8);
+		add(new Wall(Wall.DIR_RIGHT), 7, 8);
+		add(new Wall(Wall.DIR_RIGHT), 8, 8);
+		add(new Wall(Wall.DIR_RIGHT), 9, 8);
+		add(new Wall(Wall.DIR_RIGHT), 10, 8);
+		add(new Wall(Wall.DIR_RIGHT), 11, 8);
 
 		add(new Wall(Wall.DIR_DOWN_LEFT), 0, 0);
 		add(new Wall(Wall.DIR_RIGHT), 1, 0);
@@ -60,7 +71,7 @@ public class Level3 extends Level {
 		add(new Wall(Wall.DIR_RIGHT), 5, 2);
 		add(new Wall(Wall.DIR_LEFT, true), 4, 2);
 
-		add(new Wall(Wall.DIR_DOWN), 12, 8);
+		add(new Wall(Wall.DIR_UP_RIGHT), 12, 8);
 		add(new Wall(Wall.DIR_DOWN), 12, 7);
 		add(new Wall(Wall.DIR_DOWN), 12, 6);
 		add(new Wall(Wall.DIR_DOWN), 12, 5);
