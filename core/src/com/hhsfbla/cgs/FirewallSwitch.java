@@ -23,7 +23,7 @@ public class FirewallSwitch extends Switch {
 		super(on);
 		setSize(1, 1/3f);
 		setBlocked(true);
-		setOffSprite(Images.get("switch-firewall-off.png"));
+		setOffSprite(Images.get("switch-firewall-off-"+color+".png"));
 		setOnSprite(Images.get("switch-firewall-on-"+color+".png"));
 		updateOrientedHitbox();
 	}
