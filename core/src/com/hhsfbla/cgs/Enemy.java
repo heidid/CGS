@@ -12,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.Align;
  * Base class for Enemies
  */
 public class Enemy extends MovableActor {
-	private int maxHealth = 20;
+	private int maxHealth = 10;
 	private int health = maxHealth;
 	private int damage = 5;
 	private TreeMap<Integer, Animation> hurtSprite;

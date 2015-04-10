@@ -68,7 +68,7 @@ public class OverworldLevel extends Group {
 		addActor(new OverworldActor(2, 1, "computer.png")); 			// first computer
 		if (state == 0) {
 			screen.getUi().addActor(new OverworldDialogBox(100, 300,
-					"Press enter to start the level."));
+					"A computer has been infected with malware!\n\nPress enter to investigate."));
 			return;
 		}
 
@@ -113,7 +113,7 @@ public class OverworldLevel extends Group {
 
 		// state 4
 		levels.get(3).setType(1);
-		OverworldCircle router = new OverworldCircle(8, 6, 2, null);
+		OverworldCircle router = new OverworldCircle(8, 6, 2, new Level5());
 		addActor(router); 												// router circle
 		addActor(new OverworldActor(8, 7, "router.png", 0.8f, 0.5f));	// router
 		OverworldActor.Connector.connectV(swtch, router);

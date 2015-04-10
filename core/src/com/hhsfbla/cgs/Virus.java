@@ -17,7 +17,7 @@ public class Virus extends Enemy {
 	public Virus(int direction) {
 		super(direction, null);
 		addAction(Actions.sequence(new BlockAction(), new InfectFactoryAction(), new AttackFileStackAction()));
-		setMaxHealth(30);
+		setMaxHealth(20);
 		setIdleSprite(new TreeMap<Integer, Animation>() {{
 			put(DIR_UP, new Animation(0, Images.get("virus-up.png")));
 			put(DIR_DOWN, new Animation(0, Images.get("virus-down.png")));
