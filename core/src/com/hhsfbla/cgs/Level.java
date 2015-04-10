@@ -221,7 +221,7 @@ public abstract class Level extends AnimatedActorGroup {
 						}
 					} else if (o instanceof EnemySpawn) {
 						final EnemySpawn spawn = (EnemySpawn) o;
-						if (spawn.canSpawn()) {
+						if (spawn.isOpen() && spawn.canSpawn()) {
 							setComplete(false);
 							return;
 						}

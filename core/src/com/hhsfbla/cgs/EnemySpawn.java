@@ -6,8 +6,8 @@ import java.util.TreeMap;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 public class EnemySpawn extends SpawnPort {
-	private static final float SPAWN_DELAY = 5;
-	private static final float SPAWN_DELAY_ERROR_MARGIN = 1;
+	private float spawnDelay = 5;
+	private float spawnDelayError = 1;
 
 	private float time;
 	private float delay;
@@ -26,12 +26,29 @@ public class EnemySpawn extends SpawnPort {
 			put(DIR_LEFT, new Animation(0, Images.get("port-enemy-left.png")));
 			put(DIR_RIGHT, new Animation(0, Images.get("port-enemy-right.png")));
 		}});
+		generateDelay();
+	}
 
+	public float getSpawnDelay() {
+		return spawnDelay;
+	}
+
+	public void setSpawnDelay(float spawnDelay) {
+		this.spawnDelay = spawnDelay;
+		generateDelay();
+	}
+
+	public float getSpawnDelayError() {
+		return spawnDelayError;
+	}
+
+	public void setSpawnDelayError(float spawnDelayError) {
+		this.spawnDelayError = spawnDelayError;
 		generateDelay();
 	}
 
 	private void generateDelay() {
-		delay = SPAWN_DELAY + SPAWN_DELAY_ERROR_MARGIN
+		delay = spawnDelay + spawnDelayError
 				* (2 * random.nextFloat() - 1);
 	}
 
@@ -42,7 +59,7 @@ public class EnemySpawn extends SpawnPort {
 		if (isOpen()) {
 			time += delta;
 			if (time >= delay) {
-				if (canSpawn()) spawn(new Enemy());
+				if (canSpawn()) spawn((random.nextDouble() < 0.1) ? new Virus() : new Enemy());
 				generateDelay();
 				time = 0;
 			}

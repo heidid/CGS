@@ -9,20 +9,45 @@ public class HealthBar {
 
 	private float width;
 	private float height;
-	private int units;
+	private int yOffset;
+	private int units = 120;
 
 	public HealthBar() {
 		this(2/3f, 1/12f);
 	}
 
 	public HealthBar(float width, float height) {
-		this(width, height, 120);
+		this(width, height, 1);
 	}
 
-	public HealthBar(float width, float height, int units) {
+	public HealthBar(float width, float height, int yOffset) {
 		this.width = width;
 		this.height = height;
-		this.units = units;
+		this.yOffset = yOffset;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
+		this.width = width;
+	}
+
+	public float getHeight() {
+		return height;
+	}
+
+	public void setHeight(float height) {
+		this.height = height;
+	}
+
+	public int getYOffset() {
+		return yOffset;
+	}
+
+	public void setYOffset(int yOffset) {
+		this.yOffset = yOffset;
 	}
 
 	public void draw(Batch batch, float parentAlpha,
@@ -30,7 +55,7 @@ public class HealthBar {
 		final float unitWidth = width / units;
 		final int unitsHealth = (int) ((double) health / maxHealth * units);
 		x -= width / 2;
-		y += 1;
+		y += yOffset;
 
 		batch.draw(HEALTH_BAR, x, y, width, height);
 
